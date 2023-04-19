@@ -7,14 +7,62 @@ package Utilidades;
 
 import entidades.*;
 import java.util.ArrayList;
+import org.orm.PersistentException;
 
 /**
  *
  * @author Rene2
  */
 public class ComunicacionBD {
-    
-    
+    public void eliminarFacultad(Facultad c) throws Exception{
+        Carrera A[]=obtenerTodos_Carrera(c);
+        for (Carrera carrera : A) {
+            eliminarCarrera(carrera);
+        }
+        c.deleteAndDissociate();
+    }
+    public void eliminarCarrera(Carrera c) throws Exception{
+        Asignatura A[]=obtenerTodos_Asignatura(c);
+        for (Asignatura asignatura : A) {
+            eliminarAsignatura(asignatura);
+        }
+        c.deleteAndDissociate();
+    }
+    public void eliminarAsignatura(Asignatura c) throws Exception{
+        Convocatoria C[]=obtenerTodos_Convocatoria(c);  
+        for (Convocatoria convocatoria : C) {
+            eliminarConvocatoria(convocatoria);
+        }
+        Asignatura_estudiante AE[]=obtenerTodos_AsignaturaEstudiante(c);
+        for (Asignatura_estudiante asignatura_estudiante : AE) {
+            eliminarAsignaturaEstudiante(asignatura_estudiante);
+        }
+        c.deleteAndDissociate();
+    }
+    public void eliminarProfesor(Profesor c) throws Exception{
+        Asignatura A[]=obtenerTodos_Asignatura(c);
+        for (Asignatura asignatura : A) {
+            eliminarAsignatura(asignatura);
+        }
+        c.deleteAndDissociate();
+    }
+    public void eliminarEstudiante(Estudiante c) throws Exception{
+        Convocatoria C[]=obtenerTodos_Convocatoria(c);
+        for (Convocatoria convocatoria : C) {
+            eliminarConvocatoria(convocatoria);
+        }
+        Asignatura_estudiante AE[]=obtenerTodos_AsignaturaEstudiante(c);
+        for (Asignatura_estudiante asignatura_estudiante : AE) {
+            eliminarAsignaturaEstudiante(asignatura_estudiante);
+        }
+        c.deleteAndDissociate();
+    }
+    public void eliminarAsignaturaEstudiante(Asignatura_estudiante c) throws PersistentException{
+        c.deleteAndDissociate();
+    }
+    public void eliminarConvocatoria(Convocatoria c) throws PersistentException{
+        c.deleteAndDissociate();
+    }
     public Facultad modificarFacultad(Facultad l) throws Exception {
         l.save();
         return l;
@@ -26,8 +74,8 @@ public class ComunicacionBD {
 
     public boolean existeFacultad(String nombre) throws Exception {
         Facultad[] L = obtenerTodos_Facultad();
-        for (Facultad local : L) {
-            if (local.getFacultad().equals(nombre)) {
+        for (Facultad l : L) {
+            if (l.getFacultad().equals(nombre)) {
                 return true;
             }
         }
@@ -96,7 +144,13 @@ public class ComunicacionBD {
     public Asignatura[] obtenerTodos_Asignatura(Carrera l) throws Exception {
         return l.asignatura.toArray();
     }
+    public Asignatura[] obtenerTodos_Asignatura(Profesor l) throws Exception {
+        return l.asignatura.toArray();
+    }
     public Asignatura_estudiante[] obtenerTodos_AsignaturaEstudiante(Asignatura l) throws Exception {
+        return l.asignatura_estudiante.toArray();
+    }
+    public Asignatura_estudiante[] obtenerTodos_AsignaturaEstudiante(Estudiante l) throws Exception {
         return l.asignatura_estudiante.toArray();
     }
     public Estudiante[] obtenerTodos_Estudiante(Asignatura l) throws Exception {
@@ -108,6 +162,9 @@ public class ComunicacionBD {
         return la.toArray(new Estudiante[0]);
     }
     public Convocatoria[] obtenerTodos_Convocatoria(Estudiante e) throws Exception {
+        return e.convocatoria.toArray();
+    }
+    public Convocatoria[] obtenerTodos_Convocatoria(Asignatura e) throws Exception {
         return e.convocatoria.toArray();
     }
     public Convocatoria[] obtenerTodos_Convocatoria(Asignatura as,Estudiante e) throws Exception {
@@ -125,5 +182,30 @@ public class ComunicacionBD {
     
     public Profesor obtenerProfesor(Asignatura a){
         return a.getId_profesor();
+    }
+    public Carrera[] obtenerTodos_Carrera() throws Exception {
+        return Carrera.listCarreraByQuery(null, null);
+    }
+    public boolean existeCarrera(String nombre) throws Exception {
+        Carrera[] L = obtenerTodos_Carrera();
+        for (Carrera l : L) {
+            if (l.getCarrera().equals(nombre)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public Carrera agregarCarrera(Facultad l, String nombre) throws Exception {
+        Carrera m = new Carrera();
+        m.setId_facultad(l);
+        m.setCarrera(nombre);
+        m.save();
+        return m;
+
+    }
+    public Carrera modificarCarrera(Carrera l) throws Exception {
+        l.save();
+        return l;
     }
 }

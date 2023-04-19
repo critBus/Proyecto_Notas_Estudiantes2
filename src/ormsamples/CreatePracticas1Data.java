@@ -9,9 +9,6 @@ public class CreatePracticas1Data {
 	public void createTestData() throws PersistentException {
 		PersistentTransaction t = entidades.Practicas1PersistentManager.instance().getSession().beginTransaction();
 		try {
-			entidades.Usuario lentidadesUsuario = entidades.Usuario.createUsuario();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : password, username
-			lentidadesUsuario.save();
 			entidades.Asignatura lentidadesAsignatura = entidades.Asignatura.createAsignatura();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : convocatoria, asignatura_estudiante, id_profesor, id_carrera, semestre, modalidad, asignatura
 			lentidadesAsignatura.save();
@@ -33,6 +30,9 @@ public class CreatePracticas1Data {
 			entidades.Profesor lentidadesProfesor = entidades.Profesor.createProfesor();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : asignatura, apellidos, nombre
 			lentidadesProfesor.save();
+			entidades.Usuario lentidadesUsuario = entidades.Usuario.createUsuario();
+			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : password, username
+			lentidadesUsuario.save();
 			t.commit();
 		}
 		catch (Exception e) {

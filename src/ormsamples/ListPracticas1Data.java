@@ -9,17 +9,9 @@ public class ListPracticas1Data {
 	private static final int ROW_COUNT = 100;
 	
 	public void listTestData() throws PersistentException {
-		System.out.println("Listing Usuario...");
-		entidades.Usuario[] entidadesUsuarios = entidades.Usuario.listUsuarioByQuery(null, null);
-		int length = Math.min(entidadesUsuarios.length, ROW_COUNT);
-		for (int i = 0; i < length; i++) {
-			System.out.println(entidadesUsuarios[i]);
-		}
-		System.out.println(length + " record(s) retrieved.");
-		
 		System.out.println("Listing Asignatura...");
 		entidades.Asignatura[] entidadesAsignaturas = entidades.Asignatura.listAsignaturaByQuery(null, null);
-		length = Math.min(entidadesAsignaturas.length, ROW_COUNT);
+		int length = Math.min(entidadesAsignaturas.length, ROW_COUNT);
 		for (int i = 0; i < length; i++) {
 			System.out.println(entidadesAsignaturas[i]);
 		}
@@ -73,28 +65,24 @@ public class ListPracticas1Data {
 		}
 		System.out.println(length + " record(s) retrieved.");
 		
+		System.out.println("Listing Usuario...");
+		entidades.Usuario[] entidadesUsuarios = entidades.Usuario.listUsuarioByQuery(null, null);
+		length = Math.min(entidadesUsuarios.length, ROW_COUNT);
+		for (int i = 0; i < length; i++) {
+			System.out.println(entidadesUsuarios[i]);
+		}
+		System.out.println(length + " record(s) retrieved.");
+		
 	}
 	
 	public void listByCriteria() throws PersistentException {
-		System.out.println("Listing Usuario by Criteria...");
-		entidades.UsuarioCriteria lentidadesUsuarioCriteria = new entidades.UsuarioCriteria();
-		// Please uncomment the follow line and fill in parameter(s) 
-		//lentidadesUsuarioCriteria.id.eq();
-		lentidadesUsuarioCriteria.setMaxResults(ROW_COUNT);
-		entidades.Usuario[] entidadesUsuarios = lentidadesUsuarioCriteria.listUsuario();
-		int length =entidadesUsuarios== null ? 0 : Math.min(entidadesUsuarios.length, ROW_COUNT); 
-		for (int i = 0; i < length; i++) {
-			 System.out.println(entidadesUsuarios[i]);
-		}
-		System.out.println(length + " Usuario record(s) retrieved."); 
-		
 		System.out.println("Listing Asignatura by Criteria...");
 		entidades.AsignaturaCriteria lentidadesAsignaturaCriteria = new entidades.AsignaturaCriteria();
 		// Please uncomment the follow line and fill in parameter(s) 
 		//lentidadesAsignaturaCriteria.id.eq();
 		lentidadesAsignaturaCriteria.setMaxResults(ROW_COUNT);
 		entidades.Asignatura[] entidadesAsignaturas = lentidadesAsignaturaCriteria.listAsignatura();
-		length =entidadesAsignaturas== null ? 0 : Math.min(entidadesAsignaturas.length, ROW_COUNT); 
+		int length =entidadesAsignaturas== null ? 0 : Math.min(entidadesAsignaturas.length, ROW_COUNT); 
 		for (int i = 0; i < length; i++) {
 			 System.out.println(entidadesAsignaturas[i]);
 		}
@@ -171,6 +159,18 @@ public class ListPracticas1Data {
 			 System.out.println(entidadesProfesors[i]);
 		}
 		System.out.println(length + " Profesor record(s) retrieved."); 
+		
+		System.out.println("Listing Usuario by Criteria...");
+		entidades.UsuarioCriteria lentidadesUsuarioCriteria = new entidades.UsuarioCriteria();
+		// Please uncomment the follow line and fill in parameter(s) 
+		//lentidadesUsuarioCriteria.id.eq();
+		lentidadesUsuarioCriteria.setMaxResults(ROW_COUNT);
+		entidades.Usuario[] entidadesUsuarios = lentidadesUsuarioCriteria.listUsuario();
+		length =entidadesUsuarios== null ? 0 : Math.min(entidadesUsuarios.length, ROW_COUNT); 
+		for (int i = 0; i < length; i++) {
+			 System.out.println(entidadesUsuarios[i]);
+		}
+		System.out.println(length + " Usuario record(s) retrieved."); 
 		
 	}
 	

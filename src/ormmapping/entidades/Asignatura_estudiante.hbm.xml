@@ -13,7 +13,7 @@ License Type: Purchased
 		</id>
 		<many-to-one name="id_asignatura" cascade="lock" column="id_asignatura" class="entidades.Asignatura" not-null="true" lazy="proxy" access="field">
 		</many-to-one>
-		<many-to-one name="id_estudiante" column="id_estudiante" class="entidades.Estudiante" cascade="save-update,lock" unique="true" not-null="true" lazy="proxy" access="field">
+		<many-to-one name="id_estudiante" cascade="lock" column="id_estudiante" class="entidades.Estudiante" not-null="true" lazy="proxy" access="field">
 		</many-to-one>
 	</class>
 </hibernate-mapping>

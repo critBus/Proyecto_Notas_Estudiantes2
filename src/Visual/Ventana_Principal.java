@@ -16,14 +16,13 @@ import java.util.Comparator;
 import javax.swing.ButtonGroup;
 import javax.swing.event.MouseInputListener;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Rene2
  */
 public class Ventana_Principal extends javax.swing.JFrame {
 
-    
-    
     public Usuario usuarioActual;
 
     private boolean ordenar_de_forma_asendente_Facultad;
@@ -40,57 +39,55 @@ public class Ventana_Principal extends javax.swing.JFrame {
 
     public ArrayList<Carrera> carreras_existentes_de_facultad;
     public ArrayList<Carrera> carreras_en_tabla;
-    
+
     public ArrayList<Estudiante> estudiantes_existentes_de_asignatura;
     public ArrayList<Estudiante> estudiantes_en_tabla;
-    
+
     public ArrayList<Convocatoria> convocatorias_existentes_de_estudiante_y_asignatura;
     public ArrayList<Convocatoria> convocatorias_en_tabla;
-    
+
     public Profesor profesorDeAsignatura;
-    
+
     /**
      * Creates new form Ventana_Principal
      */
     public Ventana_Principal() {
         initComponents();
-        
+
         setLocationRelativeTo(null);
-        
-        facultades_existentes=new ArrayList<>();
-        facultades_en_tabla=new ArrayList<>();
-        asignaturas_existentes_de_carrera=new ArrayList<>();
-        asignaturas_en_tabla=new ArrayList<>();
-        carreras_existentes_de_facultad=new ArrayList<>();
-        carreras_en_tabla=new ArrayList<>();
-        estudiantes_existentes_de_asignatura=new ArrayList<>();
-        estudiantes_en_tabla=new ArrayList<>();
-        convocatorias_existentes_de_estudiante_y_asignatura=new ArrayList<>();
-        convocatorias_en_tabla=new ArrayList<>();
-        
-        ordenar_de_forma_asendente_Facultad=true;
-        ordenar_de_forma_asendente_Asignaturas=true;
-        ordenar_de_forma_asendente_Carreras=true;
-        ordenar_de_forma_asendente_Estudiantes=true;
-        ordenar_de_forma_asendente_Convocatoria=true;
-        
+
+        facultades_existentes = new ArrayList<>();
+        facultades_en_tabla = new ArrayList<>();
+        asignaturas_existentes_de_carrera = new ArrayList<>();
+        asignaturas_en_tabla = new ArrayList<>();
+        carreras_existentes_de_facultad = new ArrayList<>();
+        carreras_en_tabla = new ArrayList<>();
+        estudiantes_existentes_de_asignatura = new ArrayList<>();
+        estudiantes_en_tabla = new ArrayList<>();
+        convocatorias_existentes_de_estudiante_y_asignatura = new ArrayList<>();
+        convocatorias_en_tabla = new ArrayList<>();
+
+        ordenar_de_forma_asendente_Facultad = true;
+        ordenar_de_forma_asendente_Asignaturas = true;
+        ordenar_de_forma_asendente_Carreras = true;
+        ordenar_de_forma_asendente_Estudiantes = true;
+        ordenar_de_forma_asendente_Convocatoria = true;
+
         ButtonGroup bg_ordenar_Asignatura = new ButtonGroup();
         bg_ordenar_Asignatura.add(MI_RB_Ordenar_Asignatura_Por_Modalidad);
         bg_ordenar_Asignatura.add(MI_RB_Ordenar_Asignatura_Por_Nombre);
         bg_ordenar_Asignatura.add(MI_RB_Ordenar_Asignatura_Por_Semestre);
         MI_RB_Ordenar_Asignatura_Por_Nombre.setSelected(true);
-        
-        
+
         ButtonGroup bg_ordenar_Estudiantes = new ButtonGroup();
         bg_ordenar_Estudiantes.add(MI_RB_Ordenar_Estudiantes_Por_Apellidos);
         bg_ordenar_Estudiantes.add(MI_RB_Ordenar_Estudiantes_Por_Nombre);
         bg_ordenar_Estudiantes.add(MI_RB_Ordenar_Estudiantes_Por_Grupo);
         MI_RB_Ordenar_Estudiantes_Por_Nombre.setSelected(true);
-        
+
         final Ventana_Principal estaVentana = this;
         UtilidadesParaVentana.ponerIconoDeVentana_Principal(this);
-        
-        
+
         T_Facultades.addMouseListener(new MouseInputListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -269,21 +266,19 @@ public class Ventana_Principal extends javax.swing.JFrame {
         });
 
     }
+
     public void actualizar(Usuario u) throws Exception {
         this.usuarioActual = u;
-        ordenar_de_forma_asendente_Facultad=true;
-        ordenar_de_forma_asendente_Asignaturas=true;
-        ordenar_de_forma_asendente_Carreras=true;
-        ordenar_de_forma_asendente_Estudiantes=true;
-        ordenar_de_forma_asendente_Convocatoria=true;
-        
-        UtilidadesParaVentana.cambiarIconoDeDireccion(B_Invertir_Orden_Asiganturas,this.ordenar_de_forma_asendente_Asignaturas);
-        UtilidadesParaVentana.cambiarIconoDeDireccion(B_Invertir_Orden_Carreras,this.ordenar_de_forma_asendente_Carreras);
-        UtilidadesParaVentana.cambiarIconoDeDireccion(B_Invertir_Orden_Estudiantes,this.ordenar_de_forma_asendente_Estudiantes);
-        UtilidadesParaVentana.cambiarIconoDeDireccion(B_Invertir_Orden_Facultades,this.ordenar_de_forma_asendente_Facultad);
-        
-        
-       
+        ordenar_de_forma_asendente_Facultad = true;
+        ordenar_de_forma_asendente_Asignaturas = true;
+        ordenar_de_forma_asendente_Carreras = true;
+        ordenar_de_forma_asendente_Estudiantes = true;
+        ordenar_de_forma_asendente_Convocatoria = true;
+
+        UtilidadesParaVentana.cambiarIconoDeDireccion(B_Invertir_Orden_Asiganturas, this.ordenar_de_forma_asendente_Asignaturas);
+        UtilidadesParaVentana.cambiarIconoDeDireccion(B_Invertir_Orden_Carreras, this.ordenar_de_forma_asendente_Carreras);
+        UtilidadesParaVentana.cambiarIconoDeDireccion(B_Invertir_Orden_Estudiantes, this.ordenar_de_forma_asendente_Estudiantes);
+        UtilidadesParaVentana.cambiarIconoDeDireccion(B_Invertir_Orden_Facultades, this.ordenar_de_forma_asendente_Facultad);
 
         TI_Filtro_Asiganturas.setText("");
         TI_Filtro_Carreras.setText("");
@@ -294,6 +289,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
         actualizarTabla_Facultad(this.facultades_existentes);
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -411,9 +407,19 @@ public class Ventana_Principal extends javax.swing.JFrame {
         jPanel1.add(B_Agregar_Facultades, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 45, 40));
 
         B_Editar_Facultades.setText("d");
+        B_Editar_Facultades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_Editar_FacultadesActionPerformed(evt);
+            }
+        });
         jPanel1.add(B_Editar_Facultades, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 45, 40));
 
         B_Eliminar_Facultades.setText("-");
+        B_Eliminar_Facultades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_Eliminar_FacultadesActionPerformed(evt);
+            }
+        });
         jPanel1.add(B_Eliminar_Facultades, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 45, 40));
 
         T_Facultades.setModel(new javax.swing.table.DefaultTableModel(
@@ -447,12 +453,27 @@ public class Ventana_Principal extends javax.swing.JFrame {
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 220, 150));
 
         B_Agregar_Carrera.setText("+");
+        B_Agregar_Carrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_Agregar_CarreraActionPerformed(evt);
+            }
+        });
         jPanel1.add(B_Agregar_Carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 45, 40));
 
         B_Editar_Carrera.setText("d");
+        B_Editar_Carrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_Editar_CarreraActionPerformed(evt);
+            }
+        });
         jPanel1.add(B_Editar_Carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 45, 40));
 
         B_Eliminar_Carrera.setText("-");
+        B_Eliminar_Carrera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_Eliminar_CarreraActionPerformed(evt);
+            }
+        });
         jPanel1.add(B_Eliminar_Carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 480, 45, 40));
 
         L_Carrera.setText("Carreras");
@@ -820,19 +841,49 @@ public class Ventana_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_TI_Filtro_FacultadesActionPerformed
 
     private void B_Filtrar_FacultadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Filtrar_FacultadesActionPerformed
-       
+try {
+            final String texto = TI_Filtro_Facultades.getText().trim().toLowerCase();
+            if (texto.isEmpty()) {
+
+                this.facultades_existentes = new ArrayList<>(Arrays.asList(EnMemoria.BD.obtenerTodos_Facultad()));
+                actualizarTabla_Facultad(this.facultades_existentes);
+
+            } else {
+                final ArrayList<Facultad> seleccionados = new ArrayList<>();
+                this.facultades_existentes.forEach(v -> {
+                    if (v.getFacultad().toLowerCase().contains(texto)) {
+                        seleccionados.add(v);
+                    }
+                });
+                actualizarTabla_Facultad(seleccionados);
+            }
+        } catch (Exception ex) {
+            DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
+        }
     }//GEN-LAST:event_B_Filtrar_FacultadesActionPerformed
 
     private void B_Invertir_Orden_FacultadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Invertir_Orden_FacultadesActionPerformed
-       
+        try {
+            this.ordenar_de_forma_asendente_Facultad = !this.ordenar_de_forma_asendente_Facultad;
+            UtilidadesParaVentana.cambiarIconoDeDireccion(B_Invertir_Orden_Facultades,this.ordenar_de_forma_asendente_Facultad);
+            actualizarTabla_Facultad(this.facultades_en_tabla);
+        } catch (Exception ex) {
+            DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
+        }
     }//GEN-LAST:event_B_Invertir_Orden_FacultadesActionPerformed
 
     private void B_Invertir_Orden_AsiganturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Invertir_Orden_AsiganturasActionPerformed
-        // TODO add your handling code here:
+        try {
+            this.ordenar_de_forma_asendente_Asignaturas = !this.ordenar_de_forma_asendente_Asignaturas;
+            UtilidadesParaVentana.cambiarIconoDeDireccion(B_Invertir_Orden_Asiganturas,this.ordenar_de_forma_asendente_Asignaturas);
+            actualizarTabla_Asignatura(this.asignaturas_en_tabla);
+        } catch (Exception ex) {
+            DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
+        }
     }//GEN-LAST:event_B_Invertir_Orden_AsiganturasActionPerformed
 
     private void B_Filtrar_AsiganturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Filtrar_AsiganturasActionPerformed
-        // TODO add your handling code here:
+        aplicarFiltro_Asignaturas();
     }//GEN-LAST:event_B_Filtrar_AsiganturasActionPerformed
 
     private void TI_Filtro_AsiganturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TI_Filtro_AsiganturasActionPerformed
@@ -844,11 +895,17 @@ public class Ventana_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_TI_Filtro_EstudiantesActionPerformed
 
     private void B_Filtrar_EstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Filtrar_EstudiantesActionPerformed
-        // TODO add your handling code here:
+        aplicarFiltro_Estudiantes();
     }//GEN-LAST:event_B_Filtrar_EstudiantesActionPerformed
 
     private void B_Invertir_Orden_EstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Invertir_Orden_EstudiantesActionPerformed
-        // TODO add your handling code here:
+       try {
+            this.ordenar_de_forma_asendente_Estudiantes = !this.ordenar_de_forma_asendente_Estudiantes;
+            UtilidadesParaVentana.cambiarIconoDeDireccion(B_Invertir_Orden_Estudiantes,this.ordenar_de_forma_asendente_Estudiantes);
+            actualizarTabla_Estudiante(this.estudiantes_en_tabla);
+        } catch (Exception ex) {
+            DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
+        }
     }//GEN-LAST:event_B_Invertir_Orden_EstudiantesActionPerformed
 
     private void TI_Filtro_CarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TI_Filtro_CarrerasActionPerformed
@@ -856,27 +913,150 @@ public class Ventana_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_TI_Filtro_CarrerasActionPerformed
 
     private void B_Filtrar_CarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Filtrar_CarrerasActionPerformed
-        // TODO add your handling code here:
+       try {
+            final String texto = TI_Filtro_Carreras.getText().trim().toLowerCase();
+            if (texto.isEmpty()) {
+                        Facultad l = this.facultades_en_tabla.get(T_Facultades.getSelectedRow());
+                        actualizar_T_A_PartirDe(l);
+
+            } else {
+                final ArrayList<Carrera> seleccionados = new ArrayList<>();
+                this.carreras_existentes_de_facultad.forEach(v -> {
+                    if (v.getCarrera().toLowerCase().contains(texto)) {
+                        seleccionados.add(v);
+                    }
+                });
+                actualizarTabla_Carrera(seleccionados);
+            }
+        } catch (Exception ex) {
+            DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
+        }
     }//GEN-LAST:event_B_Filtrar_CarrerasActionPerformed
 
     private void B_Invertir_Orden_CarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Invertir_Orden_CarrerasActionPerformed
-        // TODO add your handling code here:
+       try {
+            this.ordenar_de_forma_asendente_Carreras = !this.ordenar_de_forma_asendente_Carreras;
+            UtilidadesParaVentana.cambiarIconoDeDireccion(B_Invertir_Orden_Carreras,this.ordenar_de_forma_asendente_Carreras);
+            actualizarTabla_Carrera(this.carreras_en_tabla);
+        } catch (Exception ex) {
+            DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
+        }
     }//GEN-LAST:event_B_Invertir_Orden_CarrerasActionPerformed
 
-    
-    private void intentarAgregarFacultad() {
+    private void B_Editar_FacultadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Editar_FacultadesActionPerformed
+        intentarModificarFacultad();
+    }//GEN-LAST:event_B_Editar_FacultadesActionPerformed
+
+    private void B_Eliminar_FacultadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Eliminar_FacultadesActionPerformed
+        intentarElimnarFacultad();
+    }//GEN-LAST:event_B_Eliminar_FacultadesActionPerformed
+
+    private void B_Agregar_CarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Agregar_CarreraActionPerformed
+        intentarAgregarCarrera();
+    }//GEN-LAST:event_B_Agregar_CarreraActionPerformed
+
+    private void B_Eliminar_CarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Eliminar_CarreraActionPerformed
+      intentarEliminarCarrera();
+    }//GEN-LAST:event_B_Eliminar_CarreraActionPerformed
+
+    private void B_Editar_CarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Editar_CarreraActionPerformed
+       intentarModificarCarrera();
+    }//GEN-LAST:event_B_Editar_CarreraActionPerformed
+
+    private void intentarModificarCarrera() {
         try {
-            String nombreLocal = JOptionPane.showInputDialog(this, "Escriba el nombre de la Facultad a agregar ", "Agregar Facultad", JOptionPane.QUESTION_MESSAGE);
-            if (nombreLocal != null && MetodosValidacion.validar_es_nuevo_Facultad_correcto(this, nombreLocal)) {
-                Facultad localNuevo = EnMemoria.BD.agregarFacultad(nombreLocal);
-                DLG_Respuesta.mostrarDlgExito(this, "Facultad agregada con éxito");
-                TI_Filtro_Asiganturas.setText("");
-                TI_Filtro_Carreras.setText("");
-                TI_Filtro_Estudiantes.setText("");
-                TI_Filtro_Facultades.setText("");
-                this.facultades_existentes.add(localNuevo);
-                actualizarTabla_Facultad(this.facultades_existentes);
-               
+            if (T_Facultades.getSelectedRow() != -1) {
+                Facultad l = this.facultades_en_tabla.get(T_Facultades.getSelectedRow());
+
+                if (T_Carrera.getSelectedRow() != -1) {
+                    Carrera m = carreras_en_tabla.get(T_Carrera.getSelectedRow());
+
+                    String medioBasiocModificado = JOptionPane.showInputDialog(this, "Escriba el nombre de la carrera modificada ", m.getCarrera());//"Modificar Local",JOptionPane.QUESTION_MESSAGE
+                    if (medioBasiocModificado != null && MetodosValidacion.validar_es_modificar_Carrera_correcto(this,m, medioBasiocModificado)) {
+                        m.setCarrera(medioBasiocModificado);
+                        Carrera medioModificado = EnMemoria.BD.modificarCarrera(m);
+
+                        TI_Filtro_Asiganturas.setText("");
+                        TI_Filtro_Carreras.setText("");
+                        TI_Filtro_Estudiantes.setText("");
+                        
+                        this.carreras_existentes_de_facultad.remove(m);
+                        this.carreras_existentes_de_facultad.add(medioModificado);
+                        actualizarTabla_Carrera(this.carreras_existentes_de_facultad);
+
+                        DLG_Respuesta.mostrarDlgExito(this, "Carrera modificada con éxito  ");
+
+                    }
+
+                } else {
+                    DLG_Respuesta.mostrarDlgInvalido(this, "Tiene que seleccionar una Carrera en la tabla ");
+                }
+
+            } else {
+                DLG_Respuesta.mostrarDlgInvalido(this, "Tiene que seleccionar una Facultad en la tabla ");
+            }
+
+        } catch (Exception ex) {
+            DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
+        }
+    }
+    private void intentarEliminarCarrera() {
+        try {
+            if (T_Facultades.getSelectedRow() != -1) {
+                Facultad l = this.facultades_en_tabla.get(T_Facultades.getSelectedRow());
+
+                if (T_Carrera.getSelectedRow() != -1) {
+
+                    if (JOptionPane.showConfirmDialog(this, "Desea eliminar la Carrera seleccionada?", "Advertencia", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+                        Carrera m = carreras_en_tabla.get(T_Carrera.getSelectedRow());
+
+                        EnMemoria.BD.eliminarCarrera(m);
+                        TI_Filtro_Asiganturas.setText("");
+                        TI_Filtro_Carreras.setText("");
+                        TI_Filtro_Estudiantes.setText("");
+
+                        this.carreras_existentes_de_facultad.remove(m);
+
+                        actualizarTabla_Carrera(this.carreras_existentes_de_facultad);
+
+                        DLG_Respuesta.mostrarDlgExito(this, "Carrera eliminada con éxito  ");
+                    }
+
+                } else {
+                    DLG_Respuesta.mostrarDlgInvalido(this, "Tiene que seleccionar una Carrera en la tabla ");
+                }
+
+            } else {
+                DLG_Respuesta.mostrarDlgInvalido(this, "Tiene que seleccionar una Facultad en la tabla ");
+            }
+
+        } catch (Exception ex) {
+            DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
+        }
+    }
+
+    
+    
+    private void intentarAgregarCarrera() {
+        try {
+            if (T_Facultades.getSelectedRow() != -1) {
+
+                String nombre = JOptionPane.showInputDialog(this, "Escriba el nombre de la Carrera a agregar ", "Agregar Carrera", JOptionPane.QUESTION_MESSAGE);
+                if (nombre != null && MetodosValidacion.validar_es_nuevo_Carrera_correcto(this, nombre)) {
+                    Facultad l = this.facultades_en_tabla.get(T_Facultades.getSelectedRow());
+                    Carrera nuevo = EnMemoria.BD.agregarCarrera(l, nombre);
+                    DLG_Respuesta.mostrarDlgExito(this, "Carrera agregada con éxito");
+                    TI_Filtro_Asiganturas.setText("");
+                    TI_Filtro_Carreras.setText("");
+                    TI_Filtro_Estudiantes.setText("");
+                    
+                    this.carreras_existentes_de_facultad.add(nuevo);
+                    actualizarTabla_Carrera(this.carreras_existentes_de_facultad);
+
+                }
+
+            } else {
+                DLG_Respuesta.mostrarDlgInvalido(this, "Tiene que seleccionar una Facultad en la tabla ");
             }
 
         } catch (Exception ex) {
@@ -884,8 +1064,166 @@ public class Ventana_Principal extends javax.swing.JFrame {
         }
     }
     
+    private void aplicarFiltro_Estudiantes() {
+        try {
+            final String texto = TI_Filtro_Estudiantes.getText().trim().toLowerCase();
+            if (texto.isEmpty()) {
+                if (T_Asignaturas.getSelectedRow() != -1) {
+                    Asignatura l = this.asignaturas_en_tabla.get(T_Asignaturas.getSelectedRow());
+                    actualizar_T_A_PartirDe(l);
+
+                } else {
+                    DLG_Respuesta.mostrarDlgInvalido(this, "Tiene que seleccionar una asignatura en la tabla ");
+                }
+
+            } else {
+                final ArrayList<Estudiante> seleccionados = new ArrayList<>();
+                this.estudiantes_existentes_de_asignatura.forEach(v -> {
+                    if (MI_ChB_Filtrar_Estudiantes_Por_Apellidos.isSelected()
+                            && v.getApellidos().toLowerCase().contains(texto)) {
+                        seleccionados.add(v);
+                        return;
+                    }
+                    if (MI_ChB_Filtrar_Estudiantes_Por_Grupo.isSelected()
+                            && v.getGrupo().toLowerCase().contains(texto)) {
+                        seleccionados.add(v);
+                        return;
+                    }
+                    if (MI_ChB_Filtrar_Estudiantes_Por_Nombre.isSelected()
+                            && v.getNombre().toLowerCase().contains(texto)) {
+                        seleccionados.add(v);
+                        return;
+                    }
+                    
+                });
+                actualizarTabla_Estudiante(seleccionados);
+            }
+        } catch (Exception ex) {
+            DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
+        }
+    }
+
     
+    private void aplicarFiltro_Asignaturas() {
+        try {
+            final String texto = TI_Filtro_Asiganturas.getText().trim().toLowerCase();
+            if (texto.isEmpty()) {
+                if (T_Carrera.getSelectedRow() != -1) {
+                    Carrera l = this.carreras_en_tabla.get(T_Carrera.getSelectedRow());
+                    actualizar_T_A_PartirDe(l);
+
+                } else {
+                    DLG_Respuesta.mostrarDlgInvalido(this, "Tiene que seleccionar una carrera en la tabla ");
+                }
+
+            } else {
+                final ArrayList<Asignatura> seleccionados = new ArrayList<>();
+                this.asignaturas_existentes_de_carrera.forEach(v -> {
+                    if (MI_ChB_Filtrar_Asignatura_Por_Nombre.isSelected()
+                            && v.getAsignatura().toLowerCase().contains(texto)) {
+                        seleccionados.add(v);
+                        return;
+                    }
+                    if (MI_ChB_Filtrar_Asignatura_Por_Modalidad.isSelected()
+                            && v.getModalidad().toLowerCase().contains(texto)) {
+                        seleccionados.add(v);
+                        return;
+                    }
+                    if (MI_ChB_Filtrar_Asignatura_Por_Semestre.isSelected()
+                            && v.getSemestre().toLowerCase().contains(texto)) {
+                        seleccionados.add(v);
+                        return;
+                    }
+                    
+                });
+                actualizarTabla_Asignatura(seleccionados);
+            }
+        } catch (Exception ex) {
+            DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
+        }
+    }
+
     
+    private void intentarElimnarFacultad() {
+        try {
+            if (T_Facultades.getSelectedRow() != -1) {
+                if (JOptionPane.showConfirmDialog(this, "Desea eliminar la Facultad seleccionada?", "Advertencia", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+                    Facultad localSeleccionado = facultades_en_tabla.get(T_Facultades.getSelectedRow());
+
+                    EnMemoria.BD.eliminarFacultad(localSeleccionado);
+                    TI_Filtro_Asiganturas.setText("");
+                    TI_Filtro_Carreras.setText("");
+                    TI_Filtro_Estudiantes.setText("");
+                    TI_Filtro_Facultades.setText("");
+
+                    this.facultades_existentes.remove(localSeleccionado);
+
+                    actualizarTabla_Facultad(this.facultades_existentes);
+
+                    DLG_Respuesta.mostrarDlgExito(this, "Facultad eliminada con éxito  ");
+                }
+
+            } else {
+                DLG_Respuesta.mostrarDlgInvalido(this, "Tiene que seleccionar una Facultad en la tabla ");
+            }
+
+        } catch (Exception ex) {
+            DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
+        }
+    }
+
+    private void intentarModificarFacultad() {
+        try {
+            if (T_Facultades.getSelectedRow() != -1) {
+                Facultad l = facultades_en_tabla.get(T_Facultades.getSelectedRow());
+
+                String nombre = JOptionPane.showInputDialog(this, "Escriba el nombre de la facultad modificada ", l.getFacultad());
+                if (nombre != null && MetodosValidacion.validar_es_modificar_Facultad_correcto(this, l, nombre)) {
+                    l.setFacultad(nombre);
+                    Facultad nombreModificado = EnMemoria.BD.modificarFacultad(l);
+
+                    TI_Filtro_Asiganturas.setText("");
+                    TI_Filtro_Carreras.setText("");
+                    TI_Filtro_Estudiantes.setText("");
+                    TI_Filtro_Facultades.setText("");
+
+                    this.facultades_existentes.remove(l);
+                    this.facultades_existentes.add(nombreModificado);
+                    actualizarTabla_Facultad(this.facultades_existentes);
+
+                    DLG_Respuesta.mostrarDlgExito(this, "Facultad modificada con éxito  ");
+
+                }
+
+            } else {
+                DLG_Respuesta.mostrarDlgInvalido(this, "Tiene que seleccionar una facultad en la tabla ");
+            }
+
+        } catch (Exception ex) {
+            DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
+        }
+    }
+
+    private void intentarAgregarFacultad() {
+        try {
+            String nombre = JOptionPane.showInputDialog(this, "Escriba el nombre de la Facultad a agregar ", "Agregar Facultad", JOptionPane.QUESTION_MESSAGE);
+            if (nombre != null && MetodosValidacion.validar_es_nuevo_Facultad_correcto(this, nombre)) {
+                Facultad nuevo = EnMemoria.BD.agregarFacultad(nombre);
+                DLG_Respuesta.mostrarDlgExito(this, "Facultad agregada con éxito");
+                TI_Filtro_Asiganturas.setText("");
+                TI_Filtro_Carreras.setText("");
+                TI_Filtro_Estudiantes.setText("");
+                TI_Filtro_Facultades.setText("");
+                this.facultades_existentes.add(nuevo);
+                actualizarTabla_Facultad(this.facultades_existentes);
+
+            }
+
+        } catch (Exception ex) {
+            DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
+        }
+    }
+
     private void actualizarTabla_Facultad(ArrayList<Facultad> L) throws Exception {
         L = ordenar_Facultad(L);
         this.facultades_en_tabla = L;
@@ -900,28 +1238,27 @@ public class Ventana_Principal extends javax.swing.JFrame {
                 return false;//This causes all cells to be not editable
             }
         });
-        Facultad l=null;
+        Facultad l = null;
         if (cantidad > 0) {
             T_Facultades.addRowSelectionInterval(0, 0);
             l = L.get(0);
-            
-            
-        } 
-        
+
+        }
+
         actualizar_T_A_PartirDe(l);
 
     }
-    
-    private void actualizar_T_A_PartirDe(Facultad l)throws Exception {
-        if(l!=null){
+
+    private void actualizar_T_A_PartirDe(Facultad l) throws Exception {
+        if (l != null) {
             this.carreras_existentes_de_facultad = new ArrayList<>(Arrays.asList(EnMemoria.BD.obtenerTodos_Carrera(l)));
-            
-        }else{
+
+        } else {
             this.carreras_existentes_de_facultad = new ArrayList<>();
         }
         actualizarTabla_Carrera(this.carreras_existentes_de_facultad);
     }
-    
+
     private void actualizarTabla_Carrera(ArrayList<Carrera> L) throws Exception {
         L = ordenar_Carreras(L);
         this.carreras_en_tabla = L;
@@ -931,142 +1268,144 @@ public class Ventana_Principal extends javax.swing.JFrame {
         for (int i = 0; i < cantidad; i++) {
             Carrera e = L.get(i);
             O[i][0] = e.getCarrera();
-            
+
         }
         T_Carrera.setModel(new DefaultTableModel(O, Tiulos) {
             public boolean isCellEditable(int row, int column) {
                 return false;//This causes all cells to be not editable
             }
         });
-        Carrera l=null;
+        Carrera l = null;
         if (cantidad > 0) {
             T_Carrera.addRowSelectionInterval(0, 0);
             l = L.get(0);
-            
-            
-        } 
+
+        }
         actualizar_T_A_PartirDe(l);
     }
-    private void actualizar_T_A_PartirDe(Carrera l)throws Exception {
-        if(l!=null){
+
+    private void actualizar_T_A_PartirDe(Carrera l) throws Exception {
+        if (l != null) {
             this.asignaturas_existentes_de_carrera = new ArrayList<>(Arrays.asList(EnMemoria.BD.obtenerTodos_Asignatura(l)));
-            
-        }else{
+
+        } else {
             this.asignaturas_existentes_de_carrera = new ArrayList<>();
         }
         actualizarTabla_Asignatura(this.asignaturas_existentes_de_carrera);
     }
-     private void actualizarTabla_Asignatura(ArrayList<Asignatura> L) throws Exception {
+
+    private void actualizarTabla_Asignatura(ArrayList<Asignatura> L) throws Exception {
         L = ordenar_Asignatura(L);
         this.asignaturas_en_tabla = L;
         int cantidad = L.size();
-        String Tiulos[] = {"Nombre","Modalidad","Semestre"};
+        String Tiulos[] = {"Nombre", "Modalidad", "Semestre"};
         Object O[][] = new Object[cantidad][Tiulos.length];
         for (int i = 0; i < cantidad; i++) {
-            Asignatura a=L.get(i);
+            Asignatura a = L.get(i);
             O[i][0] = a.getAsignatura();
             O[i][1] = a.getModalidad();
             O[i][2] = a.getSemestre();
-            
+
         }
         T_Asignaturas.setModel(new DefaultTableModel(O, Tiulos) {
             public boolean isCellEditable(int row, int column) {
                 return false;//This causes all cells to be not editable
             }
         });
-        Asignatura l=null;
+        Asignatura l = null;
         if (cantidad > 0) {
             T_Asignaturas.addRowSelectionInterval(0, 0);
-             l = L.get(0);
-            
-        } 
+            l = L.get(0);
+
+        }
         actualizar_T_A_PartirDe(l);
-        
 
     }
-     private void actualizar_T_A_PartirDe(Asignatura l )throws Exception {
-         Profesor p=null;
-        if(l!=null){
+
+    private void actualizar_T_A_PartirDe(Asignatura l) throws Exception {
+        Profesor p = null;
+        if (l != null) {
             this.estudiantes_existentes_de_asignatura = new ArrayList<>(Arrays.asList(EnMemoria.BD.obtenerTodos_Estudiante(l)));
-            p=EnMemoria.BD.obtenerProfesor(l);
-        }else{
+            p = EnMemoria.BD.obtenerProfesor(l);
+        } else {
             this.estudiantes_existentes_de_asignatura = new ArrayList<>();
         }
         actualizarDatosProfesor(p);
         actualizarTabla_Estudiante(this.estudiantes_existentes_de_asignatura);
     }
-     private void actualizarTabla_Estudiante(ArrayList<Estudiante> L) throws Exception {
+
+    private void actualizarTabla_Estudiante(ArrayList<Estudiante> L) throws Exception {
         L = ordenar_Estudiante(L);
         this.estudiantes_en_tabla = L;
         int cantidad = L.size();
-        String Tiulos[] = {"Nombre","Apellidos","Grupo"};
+        String Tiulos[] = {"Nombre", "Apellidos", "Grupo"};
         Object O[][] = new Object[cantidad][Tiulos.length];
         for (int i = 0; i < cantidad; i++) {
-            Estudiante a=L.get(i);
+            Estudiante a = L.get(i);
             O[i][0] = a.getNombre();
             O[i][1] = a.getApellidos();
             O[i][2] = a.getGrupo();
-            
+
         }
         T_Estudiantes.setModel(new DefaultTableModel(O, Tiulos) {
             public boolean isCellEditable(int row, int column) {
                 return false;//This causes all cells to be not editable
             }
         });
-        Estudiante l=null;
+        Estudiante l = null;
         if (cantidad > 0) {
             T_Estudiantes.addRowSelectionInterval(0, 0);
-             l = L.get(0);
-            
-        } 
+            l = L.get(0);
+
+        }
         actualizar_T_A_PartirDe(l);
-        
 
     }
-     private void actualizar_T_A_PartirDe(Estudiante l )throws Exception {
-         
-        if(l!=null&&T_Asignaturas.getSelectedRow()!=-1){
+
+    private void actualizar_T_A_PartirDe(Estudiante l) throws Exception {
+
+        if (l != null && T_Asignaturas.getSelectedRow() != -1) {
             this.convocatorias_existentes_de_estudiante_y_asignatura = new ArrayList<>(Arrays.asList(
                     EnMemoria.BD.obtenerTodos_Convocatoria(
-                            this.asignaturas_en_tabla.get(T_Asignaturas.getSelectedRow())
-                            ,l
+                            this.asignaturas_en_tabla.get(T_Asignaturas.getSelectedRow()),
+                             l
                     )
             ));
-            
-        }else{
+
+        } else {
             this.convocatorias_existentes_de_estudiante_y_asignatura = new ArrayList<>();
         }
-        
+
         actualizarTabla_Convocatoria(this.convocatorias_existentes_de_estudiante_y_asignatura);
     }
-     private void actualizarTabla_Convocatoria(ArrayList<Convocatoria> L) throws Exception {
+
+    private void actualizarTabla_Convocatoria(ArrayList<Convocatoria> L) throws Exception {
         L = ordenar_Convocatoria(L);
         this.convocatorias_en_tabla = L;
         int cantidad = L.size();
-        String Tiulos[] = {"Nota","Numero","Fecha"};
+        String Tiulos[] = {"Nota", "Numero", "Fecha"};
         Object O[][] = new Object[cantidad][Tiulos.length];
         for (int i = 0; i < cantidad; i++) {
-            Convocatoria a=L.get(i);
+            Convocatoria a = L.get(i);
             O[i][0] = a.getNota();
             O[i][1] = a.getNumero();
             O[i][2] = a.getFecha();
-            
+
         }
         T_Examenes.setModel(new DefaultTableModel(O, Tiulos) {
             public boolean isCellEditable(int row, int column) {
                 return false;//This causes all cells to be not editable
             }
         });
-        
-        
 
     }
-     private ArrayList<Convocatoria> ordenar_Convocatoria(ArrayList<Convocatoria> L) {
+
+    private ArrayList<Convocatoria> ordenar_Convocatoria(ArrayList<Convocatoria> L) {
         L.sort(new Comparator<Convocatoria>() {
             @Override
             public int compare(Convocatoria o1, Convocatoria o2) {
-               
-                return  new Integer(o1.getNumero()).compareTo(o2.getNumero());
+
+                return new Integer(o1.getNumero()).compareTo(o2.getNumero());
             }
         });
         if (!ordenar_de_forma_asendente_Convocatoria) {
@@ -1074,7 +1413,8 @@ public class Ventana_Principal extends javax.swing.JFrame {
         }
         return L;
     }
-     private ArrayList<Estudiante> ordenar_Estudiante(ArrayList<Estudiante> L) {
+
+    private ArrayList<Estudiante> ordenar_Estudiante(ArrayList<Estudiante> L) {
         L.sort(new Comparator<Estudiante>() {
             @Override
             public int compare(Estudiante o1, Estudiante o2) {
@@ -1084,7 +1424,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
                 if (MI_RB_Ordenar_Estudiantes_Por_Grupo.isSelected()) {
                     return o1.getGrupo().compareToIgnoreCase(o2.getGrupo());
                 }
-                
+
                 return o1.getNombre().compareToIgnoreCase(o2.getNombre());
             }
         });
@@ -1093,24 +1433,24 @@ public class Ventana_Principal extends javax.swing.JFrame {
         }
         return L;
     }
-     private void actualizarDatosProfesor(Profesor p){
-         this.profesorDeAsignatura=p;
-         boolean existeProfesor=p!=null;
-         if(existeProfesor){
-             L_Profesor_Nombre.setText(p.getNombre());
-             L_Profesor_Apellidos.setText(p.getApellidos());
-             
-         }else{
+
+    private void actualizarDatosProfesor(Profesor p) {
+        this.profesorDeAsignatura = p;
+        boolean existeProfesor = p != null;
+        if (existeProfesor) {
+            L_Profesor_Nombre.setText(p.getNombre());
+            L_Profesor_Apellidos.setText(p.getApellidos());
+
+        } else {
             L_Profesor_Nombre.setText("-----------");
-             L_Profesor_Apellidos.setText("-----------");
-             
-         }
+            L_Profesor_Apellidos.setText("-----------");
+
+        }
 //         L_Profesor_Nombre.setVisible(existeProfesor);
 //         L_Profesor_Apellidos.setVisible(existeProfesor);
-         
-         
-         
-     }
+
+    }
+
     private ArrayList<Asignatura> ordenar_Asignatura(ArrayList<Asignatura> L) {
         L.sort(new Comparator<Asignatura>() {
             @Override
@@ -1121,7 +1461,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
                 if (MI_RB_Ordenar_Asignatura_Por_Nombre.isSelected()) {
                     return o1.getAsignatura().compareToIgnoreCase(o2.getAsignatura());
                 }
-                
+
                 return o1.getSemestre().compareToIgnoreCase(o2.getSemestre());
             }
         });
@@ -1130,6 +1470,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
         }
         return L;
     }
+
     private ArrayList<Carrera> ordenar_Carreras(ArrayList<Carrera> L) {
         L.sort(new Comparator<Carrera>() {
             @Override
@@ -1142,6 +1483,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
         }
         return L;
     }
+
     private ArrayList<Facultad> ordenar_Facultad(ArrayList<Facultad> L) {
         L.sort(new Comparator<Facultad>() {
             @Override
@@ -1154,7 +1496,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
         }
         return L;
     }
-    
+
     /**
      * @param args the command line arguments
      */

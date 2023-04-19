@@ -5,6 +5,7 @@
  */
 package proyecto_notas_estudiantes2;
 import entidades.*;
+import Utilidades.*;
 import org.orm.PersistentException;
 /**
  *
@@ -15,8 +16,12 @@ public class Proyecto_Notas_Estudiantes2 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws PersistentException {
+    public static void main(String[] args) throws PersistentException, Exception {
         // TODO code application logic here
+//        Usuario u=new Usuario();
+//        u.setPassword(MetodoEncriptar.encriptar("1234"));
+//        u.setUsername("uno");
+//        u.save();
 //        Estudiante e=new Estudiante();
 //        e.setNombre("estudiante1");
 //        e.setApellidos("apellidos1");

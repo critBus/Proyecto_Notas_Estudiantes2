@@ -5,7 +5,7 @@
  */
 package Utilidades;
 
-import Visual.Ventana_Principal;
+import Visual.*;
 
 /**
  *
@@ -14,4 +14,5 @@ import Visual.Ventana_Principal;
 public  class EnMemoria {
     public static ComunicacionBD BD=new ComunicacionBD();
     public static Ventana_Principal ventana_Principal=new Ventana_Principal();
+    public static Ventana_Loguin ventana_Loguin=new Ventana_Loguin();
 }

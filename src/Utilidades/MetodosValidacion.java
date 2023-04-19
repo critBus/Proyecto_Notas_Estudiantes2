@@ -5,6 +5,8 @@
  */
 package Utilidades;
 
+import entidades.Carrera;
+import entidades.Facultad;
 import entidades.Usuario;
 import java.awt.Component;
 
@@ -21,6 +23,7 @@ public class MetodosValidacion {
     private final static String MSG_NO_CARACTERES_ESTRANNOS = "No puede contener caracteres extraños ";
     private final static String MSG_DEBE_CONTENER_LETRAS = "Debe de contener letras ";
     private final static String MSG_YA_EXISTE_FACULTAD = "Ya existe una facultad con este nombre ";
+    private final static String MSG_YA_EXISTE_CARRERA = "Ya existe una carrera con este nombre ";
     private final static String MSG_NOMBRES_CON_MAYUSCULA = "Las palabras deben de comenzar en mayúscula";
     private final static String MSG_NOMBRES_SOLO_PRIMERA_LETRA_MAYUSCULA = "Solo la primera letra de un nombre debe ser en mayúscula ";
     private final static String MSG_CANTIDAD_MINIMA_DE_CARACTERES = "No supera la cantidad mínima de caracteres ";
@@ -238,6 +241,28 @@ public class MetodosValidacion {
     public static boolean validar_es_nuevo_Facultad_correcto(Component parentComponent, String nombre) throws Exception {
         if (EnMemoria.BD.existeFacultad(nombre)) {
             DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_YA_EXISTE_FACULTAD);
+            return false;
+        }
+        return validar_es_string_normal(parentComponent, nombre, 50);
+    }
+    public static boolean validar_es_modificar_Facultad_correcto(Component parentComponent, Facultad l, String nombre) throws Exception {
+        if ((!l.getFacultad().equals(nombre)) && EnMemoria.BD.existeFacultad(nombre)) {
+            DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_YA_EXISTE_FACULTAD);
+            return false;
+        }
+        return validar_es_string_normal(parentComponent, nombre, 50);
+    }
+    
+    public static boolean validar_es_nuevo_Carrera_correcto(Component parentComponent, String nombre) throws Exception {
+        if (EnMemoria.BD.existeCarrera(nombre)) {
+            DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_YA_EXISTE_CARRERA);
+            return false;
+        }
+        return validar_es_string_normal(parentComponent, nombre, 50);
+    }
+    public static boolean validar_es_modificar_Carrera_correcto(Component parentComponent, Carrera l, String nombre) throws Exception {
+        if ((!l.getCarrera().equals(nombre)) && EnMemoria.BD.existeCarrera(nombre)) {
+            DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_YA_EXISTE_CARRERA);
             return false;
         }
         return validar_es_string_normal(parentComponent, nombre, 50);

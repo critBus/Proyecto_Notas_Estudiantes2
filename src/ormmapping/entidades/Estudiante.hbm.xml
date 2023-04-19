@@ -14,7 +14,10 @@ License Type: Purchased
 		<property name="nombre" column="nombre" type="string" length="50" not-null="true" lazy="false"/>
 		<property name="apellidos" column="apellidos" type="string" length="50" not-null="true" lazy="false"/>
 		<property name="grupo" column="grupo" type="string" length="256" not-null="true" lazy="false"/>
-		<one-to-one name="asignatura_estudiante" class="entidades.Asignatura_estudiante" cascade="save-update,lock" property-ref="id_estudiante" lazy="proxy" access="field"/>
+		<set name="ORM_Asignatura_estudiante" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="id_estudiante" not-null="true"/>
+			<one-to-many class="entidades.Asignatura_estudiante"/>
+		</set>
 		<set name="ORM_Convocatoria" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="id_estudiante" not-null="true"/>
 			<one-to-many class="entidades.Convocatoria"/>

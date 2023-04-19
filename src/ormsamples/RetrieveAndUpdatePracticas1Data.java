@@ -9,9 +9,6 @@ public class RetrieveAndUpdatePracticas1Data {
 	public void retrieveAndUpdateTestData() throws PersistentException {
 		PersistentTransaction t = entidades.Practicas1PersistentManager.instance().getSession().beginTransaction();
 		try {
-			entidades.Usuario lentidadesUsuario = entidades.Usuario.loadUsuarioByQuery(null, null);
-			// Update the properties of the persistent object
-			lentidadesUsuario.save();
 			entidades.Asignatura lentidadesAsignatura = entidades.Asignatura.loadAsignaturaByQuery(null, null);
 			// Update the properties of the persistent object
 			lentidadesAsignatura.save();
@@ -33,6 +30,9 @@ public class RetrieveAndUpdatePracticas1Data {
 			entidades.Profesor lentidadesProfesor = entidades.Profesor.loadProfesorByQuery(null, null);
 			// Update the properties of the persistent object
 			lentidadesProfesor.save();
+			entidades.Usuario lentidadesUsuario = entidades.Usuario.loadUsuarioByQuery(null, null);
+			// Update the properties of the persistent object
+			lentidadesUsuario.save();
 			t.commit();
 		}
 		catch (Exception e) {
@@ -42,12 +42,6 @@ public class RetrieveAndUpdatePracticas1Data {
 	}
 	
 	public void retrieveByCriteria() throws PersistentException {
-		System.out.println("Retrieving Usuario by UsuarioCriteria");
-		entidades.UsuarioCriteria lentidadesUsuarioCriteria = new entidades.UsuarioCriteria();
-		// Please uncomment the follow line and fill in parameter(s)
-		//lentidadesUsuarioCriteria.id.eq();
-		System.out.println(lentidadesUsuarioCriteria.uniqueUsuario());
-		
 		System.out.println("Retrieving Asignatura by AsignaturaCriteria");
 		entidades.AsignaturaCriteria lentidadesAsignaturaCriteria = new entidades.AsignaturaCriteria();
 		// Please uncomment the follow line and fill in parameter(s)
@@ -89,6 +83,12 @@ public class RetrieveAndUpdatePracticas1Data {
 		// Please uncomment the follow line and fill in parameter(s)
 		//lentidadesProfesorCriteria.id.eq();
 		System.out.println(lentidadesProfesorCriteria.uniqueProfesor());
+		
+		System.out.println("Retrieving Usuario by UsuarioCriteria");
+		entidades.UsuarioCriteria lentidadesUsuarioCriteria = new entidades.UsuarioCriteria();
+		// Please uncomment the follow line and fill in parameter(s)
+		//lentidadesUsuarioCriteria.id.eq();
+		System.out.println(lentidadesUsuarioCriteria.uniqueUsuario());
 		
 	}
 	

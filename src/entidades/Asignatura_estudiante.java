@@ -366,7 +366,7 @@ public class Asignatura_estudiante implements Serializable {
 			}
 			
 			if(getId_estudiante() != null) {
-				getId_estudiante().setAsignatura_estudiante(null);
+				getId_estudiante().asignatura_estudiante.remove(this);
 			}
 			
 			return delete();
@@ -384,7 +384,7 @@ public class Asignatura_estudiante implements Serializable {
 			}
 			
 			if(getId_estudiante() != null) {
-				getId_estudiante().setAsignatura_estudiante(null);
+				getId_estudiante().asignatura_estudiante.remove(this);
 			}
 			
 			try {
@@ -460,19 +460,26 @@ public class Asignatura_estudiante implements Serializable {
 	}
 	
 	public void setId_estudiante(entidades.Estudiante value) {
-		if (this.id_estudiante != value) {
-			entidades.Estudiante lid_estudiante = this.id_estudiante;
-			this.id_estudiante = value;
-			if (value != null) {
-				id_estudiante.setAsignatura_estudiante(this);
-			}
-			if (lid_estudiante != null && lid_estudiante.getAsignatura_estudiante() == this) {
-				lid_estudiante.setAsignatura_estudiante(null);
-			}
+		if (id_estudiante != null) {
+			id_estudiante.asignatura_estudiante.remove(this);
+		}
+		if (value != null) {
+			value.asignatura_estudiante.add(this);
 		}
 	}
 	
 	public entidades.Estudiante getId_estudiante() {
+		return id_estudiante;
+	}
+	
+	/**
+	 * This method is for internal use only.
+	 */
+	private void setORM_Id_estudiante(entidades.Estudiante value) {
+		this.id_estudiante = value;
+	}
+	
+	private entidades.Estudiante getORM_Id_estudiante() {
 		return id_estudiante;
 	}
 	

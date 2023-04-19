@@ -23,8 +23,7 @@ public class EstudianteDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final StringExpression nombre;
 	public final StringExpression apellidos;
 	public final StringExpression grupo;
-	public final IntegerExpression asignatura_estudianteId;
-	public final AssociationExpression asignatura_estudiante;
+	public final CollectionExpression asignatura_estudiante;
 	public final CollectionExpression convocatoria;
 	
 	public EstudianteDetachedCriteria() {
@@ -33,8 +32,7 @@ public class EstudianteDetachedCriteria extends AbstractORMDetachedCriteria {
 		nombre = new StringExpression("nombre", this.getDetachedCriteria());
 		apellidos = new StringExpression("apellidos", this.getDetachedCriteria());
 		grupo = new StringExpression("grupo", this.getDetachedCriteria());
-		asignatura_estudianteId = new IntegerExpression("asignatura_estudiante.id", this.getDetachedCriteria());
-		asignatura_estudiante = new AssociationExpression("asignatura_estudiante", this.getDetachedCriteria());
+		asignatura_estudiante = new CollectionExpression("ORM_Asignatura_estudiante", this.getDetachedCriteria());
 		convocatoria = new CollectionExpression("ORM_Convocatoria", this.getDetachedCriteria());
 	}
 	
@@ -44,13 +42,12 @@ public class EstudianteDetachedCriteria extends AbstractORMDetachedCriteria {
 		nombre = new StringExpression("nombre", this.getDetachedCriteria());
 		apellidos = new StringExpression("apellidos", this.getDetachedCriteria());
 		grupo = new StringExpression("grupo", this.getDetachedCriteria());
-		asignatura_estudianteId = new IntegerExpression("asignatura_estudiante.id", this.getDetachedCriteria());
-		asignatura_estudiante = new AssociationExpression("asignatura_estudiante", this.getDetachedCriteria());
+		asignatura_estudiante = new CollectionExpression("ORM_Asignatura_estudiante", this.getDetachedCriteria());
 		convocatoria = new CollectionExpression("ORM_Convocatoria", this.getDetachedCriteria());
 	}
 	
 	public Asignatura_estudianteDetachedCriteria createAsignatura_estudianteCriteria() {
-		return new Asignatura_estudianteDetachedCriteria(createCriteria("asignatura_estudiante"));
+		return new Asignatura_estudianteDetachedCriteria(createCriteria("ORM_Asignatura_estudiante"));
 	}
 	
 	public ConvocatoriaDetachedCriteria createConvocatoriaCriteria() {

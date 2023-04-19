@@ -74,6 +74,46 @@
       <UserTypes/>
     </Column>
   </Entity>
+  <Entity name="asignatura_estudiante" schema="public" Unlogged="false" PKConstraintName="asignatura_estudiante_pkey" PKClustered="0">
+    <Column name="id">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>sequence</IDGenerator>
+      <IDGeneratorKey>asignatura_estudiante_id_seq</IDGeneratorKey>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes>
+        <UserType DBType="256">serial</UserType>
+      </UserTypes>
+    </Column>
+    <Column name="id_asignatura">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>asignatura.id</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="id_estudiante">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>estudiante.id</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
   <Entity name="carrera" schema="public" Unlogged="false" PKConstraintName="carrera_pkey" PKClustered="0">
     <Column name="id">
       <PrimaryKey>true</PrimaryKey>
@@ -297,46 +337,6 @@
       <UserTypes/>
     </Column>
   </Entity>
-  <Entity name="asignatura_estudiante" schema="public" Unlogged="false" PKConstraintName="asignatura_estudiante_pkey" PKClustered="0">
-    <Column name="id">
-      <PrimaryKey>true</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>10</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>sequence</IDGenerator>
-      <IDGeneratorKey>asignatura_estudiante_id_seq</IDGeneratorKey>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes>
-        <UserType DBType="256">serial</UserType>
-      </UserTypes>
-    </Column>
-    <Column name="id_asignatura">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>asignatura.id</ReferencedColumn>
-      <Type>9</Type>
-      <Length>10</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="id_estudiante">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>estudiante.id</ReferencedColumn>
-      <Type>9</Type>
-      <Length>10</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-  </Entity>
   <Entity name="usuario" schema="public" Unlogged="false" PKConstraintName="usuario_pkey" PKClustered="0">
     <Column name="id">
       <PrimaryKey>true</PrimaryKey>
@@ -399,6 +399,18 @@
       <Column>id</Column>
     </RefColumns>
   </ForeignKey>
+  <ForeignKey name="fkasignatura211134">
+    <ReferenceTable>asignatura_estudiante</ReferenceTable>
+    <ReferenceSchema>public</ReferenceSchema>
+    <ReferencedTable>asignatura</ReferencedTable>
+    <ReferencedSchema>public</ReferencedSchema>
+    <Columns>
+      <Column>id_asignatura</Column>
+    </Columns>
+    <RefColumns>
+      <Column>id</Column>
+    </RefColumns>
+  </ForeignKey>
   <ForeignKey name="fkcarrera781550">
     <ReferenceTable>carrera</ReferenceTable>
     <ReferenceSchema>public</ReferenceSchema>
@@ -425,18 +437,6 @@
   </ForeignKey>
   <ForeignKey name="fkconvocator31592">
     <ReferenceTable>convocatoria</ReferenceTable>
-    <ReferenceSchema>public</ReferenceSchema>
-    <ReferencedTable>asignatura</ReferencedTable>
-    <ReferencedSchema>public</ReferencedSchema>
-    <Columns>
-      <Column>id_asignatura</Column>
-    </Columns>
-    <RefColumns>
-      <Column>id</Column>
-    </RefColumns>
-  </ForeignKey>
-  <ForeignKey name="fkasignatura211134">
-    <ReferenceTable>asignatura_estudiante</ReferenceTable>
     <ReferenceSchema>public</ReferenceSchema>
     <ReferencedTable>asignatura</ReferencedTable>
     <ReferencedSchema>public</ReferencedSchema>
