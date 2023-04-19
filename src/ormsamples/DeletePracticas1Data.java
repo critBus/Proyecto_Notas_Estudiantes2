@@ -9,10 +9,12 @@ public class DeletePracticas1Data {
 	public void deleteTestData() throws PersistentException {
 		PersistentTransaction t = entidades.Practicas1PersistentManager.instance().getSession().beginTransaction();
 		try {
-			entidades.Asiganutra_estudiante lentidadesAsiganutra_estudiante = entidades.Asiganutra_estudiante.loadAsiganutra_estudianteByQuery(null, null);
-			lentidadesAsiganutra_estudiante.delete();
+			entidades.Usuario lentidadesUsuario = entidades.Usuario.loadUsuarioByQuery(null, null);
+			lentidadesUsuario.delete();
 			entidades.Asignatura lentidadesAsignatura = entidades.Asignatura.loadAsignaturaByQuery(null, null);
 			lentidadesAsignatura.delete();
+			entidades.Asignatura_estudiante lentidadesAsignatura_estudiante = entidades.Asignatura_estudiante.loadAsignatura_estudianteByQuery(null, null);
+			lentidadesAsignatura_estudiante.delete();
 			entidades.Carrera lentidadesCarrera = entidades.Carrera.loadCarreraByQuery(null, null);
 			lentidadesCarrera.delete();
 			entidades.Convocatoria lentidadesConvocatoria = entidades.Convocatoria.loadConvocatoriaByQuery(null, null);

@@ -9,12 +9,15 @@ public class RetrieveAndUpdatePracticas1Data {
 	public void retrieveAndUpdateTestData() throws PersistentException {
 		PersistentTransaction t = entidades.Practicas1PersistentManager.instance().getSession().beginTransaction();
 		try {
-			entidades.Asiganutra_estudiante lentidadesAsiganutra_estudiante = entidades.Asiganutra_estudiante.loadAsiganutra_estudianteByQuery(null, null);
+			entidades.Usuario lentidadesUsuario = entidades.Usuario.loadUsuarioByQuery(null, null);
 			// Update the properties of the persistent object
-			lentidadesAsiganutra_estudiante.save();
+			lentidadesUsuario.save();
 			entidades.Asignatura lentidadesAsignatura = entidades.Asignatura.loadAsignaturaByQuery(null, null);
 			// Update the properties of the persistent object
 			lentidadesAsignatura.save();
+			entidades.Asignatura_estudiante lentidadesAsignatura_estudiante = entidades.Asignatura_estudiante.loadAsignatura_estudianteByQuery(null, null);
+			// Update the properties of the persistent object
+			lentidadesAsignatura_estudiante.save();
 			entidades.Carrera lentidadesCarrera = entidades.Carrera.loadCarreraByQuery(null, null);
 			// Update the properties of the persistent object
 			lentidadesCarrera.save();
@@ -39,17 +42,23 @@ public class RetrieveAndUpdatePracticas1Data {
 	}
 	
 	public void retrieveByCriteria() throws PersistentException {
-		System.out.println("Retrieving Asiganutra_estudiante by Asiganutra_estudianteCriteria");
-		entidades.Asiganutra_estudianteCriteria lentidadesAsiganutra_estudianteCriteria = new entidades.Asiganutra_estudianteCriteria();
+		System.out.println("Retrieving Usuario by UsuarioCriteria");
+		entidades.UsuarioCriteria lentidadesUsuarioCriteria = new entidades.UsuarioCriteria();
 		// Please uncomment the follow line and fill in parameter(s)
-		//lentidadesAsiganutra_estudianteCriteria.id.eq();
-		System.out.println(lentidadesAsiganutra_estudianteCriteria.uniqueAsiganutra_estudiante());
+		//lentidadesUsuarioCriteria.id.eq();
+		System.out.println(lentidadesUsuarioCriteria.uniqueUsuario());
 		
 		System.out.println("Retrieving Asignatura by AsignaturaCriteria");
 		entidades.AsignaturaCriteria lentidadesAsignaturaCriteria = new entidades.AsignaturaCriteria();
 		// Please uncomment the follow line and fill in parameter(s)
 		//lentidadesAsignaturaCriteria.id.eq();
 		System.out.println(lentidadesAsignaturaCriteria.uniqueAsignatura());
+		
+		System.out.println("Retrieving Asignatura_estudiante by Asignatura_estudianteCriteria");
+		entidades.Asignatura_estudianteCriteria lentidadesAsignatura_estudianteCriteria = new entidades.Asignatura_estudianteCriteria();
+		// Please uncomment the follow line and fill in parameter(s)
+		//lentidadesAsignatura_estudianteCriteria.id.eq();
+		System.out.println(lentidadesAsignatura_estudianteCriteria.uniqueAsignatura_estudiante());
 		
 		System.out.println("Retrieving Carrera by CarreraCriteria");
 		entidades.CarreraCriteria lentidadesCarreraCriteria = new entidades.CarreraCriteria();

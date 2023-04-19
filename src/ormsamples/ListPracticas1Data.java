@@ -9,11 +9,11 @@ public class ListPracticas1Data {
 	private static final int ROW_COUNT = 100;
 	
 	public void listTestData() throws PersistentException {
-		System.out.println("Listing Asiganutra_estudiante...");
-		entidades.Asiganutra_estudiante[] entidadesAsiganutra_estudiantes = entidades.Asiganutra_estudiante.listAsiganutra_estudianteByQuery(null, null);
-		int length = Math.min(entidadesAsiganutra_estudiantes.length, ROW_COUNT);
+		System.out.println("Listing Usuario...");
+		entidades.Usuario[] entidadesUsuarios = entidades.Usuario.listUsuarioByQuery(null, null);
+		int length = Math.min(entidadesUsuarios.length, ROW_COUNT);
 		for (int i = 0; i < length; i++) {
-			System.out.println(entidadesAsiganutra_estudiantes[i]);
+			System.out.println(entidadesUsuarios[i]);
 		}
 		System.out.println(length + " record(s) retrieved.");
 		
@@ -22,6 +22,14 @@ public class ListPracticas1Data {
 		length = Math.min(entidadesAsignaturas.length, ROW_COUNT);
 		for (int i = 0; i < length; i++) {
 			System.out.println(entidadesAsignaturas[i]);
+		}
+		System.out.println(length + " record(s) retrieved.");
+		
+		System.out.println("Listing Asignatura_estudiante...");
+		entidades.Asignatura_estudiante[] entidadesAsignatura_estudiantes = entidades.Asignatura_estudiante.listAsignatura_estudianteByQuery(null, null);
+		length = Math.min(entidadesAsignatura_estudiantes.length, ROW_COUNT);
+		for (int i = 0; i < length; i++) {
+			System.out.println(entidadesAsignatura_estudiantes[i]);
 		}
 		System.out.println(length + " record(s) retrieved.");
 		
@@ -68,17 +76,17 @@ public class ListPracticas1Data {
 	}
 	
 	public void listByCriteria() throws PersistentException {
-		System.out.println("Listing Asiganutra_estudiante by Criteria...");
-		entidades.Asiganutra_estudianteCriteria lentidadesAsiganutra_estudianteCriteria = new entidades.Asiganutra_estudianteCriteria();
+		System.out.println("Listing Usuario by Criteria...");
+		entidades.UsuarioCriteria lentidadesUsuarioCriteria = new entidades.UsuarioCriteria();
 		// Please uncomment the follow line and fill in parameter(s) 
-		//lentidadesAsiganutra_estudianteCriteria.id.eq();
-		lentidadesAsiganutra_estudianteCriteria.setMaxResults(ROW_COUNT);
-		entidades.Asiganutra_estudiante[] entidadesAsiganutra_estudiantes = lentidadesAsiganutra_estudianteCriteria.listAsiganutra_estudiante();
-		int length =entidadesAsiganutra_estudiantes== null ? 0 : Math.min(entidadesAsiganutra_estudiantes.length, ROW_COUNT); 
+		//lentidadesUsuarioCriteria.id.eq();
+		lentidadesUsuarioCriteria.setMaxResults(ROW_COUNT);
+		entidades.Usuario[] entidadesUsuarios = lentidadesUsuarioCriteria.listUsuario();
+		int length =entidadesUsuarios== null ? 0 : Math.min(entidadesUsuarios.length, ROW_COUNT); 
 		for (int i = 0; i < length; i++) {
-			 System.out.println(entidadesAsiganutra_estudiantes[i]);
+			 System.out.println(entidadesUsuarios[i]);
 		}
-		System.out.println(length + " Asiganutra_estudiante record(s) retrieved."); 
+		System.out.println(length + " Usuario record(s) retrieved."); 
 		
 		System.out.println("Listing Asignatura by Criteria...");
 		entidades.AsignaturaCriteria lentidadesAsignaturaCriteria = new entidades.AsignaturaCriteria();
@@ -91,6 +99,18 @@ public class ListPracticas1Data {
 			 System.out.println(entidadesAsignaturas[i]);
 		}
 		System.out.println(length + " Asignatura record(s) retrieved."); 
+		
+		System.out.println("Listing Asignatura_estudiante by Criteria...");
+		entidades.Asignatura_estudianteCriteria lentidadesAsignatura_estudianteCriteria = new entidades.Asignatura_estudianteCriteria();
+		// Please uncomment the follow line and fill in parameter(s) 
+		//lentidadesAsignatura_estudianteCriteria.id.eq();
+		lentidadesAsignatura_estudianteCriteria.setMaxResults(ROW_COUNT);
+		entidades.Asignatura_estudiante[] entidadesAsignatura_estudiantes = lentidadesAsignatura_estudianteCriteria.listAsignatura_estudiante();
+		length =entidadesAsignatura_estudiantes== null ? 0 : Math.min(entidadesAsignatura_estudiantes.length, ROW_COUNT); 
+		for (int i = 0; i < length; i++) {
+			 System.out.println(entidadesAsignatura_estudiantes[i]);
+		}
+		System.out.println(length + " Asignatura_estudiante record(s) retrieved."); 
 		
 		System.out.println("Listing Carrera by Criteria...");
 		entidades.CarreraCriteria lentidadesCarreraCriteria = new entidades.CarreraCriteria();

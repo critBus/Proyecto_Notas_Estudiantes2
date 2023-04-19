@@ -27,7 +27,7 @@ public class AsignaturaCriteria extends AbstractORMCriteria {
 	public final AssociationExpression id_carrera;
 	public final IntegerExpression id_profesorId;
 	public final AssociationExpression id_profesor;
-	public final CollectionExpression asiganutra_estudiante;
+	public final CollectionExpression asignatura_estudiante;
 	public final CollectionExpression convocatoria;
 	
 	public AsignaturaCriteria(Criteria criteria) {
@@ -40,7 +40,7 @@ public class AsignaturaCriteria extends AbstractORMCriteria {
 		id_carrera = new AssociationExpression("id_carrera", this);
 		id_profesorId = new IntegerExpression("id_profesor.id", this);
 		id_profesor = new AssociationExpression("id_profesor", this);
-		asiganutra_estudiante = new CollectionExpression("ORM_Asiganutra_estudiante", this);
+		asignatura_estudiante = new CollectionExpression("ORM_Asignatura_estudiante", this);
 		convocatoria = new CollectionExpression("ORM_Convocatoria", this);
 	}
 	
@@ -60,8 +60,8 @@ public class AsignaturaCriteria extends AbstractORMCriteria {
 		return new ProfesorCriteria(createCriteria("id_profesor"));
 	}
 	
-	public Asiganutra_estudianteCriteria createAsiganutra_estudianteCriteria() {
-		return new Asiganutra_estudianteCriteria(createCriteria("ORM_Asiganutra_estudiante"));
+	public Asignatura_estudianteCriteria createAsignatura_estudianteCriteria() {
+		return new Asignatura_estudianteCriteria(createCriteria("ORM_Asignatura_estudiante"));
 	}
 	
 	public ConvocatoriaCriteria createConvocatoriaCriteria() {

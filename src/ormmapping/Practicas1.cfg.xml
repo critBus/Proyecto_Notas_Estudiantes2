@@ -23,12 +23,13 @@ License Type: Purchased
 		<property name="show_sql">false</property>
 		<property name="query.substitutions">true 1, false 0, yes 'Y', no 'N'</property>
 		<!-- mapping files -->
-		<mapping resource="ormmapping/entidades/Asiganutra_estudiante.hbm.xml" />
 		<mapping resource="ormmapping/entidades/Asignatura.hbm.xml" />
+		<mapping resource="ormmapping/entidades/Asignatura_estudiante.hbm.xml" />
 		<mapping resource="ormmapping/entidades/Carrera.hbm.xml" />
 		<mapping resource="ormmapping/entidades/Convocatoria.hbm.xml" />
 		<mapping resource="ormmapping/entidades/Estudiante.hbm.xml" />
 		<mapping resource="ormmapping/entidades/Facultad.hbm.xml" />
 		<mapping resource="ormmapping/entidades/Profesor.hbm.xml" />
+		<mapping resource="ormmapping/entidades/Usuario.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

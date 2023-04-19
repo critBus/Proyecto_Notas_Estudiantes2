@@ -18,9 +18,9 @@ License Type: Purchased
 		</many-to-one>
 		<many-to-one name="id_profesor" cascade="lock" column="id_profesor" class="entidades.Profesor" not-null="true" lazy="proxy" access="field">
 		</many-to-one>
-		<set name="ORM_Asiganutra_estudiante" lazy="true" cascade="save-update,lock" inverse="true">
+		<set name="ORM_Asignatura_estudiante" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="id_asignatura" not-null="true"/>
-			<one-to-many class="entidades.Asiganutra_estudiante"/>
+			<one-to-many class="entidades.Asignatura_estudiante"/>
 		</set>
 		<set name="ORM_Convocatoria" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="id_asignatura" not-null="true"/>

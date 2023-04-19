@@ -23,7 +23,8 @@ public class EstudianteCriteria extends AbstractORMCriteria {
 	public final StringExpression nombre;
 	public final StringExpression apellidos;
 	public final StringExpression grupo;
-	public final CollectionExpression asiganutra_estudiante;
+	public final IntegerExpression asignatura_estudianteId;
+	public final AssociationExpression asignatura_estudiante;
 	public final CollectionExpression convocatoria;
 	
 	public EstudianteCriteria(Criteria criteria) {
@@ -32,7 +33,8 @@ public class EstudianteCriteria extends AbstractORMCriteria {
 		nombre = new StringExpression("nombre", this);
 		apellidos = new StringExpression("apellidos", this);
 		grupo = new StringExpression("grupo", this);
-		asiganutra_estudiante = new CollectionExpression("ORM_Asiganutra_estudiante", this);
+		asignatura_estudianteId = new IntegerExpression("asignatura_estudiante.id", this);
+		asignatura_estudiante = new AssociationExpression("asignatura_estudiante", this);
 		convocatoria = new CollectionExpression("ORM_Convocatoria", this);
 	}
 	
@@ -44,8 +46,8 @@ public class EstudianteCriteria extends AbstractORMCriteria {
 		this(Practicas1PersistentManager.instance().getSession());
 	}
 	
-	public Asiganutra_estudianteCriteria createAsiganutra_estudianteCriteria() {
-		return new Asiganutra_estudianteCriteria(createCriteria("ORM_Asiganutra_estudiante"));
+	public Asignatura_estudianteCriteria createAsignatura_estudianteCriteria() {
+		return new Asignatura_estudianteCriteria(createCriteria("asignatura_estudiante"));
 	}
 	
 	public ConvocatoriaCriteria createConvocatoriaCriteria() {

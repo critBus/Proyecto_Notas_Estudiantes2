@@ -5,19 +5,295 @@
  */
 package Visual;
 
+import Utilidades.*;
+import javax.swing.JOptionPane;
+import entidades.*;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import javax.swing.ButtonGroup;
+import javax.swing.event.MouseInputListener;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Rene2
  */
 public class Ventana_Principal extends javax.swing.JFrame {
 
+    
+    
+    public Usuario usuarioActual;
+
+    private boolean ordenar_de_forma_asendente_Facultad;
+    private boolean ordenar_de_forma_asendente_Asignaturas;
+    private boolean ordenar_de_forma_asendente_Carreras;
+    private boolean ordenar_de_forma_asendente_Estudiantes;
+    private boolean ordenar_de_forma_asendente_Convocatoria;
+
+    public ArrayList<Facultad> facultades_existentes;
+    public ArrayList<Facultad> facultades_en_tabla;
+
+    public ArrayList<Asignatura> asignaturas_existentes_de_carrera;
+    public ArrayList<Asignatura> asignaturas_en_tabla;
+
+    public ArrayList<Carrera> carreras_existentes_de_facultad;
+    public ArrayList<Carrera> carreras_en_tabla;
+    
+    public ArrayList<Estudiante> estudiantes_existentes_de_asignatura;
+    public ArrayList<Estudiante> estudiantes_en_tabla;
+    
+    public ArrayList<Convocatoria> convocatorias_existentes_de_estudiante_y_asignatura;
+    public ArrayList<Convocatoria> convocatorias_en_tabla;
+    
+    public Profesor profesorDeAsignatura;
+    
     /**
      * Creates new form Ventana_Principal
      */
     public Ventana_Principal() {
         initComponents();
-    }
+        
+        setLocationRelativeTo(null);
+        
+        facultades_existentes=new ArrayList<>();
+        facultades_en_tabla=new ArrayList<>();
+        asignaturas_existentes_de_carrera=new ArrayList<>();
+        asignaturas_en_tabla=new ArrayList<>();
+        carreras_existentes_de_facultad=new ArrayList<>();
+        carreras_en_tabla=new ArrayList<>();
+        estudiantes_existentes_de_asignatura=new ArrayList<>();
+        estudiantes_en_tabla=new ArrayList<>();
+        convocatorias_existentes_de_estudiante_y_asignatura=new ArrayList<>();
+        convocatorias_en_tabla=new ArrayList<>();
+        
+        ordenar_de_forma_asendente_Facultad=true;
+        ordenar_de_forma_asendente_Asignaturas=true;
+        ordenar_de_forma_asendente_Carreras=true;
+        ordenar_de_forma_asendente_Estudiantes=true;
+        ordenar_de_forma_asendente_Convocatoria=true;
+        
+        ButtonGroup bg_ordenar_Asignatura = new ButtonGroup();
+        bg_ordenar_Asignatura.add(MI_RB_Ordenar_Asignatura_Por_Modalidad);
+        bg_ordenar_Asignatura.add(MI_RB_Ordenar_Asignatura_Por_Nombre);
+        bg_ordenar_Asignatura.add(MI_RB_Ordenar_Asignatura_Por_Semestre);
+        MI_RB_Ordenar_Asignatura_Por_Nombre.setSelected(true);
+        
+        
+        ButtonGroup bg_ordenar_Estudiantes = new ButtonGroup();
+        bg_ordenar_Estudiantes.add(MI_RB_Ordenar_Estudiantes_Por_Apellidos);
+        bg_ordenar_Estudiantes.add(MI_RB_Ordenar_Estudiantes_Por_Nombre);
+        bg_ordenar_Estudiantes.add(MI_RB_Ordenar_Estudiantes_Por_Grupo);
+        MI_RB_Ordenar_Estudiantes_Por_Nombre.setSelected(true);
+        
+        final Ventana_Principal estaVentana = this;
+        UtilidadesParaVentana.ponerIconoDeVentana_Principal(this);
+        
+        
+        T_Facultades.addMouseListener(new MouseInputListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
 
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                //System.out.println("algo 1111111111111111111111");
+                if (T_Facultades.getSelectedRow() != -1) {
+                    try {
+                        Facultad l = estaVentana.facultades_en_tabla.get(T_Facultades.getSelectedRow());
+                        actualizar_T_A_PartirDe(l);
+                    } catch (Exception ex) {
+                        DLG_Respuesta.mostrarDlg_ErrorEnLaBD(estaVentana, ex);
+                    }
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+
+            }
+        });
+        T_Carrera.addMouseListener(new MouseInputListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                //System.out.println("algo 1111111111111111111111");
+                if (T_Carrera.getSelectedRow() != -1) {
+                    try {
+                        Carrera l = estaVentana.carreras_en_tabla.get(T_Carrera.getSelectedRow());
+                        actualizar_T_A_PartirDe(l);
+                    } catch (Exception ex) {
+                        DLG_Respuesta.mostrarDlg_ErrorEnLaBD(estaVentana, ex);
+                    }
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+
+            }
+        });
+        T_Asignaturas.addMouseListener(new MouseInputListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                //System.out.println("algo 1111111111111111111111");
+                if (T_Asignaturas.getSelectedRow() != -1) {
+                    try {
+                        Asignatura l = estaVentana.asignaturas_en_tabla.get(T_Asignaturas.getSelectedRow());
+                        actualizar_T_A_PartirDe(l);
+                    } catch (Exception ex) {
+                        DLG_Respuesta.mostrarDlg_ErrorEnLaBD(estaVentana, ex);
+                    }
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+
+            }
+        });
+        T_Estudiantes.addMouseListener(new MouseInputListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                //System.out.println("algo 1111111111111111111111");
+                if (T_Estudiantes.getSelectedRow() != -1) {
+                    try {
+                        Estudiante l = estaVentana.estudiantes_en_tabla.get(T_Estudiantes.getSelectedRow());
+                        actualizar_T_A_PartirDe(l);
+                    } catch (Exception ex) {
+                        DLG_Respuesta.mostrarDlg_ErrorEnLaBD(estaVentana, ex);
+                    }
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+
+            }
+        });
+
+    }
+    public void actualizar(Usuario u) throws Exception {
+        this.usuarioActual = u;
+        ordenar_de_forma_asendente_Facultad=true;
+        ordenar_de_forma_asendente_Asignaturas=true;
+        ordenar_de_forma_asendente_Carreras=true;
+        ordenar_de_forma_asendente_Estudiantes=true;
+        ordenar_de_forma_asendente_Convocatoria=true;
+        
+        UtilidadesParaVentana.cambiarIconoDeDireccion(B_Invertir_Orden_Asiganturas,this.ordenar_de_forma_asendente_Asignaturas);
+        UtilidadesParaVentana.cambiarIconoDeDireccion(B_Invertir_Orden_Carreras,this.ordenar_de_forma_asendente_Carreras);
+        UtilidadesParaVentana.cambiarIconoDeDireccion(B_Invertir_Orden_Estudiantes,this.ordenar_de_forma_asendente_Estudiantes);
+        UtilidadesParaVentana.cambiarIconoDeDireccion(B_Invertir_Orden_Facultades,this.ordenar_de_forma_asendente_Facultad);
+        
+        
+       
+
+        TI_Filtro_Asiganturas.setText("");
+        TI_Filtro_Carreras.setText("");
+        TI_Filtro_Estudiantes.setText("");
+        TI_Filtro_Facultades.setText("");
+
+        this.facultades_existentes = new ArrayList<>(Arrays.asList(EnMemoria.BD.obtenerTodos_Facultad()));
+        actualizarTabla_Facultad(this.facultades_existentes);
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,21 +342,58 @@ public class Ventana_Principal extends javax.swing.JFrame {
         B_Agregar_Examenes = new javax.swing.JButton();
         L_Examenes = new javax.swing.JLabel();
         L_Profesor_Apellidos = new javax.swing.JLabel();
-        TI_Filtro_Locales = new javax.swing.JTextField();
-        B_Filtrar_Locales = new javax.swing.JButton();
-        B_Invertir_Orden_Locales = new javax.swing.JButton();
-        B_Invertir_Orden_Locales1 = new javax.swing.JButton();
-        B_Filtrar_Locales1 = new javax.swing.JButton();
-        TI_Filtro_Locales1 = new javax.swing.JTextField();
-        TI_Filtro_Locales2 = new javax.swing.JTextField();
-        B_Filtrar_Locales2 = new javax.swing.JButton();
-        B_Invertir_Orden_Locales2 = new javax.swing.JButton();
-        TI_Filtro_Locales3 = new javax.swing.JTextField();
-        B_Filtrar_Locales3 = new javax.swing.JButton();
-        B_Invertir_Orden_Locales3 = new javax.swing.JButton();
+        TI_Filtro_Facultades = new javax.swing.JTextField();
+        B_Filtrar_Facultades = new javax.swing.JButton();
+        B_Invertir_Orden_Facultades = new javax.swing.JButton();
+        B_Invertir_Orden_Asiganturas = new javax.swing.JButton();
+        B_Filtrar_Asiganturas = new javax.swing.JButton();
+        TI_Filtro_Asiganturas = new javax.swing.JTextField();
+        TI_Filtro_Estudiantes = new javax.swing.JTextField();
+        B_Filtrar_Estudiantes = new javax.swing.JButton();
+        B_Invertir_Orden_Estudiantes = new javax.swing.JButton();
+        TI_Filtro_Carreras = new javax.swing.JTextField();
+        B_Filtrar_Carreras = new javax.swing.JButton();
+        B_Invertir_Orden_Carreras = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        MI_Administrar_Usuario = new javax.swing.JMenuItem();
+        MI_Cambiar_Contrasenna = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        MI_Cerrar_Sesion = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        MI_Agregar_Facultad = new javax.swing.JMenuItem();
+        MI_Modificar_Facultad = new javax.swing.JMenuItem();
+        MI_Eliminar_Facultad = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        MI_Agregar_Carrera = new javax.swing.JMenuItem();
+        MI_Modifcar_Carrera = new javax.swing.JMenuItem();
+        MI_Eliminar_Carrera = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        MI_Agregar_Asignatura = new javax.swing.JMenuItem();
+        MI_Modificar_Asignatura = new javax.swing.JMenuItem();
+        MI_Eliminar_Asignatura = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        jMenu5 = new javax.swing.JMenu();
+        MI_RB_Ordenar_Asignatura_Por_Nombre = new javax.swing.JRadioButtonMenuItem();
+        MI_RB_Ordenar_Asignatura_Por_Modalidad = new javax.swing.JRadioButtonMenuItem();
+        MI_RB_Ordenar_Asignatura_Por_Semestre = new javax.swing.JRadioButtonMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        MI_ChB_Filtrar_Asignatura_Por_Nombre = new javax.swing.JCheckBoxMenuItem();
+        MI_ChB_Filtrar_Asignatura_Por_Modalidad = new javax.swing.JCheckBoxMenuItem();
+        MI_ChB_Filtrar_Asignatura_Por_Semestre = new javax.swing.JCheckBoxMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        MI_Agregar_Estudiante = new javax.swing.JMenuItem();
+        MI_Modificar_Estudiante = new javax.swing.JMenuItem();
+        MI_Eliminar_Estudiante = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
+        jMenu8 = new javax.swing.JMenu();
+        MI_RB_Ordenar_Estudiantes_Por_Nombre = new javax.swing.JRadioButtonMenuItem();
+        MI_RB_Ordenar_Estudiantes_Por_Apellidos = new javax.swing.JRadioButtonMenuItem();
+        MI_RB_Ordenar_Estudiantes_Por_Grupo = new javax.swing.JRadioButtonMenuItem();
+        jMenu9 = new javax.swing.JMenu();
+        MI_ChB_Filtrar_Estudiantes_Por_Nombre = new javax.swing.JCheckBoxMenuItem();
+        MI_ChB_Filtrar_Estudiantes_Por_Apellidos = new javax.swing.JCheckBoxMenuItem();
+        MI_ChB_Filtrar_Estudiantes_Por_Grupo = new javax.swing.JCheckBoxMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -250,107 +563,233 @@ public class Ventana_Principal extends javax.swing.JFrame {
         L_Profesor_Apellidos.setText("apellidos...");
         jPanel1.add(L_Profesor_Apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 410, -1, -1));
 
-        TI_Filtro_Locales.addActionListener(new java.awt.event.ActionListener() {
+        TI_Filtro_Facultades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TI_Filtro_LocalesActionPerformed(evt);
+                TI_Filtro_FacultadesActionPerformed(evt);
             }
         });
-        jPanel1.add(TI_Filtro_Locales, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 240, 35));
+        jPanel1.add(TI_Filtro_Facultades, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 240, 35));
 
-        B_Filtrar_Locales.setToolTipText("Buscar según la entrada ");
-        B_Filtrar_Locales.addActionListener(new java.awt.event.ActionListener() {
+        B_Filtrar_Facultades.setToolTipText("Buscar según la entrada ");
+        B_Filtrar_Facultades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_Filtrar_LocalesActionPerformed(evt);
+                B_Filtrar_FacultadesActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Filtrar_Locales, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 45, 40));
+        jPanel1.add(B_Filtrar_Facultades, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 45, 40));
 
-        B_Invertir_Orden_Locales.setToolTipText("Cambiar dirección del orden de los datos mostrados en la tabla ");
-        B_Invertir_Orden_Locales.setMargin(new java.awt.Insets(2, 2, 2, 2));
-        B_Invertir_Orden_Locales.addActionListener(new java.awt.event.ActionListener() {
+        B_Invertir_Orden_Facultades.setToolTipText("Cambiar dirección del orden de los datos mostrados en la tabla ");
+        B_Invertir_Orden_Facultades.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        B_Invertir_Orden_Facultades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_Invertir_Orden_LocalesActionPerformed(evt);
+                B_Invertir_Orden_FacultadesActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Invertir_Orden_Locales, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 45, 40));
+        jPanel1.add(B_Invertir_Orden_Facultades, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, 45, 40));
 
-        B_Invertir_Orden_Locales1.setToolTipText("Cambiar dirección del orden de los datos mostrados en la tabla ");
-        B_Invertir_Orden_Locales1.setMargin(new java.awt.Insets(2, 2, 2, 2));
-        B_Invertir_Orden_Locales1.addActionListener(new java.awt.event.ActionListener() {
+        B_Invertir_Orden_Asiganturas.setToolTipText("Cambiar dirección del orden de los datos mostrados en la tabla ");
+        B_Invertir_Orden_Asiganturas.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        B_Invertir_Orden_Asiganturas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_Invertir_Orden_Locales1ActionPerformed(evt);
+                B_Invertir_Orden_AsiganturasActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Invertir_Orden_Locales1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 60, 45, 40));
+        jPanel1.add(B_Invertir_Orden_Asiganturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 60, 45, 40));
 
-        B_Filtrar_Locales1.setToolTipText("Buscar según la entrada ");
-        B_Filtrar_Locales1.addActionListener(new java.awt.event.ActionListener() {
+        B_Filtrar_Asiganturas.setToolTipText("Buscar según la entrada ");
+        B_Filtrar_Asiganturas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_Filtrar_Locales1ActionPerformed(evt);
+                B_Filtrar_AsiganturasActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Filtrar_Locales1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 60, 45, 40));
+        jPanel1.add(B_Filtrar_Asiganturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 60, 45, 40));
 
-        TI_Filtro_Locales1.addActionListener(new java.awt.event.ActionListener() {
+        TI_Filtro_Asiganturas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TI_Filtro_Locales1ActionPerformed(evt);
+                TI_Filtro_AsiganturasActionPerformed(evt);
             }
         });
-        jPanel1.add(TI_Filtro_Locales1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, 240, 35));
+        jPanel1.add(TI_Filtro_Asiganturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, 240, 35));
 
-        TI_Filtro_Locales2.addActionListener(new java.awt.event.ActionListener() {
+        TI_Filtro_Estudiantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TI_Filtro_Locales2ActionPerformed(evt);
+                TI_Filtro_EstudiantesActionPerformed(evt);
             }
         });
-        jPanel1.add(TI_Filtro_Locales2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 60, 330, 35));
+        jPanel1.add(TI_Filtro_Estudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 60, 330, 35));
 
-        B_Filtrar_Locales2.setToolTipText("Buscar según la entrada ");
-        B_Filtrar_Locales2.addActionListener(new java.awt.event.ActionListener() {
+        B_Filtrar_Estudiantes.setToolTipText("Buscar según la entrada ");
+        B_Filtrar_Estudiantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_Filtrar_Locales2ActionPerformed(evt);
+                B_Filtrar_EstudiantesActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Filtrar_Locales2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 60, 45, 40));
+        jPanel1.add(B_Filtrar_Estudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 60, 45, 40));
 
-        B_Invertir_Orden_Locales2.setToolTipText("Cambiar dirección del orden de los datos mostrados en la tabla ");
-        B_Invertir_Orden_Locales2.setMargin(new java.awt.Insets(2, 2, 2, 2));
-        B_Invertir_Orden_Locales2.addActionListener(new java.awt.event.ActionListener() {
+        B_Invertir_Orden_Estudiantes.setToolTipText("Cambiar dirección del orden de los datos mostrados en la tabla ");
+        B_Invertir_Orden_Estudiantes.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        B_Invertir_Orden_Estudiantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_Invertir_Orden_Locales2ActionPerformed(evt);
+                B_Invertir_Orden_EstudiantesActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Invertir_Orden_Locales2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 60, 45, 40));
+        jPanel1.add(B_Invertir_Orden_Estudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 60, 45, 40));
 
-        TI_Filtro_Locales3.addActionListener(new java.awt.event.ActionListener() {
+        TI_Filtro_Carreras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TI_Filtro_Locales3ActionPerformed(evt);
+                TI_Filtro_CarrerasActionPerformed(evt);
             }
         });
-        jPanel1.add(TI_Filtro_Locales3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 240, 35));
+        jPanel1.add(TI_Filtro_Carreras, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 240, 35));
 
-        B_Filtrar_Locales3.setToolTipText("Buscar según la entrada ");
-        B_Filtrar_Locales3.addActionListener(new java.awt.event.ActionListener() {
+        B_Filtrar_Carreras.setToolTipText("Buscar según la entrada ");
+        B_Filtrar_Carreras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_Filtrar_Locales3ActionPerformed(evt);
+                B_Filtrar_CarrerasActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Filtrar_Locales3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, 45, 40));
+        jPanel1.add(B_Filtrar_Carreras, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, 45, 40));
 
-        B_Invertir_Orden_Locales3.setToolTipText("Cambiar dirección del orden de los datos mostrados en la tabla ");
-        B_Invertir_Orden_Locales3.setMargin(new java.awt.Insets(2, 2, 2, 2));
-        B_Invertir_Orden_Locales3.addActionListener(new java.awt.event.ActionListener() {
+        B_Invertir_Orden_Carreras.setToolTipText("Cambiar dirección del orden de los datos mostrados en la tabla ");
+        B_Invertir_Orden_Carreras.setMargin(new java.awt.Insets(2, 2, 2, 2));
+        B_Invertir_Orden_Carreras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_Invertir_Orden_Locales3ActionPerformed(evt);
+                B_Invertir_Orden_CarrerasActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Invertir_Orden_Locales3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 45, 40));
+        jPanel1.add(B_Invertir_Orden_Carreras, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 45, 40));
 
-        jMenu1.setText("File");
+        jMenu1.setText("Usuario");
+
+        MI_Administrar_Usuario.setText("Administrar Usuario");
+        jMenu1.add(MI_Administrar_Usuario);
+
+        MI_Cambiar_Contrasenna.setText("Cambiar Contraseña");
+        jMenu1.add(MI_Cambiar_Contrasenna);
+        jMenu1.add(jSeparator1);
+
+        MI_Cerrar_Sesion.setText("Cerrar Sesión");
+        jMenu1.add(MI_Cerrar_Sesion);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Facultades");
+
+        MI_Agregar_Facultad.setText("Agregar Facultad");
+        jMenu2.add(MI_Agregar_Facultad);
+
+        MI_Modificar_Facultad.setText("Modificar Facultad");
+        jMenu2.add(MI_Modificar_Facultad);
+
+        MI_Eliminar_Facultad.setText("Eliminar Facultad");
+        jMenu2.add(MI_Eliminar_Facultad);
+
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Carreras");
+
+        MI_Agregar_Carrera.setText("Agregar Carrera");
+        jMenu3.add(MI_Agregar_Carrera);
+
+        MI_Modifcar_Carrera.setText("Modifcar Carrera");
+        jMenu3.add(MI_Modifcar_Carrera);
+
+        MI_Eliminar_Carrera.setText("Eliminar Carrera");
+        jMenu3.add(MI_Eliminar_Carrera);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Asignatura");
+
+        MI_Agregar_Asignatura.setText("Agregar Asignatura");
+        jMenu4.add(MI_Agregar_Asignatura);
+
+        MI_Modificar_Asignatura.setText("Modificar Asignatura");
+        jMenu4.add(MI_Modificar_Asignatura);
+
+        MI_Eliminar_Asignatura.setText("Eliminar Asignatura");
+        jMenu4.add(MI_Eliminar_Asignatura);
+        jMenu4.add(jSeparator2);
+
+        jMenu5.setText("Ordenar por");
+
+        MI_RB_Ordenar_Asignatura_Por_Nombre.setSelected(true);
+        MI_RB_Ordenar_Asignatura_Por_Nombre.setText("Nombre");
+        jMenu5.add(MI_RB_Ordenar_Asignatura_Por_Nombre);
+
+        MI_RB_Ordenar_Asignatura_Por_Modalidad.setSelected(true);
+        MI_RB_Ordenar_Asignatura_Por_Modalidad.setText("Modalidad");
+        jMenu5.add(MI_RB_Ordenar_Asignatura_Por_Modalidad);
+
+        MI_RB_Ordenar_Asignatura_Por_Semestre.setSelected(true);
+        MI_RB_Ordenar_Asignatura_Por_Semestre.setText("Semestre");
+        jMenu5.add(MI_RB_Ordenar_Asignatura_Por_Semestre);
+
+        jMenu4.add(jMenu5);
+
+        jMenu6.setText("Filtrar por");
+
+        MI_ChB_Filtrar_Asignatura_Por_Nombre.setSelected(true);
+        MI_ChB_Filtrar_Asignatura_Por_Nombre.setText("Nombre");
+        jMenu6.add(MI_ChB_Filtrar_Asignatura_Por_Nombre);
+
+        MI_ChB_Filtrar_Asignatura_Por_Modalidad.setSelected(true);
+        MI_ChB_Filtrar_Asignatura_Por_Modalidad.setText("Modlaidad");
+        jMenu6.add(MI_ChB_Filtrar_Asignatura_Por_Modalidad);
+
+        MI_ChB_Filtrar_Asignatura_Por_Semestre.setSelected(true);
+        MI_ChB_Filtrar_Asignatura_Por_Semestre.setText("Semestre");
+        jMenu6.add(MI_ChB_Filtrar_Asignatura_Por_Semestre);
+
+        jMenu4.add(jMenu6);
+
+        jMenuBar1.add(jMenu4);
+
+        jMenu7.setText("Estudiantes");
+
+        MI_Agregar_Estudiante.setText("Agregar Estudiante");
+        jMenu7.add(MI_Agregar_Estudiante);
+
+        MI_Modificar_Estudiante.setText("Modificar Estudiante");
+        jMenu7.add(MI_Modificar_Estudiante);
+
+        MI_Eliminar_Estudiante.setText("Eliminar Estudiante");
+        jMenu7.add(MI_Eliminar_Estudiante);
+        jMenu7.add(jSeparator3);
+
+        jMenu8.setText("Ordenar Por");
+
+        MI_RB_Ordenar_Estudiantes_Por_Nombre.setSelected(true);
+        MI_RB_Ordenar_Estudiantes_Por_Nombre.setText("Nombre");
+        jMenu8.add(MI_RB_Ordenar_Estudiantes_Por_Nombre);
+
+        MI_RB_Ordenar_Estudiantes_Por_Apellidos.setSelected(true);
+        MI_RB_Ordenar_Estudiantes_Por_Apellidos.setText("Apellidos");
+        jMenu8.add(MI_RB_Ordenar_Estudiantes_Por_Apellidos);
+
+        MI_RB_Ordenar_Estudiantes_Por_Grupo.setSelected(true);
+        MI_RB_Ordenar_Estudiantes_Por_Grupo.setText("Grupo");
+        jMenu8.add(MI_RB_Ordenar_Estudiantes_Por_Grupo);
+
+        jMenu7.add(jMenu8);
+
+        jMenu9.setText("Filtrar Por");
+
+        MI_ChB_Filtrar_Estudiantes_Por_Nombre.setSelected(true);
+        MI_ChB_Filtrar_Estudiantes_Por_Nombre.setText("Nombre");
+        jMenu9.add(MI_ChB_Filtrar_Estudiantes_Por_Nombre);
+
+        MI_ChB_Filtrar_Estudiantes_Por_Apellidos.setSelected(true);
+        MI_ChB_Filtrar_Estudiantes_Por_Apellidos.setText("Apellidos");
+        jMenu9.add(MI_ChB_Filtrar_Estudiantes_Por_Apellidos);
+
+        MI_ChB_Filtrar_Estudiantes_Por_Grupo.setSelected(true);
+        MI_ChB_Filtrar_Estudiantes_Por_Grupo.setText("Grupo");
+        jMenu9.add(MI_ChB_Filtrar_Estudiantes_Por_Grupo);
+
+        jMenu7.add(jMenu9);
+
+        jMenuBar1.add(jMenu7);
 
         setJMenuBar(jMenuBar1);
 
@@ -373,57 +812,349 @@ public class Ventana_Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void B_Agregar_FacultadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Agregar_FacultadesActionPerformed
-        // TODO add your handling code here:
+        intentarAgregarFacultad();
     }//GEN-LAST:event_B_Agregar_FacultadesActionPerformed
 
-    private void TI_Filtro_LocalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TI_Filtro_LocalesActionPerformed
+    private void TI_Filtro_FacultadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TI_Filtro_FacultadesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TI_Filtro_LocalesActionPerformed
+    }//GEN-LAST:event_TI_Filtro_FacultadesActionPerformed
 
-    private void B_Filtrar_LocalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Filtrar_LocalesActionPerformed
+    private void B_Filtrar_FacultadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Filtrar_FacultadesActionPerformed
        
-    }//GEN-LAST:event_B_Filtrar_LocalesActionPerformed
+    }//GEN-LAST:event_B_Filtrar_FacultadesActionPerformed
 
-    private void B_Invertir_Orden_LocalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Invertir_Orden_LocalesActionPerformed
+    private void B_Invertir_Orden_FacultadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Invertir_Orden_FacultadesActionPerformed
        
-    }//GEN-LAST:event_B_Invertir_Orden_LocalesActionPerformed
+    }//GEN-LAST:event_B_Invertir_Orden_FacultadesActionPerformed
 
-    private void B_Invertir_Orden_Locales1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Invertir_Orden_Locales1ActionPerformed
+    private void B_Invertir_Orden_AsiganturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Invertir_Orden_AsiganturasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_B_Invertir_Orden_Locales1ActionPerformed
+    }//GEN-LAST:event_B_Invertir_Orden_AsiganturasActionPerformed
 
-    private void B_Filtrar_Locales1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Filtrar_Locales1ActionPerformed
+    private void B_Filtrar_AsiganturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Filtrar_AsiganturasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_B_Filtrar_Locales1ActionPerformed
+    }//GEN-LAST:event_B_Filtrar_AsiganturasActionPerformed
 
-    private void TI_Filtro_Locales1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TI_Filtro_Locales1ActionPerformed
+    private void TI_Filtro_AsiganturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TI_Filtro_AsiganturasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TI_Filtro_Locales1ActionPerformed
+    }//GEN-LAST:event_TI_Filtro_AsiganturasActionPerformed
 
-    private void TI_Filtro_Locales2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TI_Filtro_Locales2ActionPerformed
+    private void TI_Filtro_EstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TI_Filtro_EstudiantesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TI_Filtro_Locales2ActionPerformed
+    }//GEN-LAST:event_TI_Filtro_EstudiantesActionPerformed
 
-    private void B_Filtrar_Locales2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Filtrar_Locales2ActionPerformed
+    private void B_Filtrar_EstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Filtrar_EstudiantesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_B_Filtrar_Locales2ActionPerformed
+    }//GEN-LAST:event_B_Filtrar_EstudiantesActionPerformed
 
-    private void B_Invertir_Orden_Locales2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Invertir_Orden_Locales2ActionPerformed
+    private void B_Invertir_Orden_EstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Invertir_Orden_EstudiantesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_B_Invertir_Orden_Locales2ActionPerformed
+    }//GEN-LAST:event_B_Invertir_Orden_EstudiantesActionPerformed
 
-    private void TI_Filtro_Locales3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TI_Filtro_Locales3ActionPerformed
+    private void TI_Filtro_CarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TI_Filtro_CarrerasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TI_Filtro_Locales3ActionPerformed
+    }//GEN-LAST:event_TI_Filtro_CarrerasActionPerformed
 
-    private void B_Filtrar_Locales3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Filtrar_Locales3ActionPerformed
+    private void B_Filtrar_CarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Filtrar_CarrerasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_B_Filtrar_Locales3ActionPerformed
+    }//GEN-LAST:event_B_Filtrar_CarrerasActionPerformed
 
-    private void B_Invertir_Orden_Locales3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Invertir_Orden_Locales3ActionPerformed
+    private void B_Invertir_Orden_CarrerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Invertir_Orden_CarrerasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_B_Invertir_Orden_Locales3ActionPerformed
+    }//GEN-LAST:event_B_Invertir_Orden_CarrerasActionPerformed
 
+    
+    private void intentarAgregarFacultad() {
+        try {
+            String nombreLocal = JOptionPane.showInputDialog(this, "Escriba el nombre de la Facultad a agregar ", "Agregar Facultad", JOptionPane.QUESTION_MESSAGE);
+            if (nombreLocal != null && MetodosValidacion.validar_es_nuevo_Facultad_correcto(this, nombreLocal)) {
+                Facultad localNuevo = EnMemoria.BD.agregarFacultad(nombreLocal);
+                DLG_Respuesta.mostrarDlgExito(this, "Facultad agregada con éxito");
+                TI_Filtro_Asiganturas.setText("");
+                TI_Filtro_Carreras.setText("");
+                TI_Filtro_Estudiantes.setText("");
+                TI_Filtro_Facultades.setText("");
+                this.facultades_existentes.add(localNuevo);
+                actualizarTabla_Facultad(this.facultades_existentes);
+               
+            }
+
+        } catch (Exception ex) {
+            DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
+        }
+    }
+    
+    
+    
+    private void actualizarTabla_Facultad(ArrayList<Facultad> L) throws Exception {
+        L = ordenar_Facultad(L);
+        this.facultades_en_tabla = L;
+        int cantidad = L.size();
+        String Tiulos[] = {"Nombre"};
+        Object O[][] = new Object[cantidad][Tiulos.length];
+        for (int i = 0; i < cantidad; i++) {
+            O[i][0] = L.get(i).getFacultad();
+        }
+        T_Facultades.setModel(new DefaultTableModel(O, Tiulos) {
+            public boolean isCellEditable(int row, int column) {
+                return false;//This causes all cells to be not editable
+            }
+        });
+        Facultad l=null;
+        if (cantidad > 0) {
+            T_Facultades.addRowSelectionInterval(0, 0);
+            l = L.get(0);
+            
+            
+        } 
+        
+        actualizar_T_A_PartirDe(l);
+
+    }
+    
+    private void actualizar_T_A_PartirDe(Facultad l)throws Exception {
+        if(l!=null){
+            this.carreras_existentes_de_facultad = new ArrayList<>(Arrays.asList(EnMemoria.BD.obtenerTodos_Carrera(l)));
+            
+        }else{
+            this.carreras_existentes_de_facultad = new ArrayList<>();
+        }
+        actualizarTabla_Carrera(this.carreras_existentes_de_facultad);
+    }
+    
+    private void actualizarTabla_Carrera(ArrayList<Carrera> L) throws Exception {
+        L = ordenar_Carreras(L);
+        this.carreras_en_tabla = L;
+        int cantidad = L.size();
+        String Tiulos[] = {"Nombre"};
+        Object O[][] = new Object[cantidad][Tiulos.length];
+        for (int i = 0; i < cantidad; i++) {
+            Carrera e = L.get(i);
+            O[i][0] = e.getCarrera();
+            
+        }
+        T_Carrera.setModel(new DefaultTableModel(O, Tiulos) {
+            public boolean isCellEditable(int row, int column) {
+                return false;//This causes all cells to be not editable
+            }
+        });
+        Carrera l=null;
+        if (cantidad > 0) {
+            T_Carrera.addRowSelectionInterval(0, 0);
+            l = L.get(0);
+            
+            
+        } 
+        actualizar_T_A_PartirDe(l);
+    }
+    private void actualizar_T_A_PartirDe(Carrera l)throws Exception {
+        if(l!=null){
+            this.asignaturas_existentes_de_carrera = new ArrayList<>(Arrays.asList(EnMemoria.BD.obtenerTodos_Asignatura(l)));
+            
+        }else{
+            this.asignaturas_existentes_de_carrera = new ArrayList<>();
+        }
+        actualizarTabla_Asignatura(this.asignaturas_existentes_de_carrera);
+    }
+     private void actualizarTabla_Asignatura(ArrayList<Asignatura> L) throws Exception {
+        L = ordenar_Asignatura(L);
+        this.asignaturas_en_tabla = L;
+        int cantidad = L.size();
+        String Tiulos[] = {"Nombre","Modalidad","Semestre"};
+        Object O[][] = new Object[cantidad][Tiulos.length];
+        for (int i = 0; i < cantidad; i++) {
+            Asignatura a=L.get(i);
+            O[i][0] = a.getAsignatura();
+            O[i][1] = a.getModalidad();
+            O[i][2] = a.getSemestre();
+            
+        }
+        T_Asignaturas.setModel(new DefaultTableModel(O, Tiulos) {
+            public boolean isCellEditable(int row, int column) {
+                return false;//This causes all cells to be not editable
+            }
+        });
+        Asignatura l=null;
+        if (cantidad > 0) {
+            T_Asignaturas.addRowSelectionInterval(0, 0);
+             l = L.get(0);
+            
+        } 
+        actualizar_T_A_PartirDe(l);
+        
+
+    }
+     private void actualizar_T_A_PartirDe(Asignatura l )throws Exception {
+         Profesor p=null;
+        if(l!=null){
+            this.estudiantes_existentes_de_asignatura = new ArrayList<>(Arrays.asList(EnMemoria.BD.obtenerTodos_Estudiante(l)));
+            p=EnMemoria.BD.obtenerProfesor(l);
+        }else{
+            this.estudiantes_existentes_de_asignatura = new ArrayList<>();
+        }
+        actualizarDatosProfesor(p);
+        actualizarTabla_Estudiante(this.estudiantes_existentes_de_asignatura);
+    }
+     private void actualizarTabla_Estudiante(ArrayList<Estudiante> L) throws Exception {
+        L = ordenar_Estudiante(L);
+        this.estudiantes_en_tabla = L;
+        int cantidad = L.size();
+        String Tiulos[] = {"Nombre","Apellidos","Grupo"};
+        Object O[][] = new Object[cantidad][Tiulos.length];
+        for (int i = 0; i < cantidad; i++) {
+            Estudiante a=L.get(i);
+            O[i][0] = a.getNombre();
+            O[i][1] = a.getApellidos();
+            O[i][2] = a.getGrupo();
+            
+        }
+        T_Estudiantes.setModel(new DefaultTableModel(O, Tiulos) {
+            public boolean isCellEditable(int row, int column) {
+                return false;//This causes all cells to be not editable
+            }
+        });
+        Estudiante l=null;
+        if (cantidad > 0) {
+            T_Estudiantes.addRowSelectionInterval(0, 0);
+             l = L.get(0);
+            
+        } 
+        actualizar_T_A_PartirDe(l);
+        
+
+    }
+     private void actualizar_T_A_PartirDe(Estudiante l )throws Exception {
+         
+        if(l!=null&&T_Asignaturas.getSelectedRow()!=-1){
+            this.convocatorias_existentes_de_estudiante_y_asignatura = new ArrayList<>(Arrays.asList(
+                    EnMemoria.BD.obtenerTodos_Convocatoria(
+                            this.asignaturas_en_tabla.get(T_Asignaturas.getSelectedRow())
+                            ,l
+                    )
+            ));
+            
+        }else{
+            this.convocatorias_existentes_de_estudiante_y_asignatura = new ArrayList<>();
+        }
+        
+        actualizarTabla_Convocatoria(this.convocatorias_existentes_de_estudiante_y_asignatura);
+    }
+     private void actualizarTabla_Convocatoria(ArrayList<Convocatoria> L) throws Exception {
+        L = ordenar_Convocatoria(L);
+        this.convocatorias_en_tabla = L;
+        int cantidad = L.size();
+        String Tiulos[] = {"Nota","Numero","Fecha"};
+        Object O[][] = new Object[cantidad][Tiulos.length];
+        for (int i = 0; i < cantidad; i++) {
+            Convocatoria a=L.get(i);
+            O[i][0] = a.getNota();
+            O[i][1] = a.getNumero();
+            O[i][2] = a.getFecha();
+            
+        }
+        T_Examenes.setModel(new DefaultTableModel(O, Tiulos) {
+            public boolean isCellEditable(int row, int column) {
+                return false;//This causes all cells to be not editable
+            }
+        });
+        
+        
+
+    }
+     private ArrayList<Convocatoria> ordenar_Convocatoria(ArrayList<Convocatoria> L) {
+        L.sort(new Comparator<Convocatoria>() {
+            @Override
+            public int compare(Convocatoria o1, Convocatoria o2) {
+               
+                return  new Integer(o1.getNumero()).compareTo(o2.getNumero());
+            }
+        });
+        if (!ordenar_de_forma_asendente_Convocatoria) {
+            Collections.reverse(L);
+        }
+        return L;
+    }
+     private ArrayList<Estudiante> ordenar_Estudiante(ArrayList<Estudiante> L) {
+        L.sort(new Comparator<Estudiante>() {
+            @Override
+            public int compare(Estudiante o1, Estudiante o2) {
+                if (MI_RB_Ordenar_Estudiantes_Por_Apellidos.isSelected()) {
+                    return o1.getApellidos().compareToIgnoreCase(o2.getApellidos());
+                }
+                if (MI_RB_Ordenar_Estudiantes_Por_Grupo.isSelected()) {
+                    return o1.getGrupo().compareToIgnoreCase(o2.getGrupo());
+                }
+                
+                return o1.getNombre().compareToIgnoreCase(o2.getNombre());
+            }
+        });
+        if (!ordenar_de_forma_asendente_Estudiantes) {
+            Collections.reverse(L);
+        }
+        return L;
+    }
+     private void actualizarDatosProfesor(Profesor p){
+         this.profesorDeAsignatura=p;
+         boolean existeProfesor=p!=null;
+         if(existeProfesor){
+             L_Profesor_Nombre.setText(p.getNombre());
+             L_Profesor_Apellidos.setText(p.getApellidos());
+             
+         }else{
+            L_Profesor_Nombre.setText("-----------");
+             L_Profesor_Apellidos.setText("-----------");
+             
+         }
+//         L_Profesor_Nombre.setVisible(existeProfesor);
+//         L_Profesor_Apellidos.setVisible(existeProfesor);
+         
+         
+         
+     }
+    private ArrayList<Asignatura> ordenar_Asignatura(ArrayList<Asignatura> L) {
+        L.sort(new Comparator<Asignatura>() {
+            @Override
+            public int compare(Asignatura o1, Asignatura o2) {
+                if (MI_RB_Ordenar_Asignatura_Por_Modalidad.isSelected()) {
+                    return o1.getModalidad().compareToIgnoreCase(o2.getModalidad());
+                }
+                if (MI_RB_Ordenar_Asignatura_Por_Nombre.isSelected()) {
+                    return o1.getAsignatura().compareToIgnoreCase(o2.getAsignatura());
+                }
+                
+                return o1.getSemestre().compareToIgnoreCase(o2.getSemestre());
+            }
+        });
+        if (!ordenar_de_forma_asendente_Asignaturas) {
+            Collections.reverse(L);
+        }
+        return L;
+    }
+    private ArrayList<Carrera> ordenar_Carreras(ArrayList<Carrera> L) {
+        L.sort(new Comparator<Carrera>() {
+            @Override
+            public int compare(Carrera o1, Carrera o2) {
+                return o1.getCarrera().compareToIgnoreCase(o2.getCarrera());
+            }
+        });
+        if (!ordenar_de_forma_asendente_Carreras) {
+            Collections.reverse(L);
+        }
+        return L;
+    }
+    private ArrayList<Facultad> ordenar_Facultad(ArrayList<Facultad> L) {
+        L.sort(new Comparator<Facultad>() {
+            @Override
+            public int compare(Facultad o1, Facultad o2) {
+                return o1.getFacultad().compareToIgnoreCase(o2.getFacultad());
+            }
+        });
+        if (!ordenar_de_forma_asendente_Facultad) {
+            Collections.reverse(L);
+        }
+        return L;
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -478,14 +1209,14 @@ public class Ventana_Principal extends javax.swing.JFrame {
     private javax.swing.JButton B_Eliminar_Examenes;
     private javax.swing.JButton B_Eliminar_Facultades;
     private javax.swing.JButton B_Eliminar_Profesor;
-    private javax.swing.JButton B_Filtrar_Locales;
-    private javax.swing.JButton B_Filtrar_Locales1;
-    private javax.swing.JButton B_Filtrar_Locales2;
-    private javax.swing.JButton B_Filtrar_Locales3;
-    private javax.swing.JButton B_Invertir_Orden_Locales;
-    private javax.swing.JButton B_Invertir_Orden_Locales1;
-    private javax.swing.JButton B_Invertir_Orden_Locales2;
-    private javax.swing.JButton B_Invertir_Orden_Locales3;
+    private javax.swing.JButton B_Filtrar_Asiganturas;
+    private javax.swing.JButton B_Filtrar_Carreras;
+    private javax.swing.JButton B_Filtrar_Estudiantes;
+    private javax.swing.JButton B_Filtrar_Facultades;
+    private javax.swing.JButton B_Invertir_Orden_Asiganturas;
+    private javax.swing.JButton B_Invertir_Orden_Carreras;
+    private javax.swing.JButton B_Invertir_Orden_Estudiantes;
+    private javax.swing.JButton B_Invertir_Orden_Facultades;
     private javax.swing.JLabel L_Asignaturas;
     private javax.swing.JLabel L_Carrera;
     private javax.swing.JLabel L_Estudiantes;
@@ -494,10 +1225,37 @@ public class Ventana_Principal extends javax.swing.JFrame {
     private javax.swing.JLabel L_Profesor;
     private javax.swing.JLabel L_Profesor_Apellidos;
     private javax.swing.JLabel L_Profesor_Nombre;
-    private javax.swing.JTextField TI_Filtro_Locales;
-    private javax.swing.JTextField TI_Filtro_Locales1;
-    private javax.swing.JTextField TI_Filtro_Locales2;
-    private javax.swing.JTextField TI_Filtro_Locales3;
+    private javax.swing.JMenuItem MI_Administrar_Usuario;
+    private javax.swing.JMenuItem MI_Agregar_Asignatura;
+    private javax.swing.JMenuItem MI_Agregar_Carrera;
+    private javax.swing.JMenuItem MI_Agregar_Estudiante;
+    private javax.swing.JMenuItem MI_Agregar_Facultad;
+    private javax.swing.JMenuItem MI_Cambiar_Contrasenna;
+    private javax.swing.JMenuItem MI_Cerrar_Sesion;
+    private javax.swing.JCheckBoxMenuItem MI_ChB_Filtrar_Asignatura_Por_Modalidad;
+    private javax.swing.JCheckBoxMenuItem MI_ChB_Filtrar_Asignatura_Por_Nombre;
+    private javax.swing.JCheckBoxMenuItem MI_ChB_Filtrar_Asignatura_Por_Semestre;
+    private javax.swing.JCheckBoxMenuItem MI_ChB_Filtrar_Estudiantes_Por_Apellidos;
+    private javax.swing.JCheckBoxMenuItem MI_ChB_Filtrar_Estudiantes_Por_Grupo;
+    private javax.swing.JCheckBoxMenuItem MI_ChB_Filtrar_Estudiantes_Por_Nombre;
+    private javax.swing.JMenuItem MI_Eliminar_Asignatura;
+    private javax.swing.JMenuItem MI_Eliminar_Carrera;
+    private javax.swing.JMenuItem MI_Eliminar_Estudiante;
+    private javax.swing.JMenuItem MI_Eliminar_Facultad;
+    private javax.swing.JMenuItem MI_Modifcar_Carrera;
+    private javax.swing.JMenuItem MI_Modificar_Asignatura;
+    private javax.swing.JMenuItem MI_Modificar_Estudiante;
+    private javax.swing.JMenuItem MI_Modificar_Facultad;
+    private javax.swing.JRadioButtonMenuItem MI_RB_Ordenar_Asignatura_Por_Modalidad;
+    private javax.swing.JRadioButtonMenuItem MI_RB_Ordenar_Asignatura_Por_Nombre;
+    private javax.swing.JRadioButtonMenuItem MI_RB_Ordenar_Asignatura_Por_Semestre;
+    private javax.swing.JRadioButtonMenuItem MI_RB_Ordenar_Estudiantes_Por_Apellidos;
+    private javax.swing.JRadioButtonMenuItem MI_RB_Ordenar_Estudiantes_Por_Grupo;
+    private javax.swing.JRadioButtonMenuItem MI_RB_Ordenar_Estudiantes_Por_Nombre;
+    private javax.swing.JTextField TI_Filtro_Asiganturas;
+    private javax.swing.JTextField TI_Filtro_Carreras;
+    private javax.swing.JTextField TI_Filtro_Estudiantes;
+    private javax.swing.JTextField TI_Filtro_Facultades;
     private javax.swing.JTable T_Asignaturas;
     private javax.swing.JTable T_Carrera;
     private javax.swing.JTable T_Estudiantes;
@@ -507,6 +1265,13 @@ public class Ventana_Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -514,5 +1279,8 @@ public class Ventana_Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
     // End of variables declaration//GEN-END:variables
 }

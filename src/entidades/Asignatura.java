@@ -369,9 +369,9 @@ public class Asignatura implements Serializable {
 				getId_profesor().asignatura.remove(this);
 			}
 			
-			entidades.Asiganutra_estudiante[] lAsiganutra_estudiantes = asiganutra_estudiante.toArray();
-			for(int i = 0; i < lAsiganutra_estudiantes.length; i++) {
-				lAsiganutra_estudiantes[i].setId_asignatura(null);
+			entidades.Asignatura_estudiante[] lAsignatura_estudiantes = asignatura_estudiante.toArray();
+			for(int i = 0; i < lAsignatura_estudiantes.length; i++) {
+				lAsignatura_estudiantes[i].setId_asignatura(null);
 			}
 			entidades.Convocatoria[] lConvocatorias = convocatoria.toArray();
 			for(int i = 0; i < lConvocatorias.length; i++) {
@@ -395,9 +395,9 @@ public class Asignatura implements Serializable {
 				getId_profesor().asignatura.remove(this);
 			}
 			
-			entidades.Asiganutra_estudiante[] lAsiganutra_estudiantes = asiganutra_estudiante.toArray();
-			for(int i = 0; i < lAsiganutra_estudiantes.length; i++) {
-				lAsiganutra_estudiantes[i].setId_asignatura(null);
+			entidades.Asignatura_estudiante[] lAsignatura_estudiantes = asignatura_estudiante.toArray();
+			for(int i = 0; i < lAsignatura_estudiantes.length; i++) {
+				lAsignatura_estudiantes[i].setId_asignatura(null);
 			}
 			entidades.Convocatoria[] lConvocatorias = convocatoria.toArray();
 			for(int i = 0; i < lConvocatorias.length; i++) {
@@ -417,8 +417,8 @@ public class Asignatura implements Serializable {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == ORMConstants.KEY_ASIGNATURA_ASIGANUTRA_ESTUDIANTE) {
-			return ORM_asiganutra_estudiante;
+		if (key == ORMConstants.KEY_ASIGNATURA_ASIGNATURA_ESTUDIANTE) {
+			return ORM_asignatura_estudiante;
 		}
 		else if (key == ORMConstants.KEY_ASIGNATURA_CONVOCATORIA) {
 			return ORM_convocatoria;
@@ -460,7 +460,7 @@ public class Asignatura implements Serializable {
 	
 	private entidades.Profesor id_profesor;
 	
-	private java.util.Set ORM_asiganutra_estudiante = new java.util.HashSet();
+	private java.util.Set ORM_asignatura_estudiante = new java.util.HashSet();
 	
 	private java.util.Set ORM_convocatoria = new java.util.HashSet();
 	
@@ -548,15 +548,15 @@ public class Asignatura implements Serializable {
 		return id_profesor;
 	}
 	
-	private void setORM_Asiganutra_estudiante(java.util.Set value) {
-		this.ORM_asiganutra_estudiante = value;
+	private void setORM_Asignatura_estudiante(java.util.Set value) {
+		this.ORM_asignatura_estudiante = value;
 	}
 	
-	private java.util.Set getORM_Asiganutra_estudiante() {
-		return ORM_asiganutra_estudiante;
+	private java.util.Set getORM_Asignatura_estudiante() {
+		return ORM_asignatura_estudiante;
 	}
 	
-	public final entidades.Asiganutra_estudianteSetCollection asiganutra_estudiante = new entidades.Asiganutra_estudianteSetCollection(this, _ormAdapter, ORMConstants.KEY_ASIGNATURA_ASIGANUTRA_ESTUDIANTE, ORMConstants.KEY_ASIGANUTRA_ESTUDIANTE_ID_ASIGNATURA, ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final entidades.Asignatura_estudianteSetCollection asignatura_estudiante = new entidades.Asignatura_estudianteSetCollection(this, _ormAdapter, ORMConstants.KEY_ASIGNATURA_ASIGNATURA_ESTUDIANTE, ORMConstants.KEY_ASIGNATURA_ESTUDIANTE_ID_ASIGNATURA, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	private void setORM_Convocatoria(java.util.Set value) {
 		this.ORM_convocatoria = value;

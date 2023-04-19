@@ -361,10 +361,10 @@ public class Estudiante implements Serializable {
 	
 	public boolean deleteAndDissociate()throws PersistentException {
 		try {
-			entidades.Asiganutra_estudiante[] lAsiganutra_estudiantes = asiganutra_estudiante.toArray();
-			for(int i = 0; i < lAsiganutra_estudiantes.length; i++) {
-				lAsiganutra_estudiantes[i].setId_estudiante(null);
+			if(getAsignatura_estudiante() != null) {
+				getAsignatura_estudiante().setId_estudiante(null);
 			}
+			
 			entidades.Convocatoria[] lConvocatorias = convocatoria.toArray();
 			for(int i = 0; i < lConvocatorias.length; i++) {
 				lConvocatorias[i].setId_estudiante(null);
@@ -379,10 +379,10 @@ public class Estudiante implements Serializable {
 	
 	public boolean deleteAndDissociate(org.orm.PersistentSession session)throws PersistentException {
 		try {
-			entidades.Asiganutra_estudiante[] lAsiganutra_estudiantes = asiganutra_estudiante.toArray();
-			for(int i = 0; i < lAsiganutra_estudiantes.length; i++) {
-				lAsiganutra_estudiantes[i].setId_estudiante(null);
+			if(getAsignatura_estudiante() != null) {
+				getAsignatura_estudiante().setId_estudiante(null);
 			}
+			
 			entidades.Convocatoria[] lConvocatorias = convocatoria.toArray();
 			for(int i = 0; i < lConvocatorias.length; i++) {
 				lConvocatorias[i].setId_estudiante(null);
@@ -401,10 +401,7 @@ public class Estudiante implements Serializable {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == ORMConstants.KEY_ESTUDIANTE_ASIGANUTRA_ESTUDIANTE) {
-			return ORM_asiganutra_estudiante;
-		}
-		else if (key == ORMConstants.KEY_ESTUDIANTE_CONVOCATORIA) {
+		if (key == ORMConstants.KEY_ESTUDIANTE_CONVOCATORIA) {
 			return ORM_convocatoria;
 		}
 		
@@ -426,7 +423,7 @@ public class Estudiante implements Serializable {
 	
 	private String grupo;
 	
-	private java.util.Set ORM_asiganutra_estudiante = new java.util.HashSet();
+	private entidades.Asignatura_estudiante asignatura_estudiante;
 	
 	private java.util.Set ORM_convocatoria = new java.util.HashSet();
 	
@@ -466,15 +463,22 @@ public class Estudiante implements Serializable {
 		return grupo;
 	}
 	
-	private void setORM_Asiganutra_estudiante(java.util.Set value) {
-		this.ORM_asiganutra_estudiante = value;
+	public void setAsignatura_estudiante(entidades.Asignatura_estudiante value) {
+		if (this.asignatura_estudiante != value) {
+			entidades.Asignatura_estudiante lasignatura_estudiante = this.asignatura_estudiante;
+			this.asignatura_estudiante = value;
+			if (value != null) {
+				asignatura_estudiante.setId_estudiante(this);
+			}
+			if (lasignatura_estudiante != null && lasignatura_estudiante.getId_estudiante() == this) {
+				lasignatura_estudiante.setId_estudiante(null);
+			}
+		}
 	}
 	
-	private java.util.Set getORM_Asiganutra_estudiante() {
-		return ORM_asiganutra_estudiante;
+	public entidades.Asignatura_estudiante getAsignatura_estudiante() {
+		return asignatura_estudiante;
 	}
-	
-	public final entidades.Asiganutra_estudianteSetCollection asiganutra_estudiante = new entidades.Asiganutra_estudianteSetCollection(this, _ormAdapter, ORMConstants.KEY_ESTUDIANTE_ASIGANUTRA_ESTUDIANTE, ORMConstants.KEY_ASIGANUTRA_ESTUDIANTE_ID_ESTUDIANTE, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	private void setORM_Convocatoria(java.util.Set value) {
 		this.ORM_convocatoria = value;
