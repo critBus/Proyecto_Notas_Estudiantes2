@@ -21,8 +21,6 @@ public class DeletePracticas1Data {
 			lentidadesEstudiante.delete();
 			entidades.Facultad lentidadesFacultad = entidades.Facultad.loadFacultadByQuery(null, null);
 			lentidadesFacultad.delete();
-			entidades.Nota_convocatoria lentidadesNota_convocatoria = entidades.Nota_convocatoria.loadNota_convocatoriaByQuery(null, null);
-			lentidadesNota_convocatoria.delete();
 			entidades.Profesor lentidadesProfesor = entidades.Profesor.loadProfesorByQuery(null, null);
 			lentidadesProfesor.delete();
 			t.commit();

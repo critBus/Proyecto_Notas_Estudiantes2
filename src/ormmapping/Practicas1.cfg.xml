@@ -29,7 +29,6 @@ License Type: Purchased
 		<mapping resource="ormmapping/entidades/Convocatoria.hbm.xml" />
 		<mapping resource="ormmapping/entidades/Estudiante.hbm.xml" />
 		<mapping resource="ormmapping/entidades/Facultad.hbm.xml" />
-		<mapping resource="ormmapping/entidades/Nota_convocatoria.hbm.xml" />
 		<mapping resource="ormmapping/entidades/Profesor.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

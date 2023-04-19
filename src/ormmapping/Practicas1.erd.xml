@@ -1,6 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Model quotesql="1" tablecharset="" mysql_version="504" mssql_version="2005" derby_version="106" ingres_version="9">
+  <Entity name="asiganutra_estudiante" schema="public" Unlogged="false" PKConstraintName="asiganutra_estudiante_pkey" PKClustered="0">
+    <Column name="id">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>sequence</IDGenerator>
+      <IDGeneratorKey>asiganutra_estudiante_id_seq</IDGeneratorKey>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes>
+        <UserType DBType="256">serial</UserType>
+      </UserTypes>
+    </Column>
+    <Column name="id_asignatura">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>asignatura.id</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="id_estudiante">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>estudiante.id</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
   <Entity name="asignatura" schema="public" Unlogged="false" PKConstraintName="asignatura_pkey" PKClustered="0">
     <Column name="id">
       <PrimaryKey>true</PrimaryKey>
@@ -259,45 +299,6 @@
       <UserTypes/>
     </Column>
   </Entity>
-  <Entity name="nota_convocatoria" schema="public" Unlogged="false" PKConstraintName="nota_convocatoria_pkey" PKClustered="0">
-    <Column name="id">
-      <PrimaryKey>true</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>10</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>sequence</IDGenerator>
-      <IDGeneratorKey>nota_convocatoria_id_seq</IDGeneratorKey>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes>
-        <UserType DBType="256">serial</UserType>
-      </UserTypes>
-    </Column>
-    <Column name="id_convocatoria">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>convocatoria.id</ReferencedColumn>
-      <Type>9</Type>
-      <Length>10</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="nota_final">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>6</Type>
-      <Length>10</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-  </Entity>
   <Entity name="profesor" schema="public" Unlogged="false" PKConstraintName="profesor_pkey" PKClustered="0">
     <Column name="id">
       <PrimaryKey>true</PrimaryKey>
@@ -336,46 +337,30 @@
       <UserTypes/>
     </Column>
   </Entity>
-  <Entity name="asiganutra_estudiante" schema="public" Unlogged="false" PKConstraintName="asiganutra_estudiante_pkey" PKClustered="0">
-    <Column name="id">
-      <PrimaryKey>true</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>10</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>sequence</IDGenerator>
-      <IDGeneratorKey>asiganutra_estudiante_id_seq</IDGeneratorKey>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes>
-        <UserType DBType="256">serial</UserType>
-      </UserTypes>
-    </Column>
-    <Column name="id_asignatura">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>asignatura.id</ReferencedColumn>
-      <Type>9</Type>
-      <Length>10</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-    <Column name="id_estudiante">
-      <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>estudiante.id</ReferencedColumn>
-      <Type>9</Type>
-      <Length>10</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-  </Entity>
+  <ForeignKey name="fkasiganutra235324">
+    <ReferenceTable>asiganutra_estudiante</ReferenceTable>
+    <ReferenceSchema>public</ReferenceSchema>
+    <ReferencedTable>asignatura</ReferencedTable>
+    <ReferencedSchema>public</ReferencedSchema>
+    <Columns>
+      <Column>id_asignatura</Column>
+    </Columns>
+    <RefColumns>
+      <Column>id</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="fkasiganutra906202">
+    <ReferenceTable>asiganutra_estudiante</ReferenceTable>
+    <ReferenceSchema>public</ReferenceSchema>
+    <ReferencedTable>estudiante</ReferencedTable>
+    <ReferencedSchema>public</ReferencedSchema>
+    <Columns>
+      <Column>id_estudiante</Column>
+    </Columns>
+    <RefColumns>
+      <Column>id</Column>
+    </RefColumns>
+  </ForeignKey>
   <ForeignKey name="fkasignatura133991">
     <ReferenceTable>asignatura</ReferenceTable>
     <ReferenceSchema>public</ReferenceSchema>
@@ -431,42 +416,6 @@
     <ReferencedSchema>public</ReferencedSchema>
     <Columns>
       <Column>id_asignatura</Column>
-    </Columns>
-    <RefColumns>
-      <Column>id</Column>
-    </RefColumns>
-  </ForeignKey>
-  <ForeignKey name="fknota_convo980061">
-    <ReferenceTable>nota_convocatoria</ReferenceTable>
-    <ReferenceSchema>public</ReferenceSchema>
-    <ReferencedTable>convocatoria</ReferencedTable>
-    <ReferencedSchema>public</ReferencedSchema>
-    <Columns>
-      <Column>id_convocatoria</Column>
-    </Columns>
-    <RefColumns>
-      <Column>id</Column>
-    </RefColumns>
-  </ForeignKey>
-  <ForeignKey name="fkasiganutra235324">
-    <ReferenceTable>asiganutra_estudiante</ReferenceTable>
-    <ReferenceSchema>public</ReferenceSchema>
-    <ReferencedTable>asignatura</ReferencedTable>
-    <ReferencedSchema>public</ReferencedSchema>
-    <Columns>
-      <Column>id_asignatura</Column>
-    </Columns>
-    <RefColumns>
-      <Column>id</Column>
-    </RefColumns>
-  </ForeignKey>
-  <ForeignKey name="fkasiganutra906202">
-    <ReferenceTable>asiganutra_estudiante</ReferenceTable>
-    <ReferenceSchema>public</ReferenceSchema>
-    <ReferencedTable>estudiante</ReferencedTable>
-    <ReferencedSchema>public</ReferencedSchema>
-    <Columns>
-      <Column>id_estudiante</Column>
     </Columns>
     <RefColumns>
       <Column>id</Column>

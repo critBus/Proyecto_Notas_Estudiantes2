@@ -57,14 +57,6 @@ public class ListPracticas1Data {
 		}
 		System.out.println(length + " record(s) retrieved.");
 		
-		System.out.println("Listing Nota_convocatoria...");
-		entidades.Nota_convocatoria[] entidadesNota_convocatorias = entidades.Nota_convocatoria.listNota_convocatoriaByQuery(null, null);
-		length = Math.min(entidadesNota_convocatorias.length, ROW_COUNT);
-		for (int i = 0; i < length; i++) {
-			System.out.println(entidadesNota_convocatorias[i]);
-		}
-		System.out.println(length + " record(s) retrieved.");
-		
 		System.out.println("Listing Profesor...");
 		entidades.Profesor[] entidadesProfesors = entidades.Profesor.listProfesorByQuery(null, null);
 		length = Math.min(entidadesProfesors.length, ROW_COUNT);
@@ -147,18 +139,6 @@ public class ListPracticas1Data {
 			 System.out.println(entidadesFacultads[i]);
 		}
 		System.out.println(length + " Facultad record(s) retrieved."); 
-		
-		System.out.println("Listing Nota_convocatoria by Criteria...");
-		entidades.Nota_convocatoriaCriteria lentidadesNota_convocatoriaCriteria = new entidades.Nota_convocatoriaCriteria();
-		// Please uncomment the follow line and fill in parameter(s) 
-		//lentidadesNota_convocatoriaCriteria.id.eq();
-		lentidadesNota_convocatoriaCriteria.setMaxResults(ROW_COUNT);
-		entidades.Nota_convocatoria[] entidadesNota_convocatorias = lentidadesNota_convocatoriaCriteria.listNota_convocatoria();
-		length =entidadesNota_convocatorias== null ? 0 : Math.min(entidadesNota_convocatorias.length, ROW_COUNT); 
-		for (int i = 0; i < length; i++) {
-			 System.out.println(entidadesNota_convocatorias[i]);
-		}
-		System.out.println(length + " Nota_convocatoria record(s) retrieved."); 
 		
 		System.out.println("Listing Profesor by Criteria...");
 		entidades.ProfesorCriteria lentidadesProfesorCriteria = new entidades.ProfesorCriteria();

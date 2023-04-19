@@ -27,7 +27,6 @@ public class ConvocatoriaCriteria extends AbstractORMCriteria {
 	public final DateExpression fecha;
 	public final DoubleExpression nota;
 	public final IntegerExpression numero;
-	public final CollectionExpression nota_convocatoria;
 	
 	public ConvocatoriaCriteria(Criteria criteria) {
 		super(criteria);
@@ -39,7 +38,6 @@ public class ConvocatoriaCriteria extends AbstractORMCriteria {
 		fecha = new DateExpression("fecha", this);
 		nota = new DoubleExpression("nota", this);
 		numero = new IntegerExpression("numero", this);
-		nota_convocatoria = new CollectionExpression("ORM_Nota_convocatoria", this);
 	}
 	
 	public ConvocatoriaCriteria(PersistentSession session) {
@@ -56,10 +54,6 @@ public class ConvocatoriaCriteria extends AbstractORMCriteria {
 	
 	public AsignaturaCriteria createId_asignaturaCriteria() {
 		return new AsignaturaCriteria(createCriteria("id_asignatura"));
-	}
-	
-	public Nota_convocatoriaCriteria createNota_convocatoriaCriteria() {
-		return new Nota_convocatoriaCriteria(createCriteria("ORM_Nota_convocatoria"));
 	}
 	
 	public Convocatoria uniqueConvocatoria() {

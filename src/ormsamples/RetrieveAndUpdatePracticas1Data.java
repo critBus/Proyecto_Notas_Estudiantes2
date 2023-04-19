@@ -27,9 +27,6 @@ public class RetrieveAndUpdatePracticas1Data {
 			entidades.Facultad lentidadesFacultad = entidades.Facultad.loadFacultadByQuery(null, null);
 			// Update the properties of the persistent object
 			lentidadesFacultad.save();
-			entidades.Nota_convocatoria lentidadesNota_convocatoria = entidades.Nota_convocatoria.loadNota_convocatoriaByQuery(null, null);
-			// Update the properties of the persistent object
-			lentidadesNota_convocatoria.save();
 			entidades.Profesor lentidadesProfesor = entidades.Profesor.loadProfesorByQuery(null, null);
 			// Update the properties of the persistent object
 			lentidadesProfesor.save();
@@ -77,12 +74,6 @@ public class RetrieveAndUpdatePracticas1Data {
 		// Please uncomment the follow line and fill in parameter(s)
 		//lentidadesFacultadCriteria.id.eq();
 		System.out.println(lentidadesFacultadCriteria.uniqueFacultad());
-		
-		System.out.println("Retrieving Nota_convocatoria by Nota_convocatoriaCriteria");
-		entidades.Nota_convocatoriaCriteria lentidadesNota_convocatoriaCriteria = new entidades.Nota_convocatoriaCriteria();
-		// Please uncomment the follow line and fill in parameter(s)
-		//lentidadesNota_convocatoriaCriteria.id.eq();
-		System.out.println(lentidadesNota_convocatoriaCriteria.uniqueNota_convocatoria());
 		
 		System.out.println("Retrieving Profesor by ProfesorCriteria");
 		entidades.ProfesorCriteria lentidadesProfesorCriteria = new entidades.ProfesorCriteria();

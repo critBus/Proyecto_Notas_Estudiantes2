@@ -18,9 +18,5 @@ License Type: Purchased
 		<property name="fecha" column="fecha" type="date" not-null="true" lazy="false"/>
 		<property name="nota" column="nota" type="double" length="10" not-null="true" lazy="false"/>
 		<property name="numero" column="numero" type="integer" length="10" not-null="true" lazy="false"/>
-		<set name="ORM_Nota_convocatoria" lazy="true" cascade="save-update,lock" inverse="true">
-			<key column="id_convocatoria" not-null="true"/>
-			<one-to-many class="entidades.Nota_convocatoria"/>
-		</set>
 	</class>
 </hibernate-mapping>

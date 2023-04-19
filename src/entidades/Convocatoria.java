@@ -369,10 +369,6 @@ public class Convocatoria implements Serializable {
 				getId_asignatura().convocatoria.remove(this);
 			}
 			
-			entidades.Nota_convocatoria[] lNota_convocatorias = nota_convocatoria.toArray();
-			for(int i = 0; i < lNota_convocatorias.length; i++) {
-				lNota_convocatorias[i].setId_convocatoria(null);
-			}
 			return delete();
 		}
 		catch(Exception e) {
@@ -391,10 +387,6 @@ public class Convocatoria implements Serializable {
 				getId_asignatura().convocatoria.remove(this);
 			}
 			
-			entidades.Nota_convocatoria[] lNota_convocatorias = nota_convocatoria.toArray();
-			for(int i = 0; i < lNota_convocatorias.length; i++) {
-				lNota_convocatorias[i].setId_convocatoria(null);
-			}
 			try {
 				session.delete(this);
 				return true;
@@ -408,14 +400,6 @@ public class Convocatoria implements Serializable {
 		}
 	}
 	
-	private java.util.Set this_getSet (int key) {
-		if (key == ORMConstants.KEY_CONVOCATORIA_NOTA_CONVOCATORIA) {
-			return ORM_nota_convocatoria;
-		}
-		
-		return null;
-	}
-	
 	private void this_setOwner(Object owner, int key) {
 		if (key == ORMConstants.KEY_CONVOCATORIA_ID_ESTUDIANTE) {
 			this.id_estudiante = (entidades.Estudiante) owner;
@@ -427,10 +411,6 @@ public class Convocatoria implements Serializable {
 	}
 	
 	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
-		public java.util.Set getSet(int key) {
-			return this_getSet(key);
-		}
-		
 		public void setOwner(Object owner, int key) {
 			this_setOwner(owner, key);
 		}
@@ -448,8 +428,6 @@ public class Convocatoria implements Serializable {
 	private double nota;
 	
 	private int numero;
-	
-	private java.util.Set ORM_nota_convocatoria = new java.util.HashSet();
 	
 	private void setId(int value) {
 		this.id = value;
@@ -534,16 +512,6 @@ public class Convocatoria implements Serializable {
 	private entidades.Asignatura getORM_Id_asignatura() {
 		return id_asignatura;
 	}
-	
-	private void setORM_Nota_convocatoria(java.util.Set value) {
-		this.ORM_nota_convocatoria = value;
-	}
-	
-	private java.util.Set getORM_Nota_convocatoria() {
-		return ORM_nota_convocatoria;
-	}
-	
-	public final entidades.Nota_convocatoriaSetCollection nota_convocatoria = new entidades.Nota_convocatoriaSetCollection(this, _ormAdapter, ORMConstants.KEY_CONVOCATORIA_NOTA_CONVOCATORIA, ORMConstants.KEY_NOTA_CONVOCATORIA_ID_CONVOCATORIA, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public String toString() {
 		return String.valueOf(getId());

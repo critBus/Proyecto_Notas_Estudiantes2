@@ -27,7 +27,6 @@ public class ConvocatoriaDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final DateExpression fecha;
 	public final DoubleExpression nota;
 	public final IntegerExpression numero;
-	public final CollectionExpression nota_convocatoria;
 	
 	public ConvocatoriaDetachedCriteria() {
 		super(entidades.Convocatoria.class, entidades.ConvocatoriaCriteria.class);
@@ -39,7 +38,6 @@ public class ConvocatoriaDetachedCriteria extends AbstractORMDetachedCriteria {
 		fecha = new DateExpression("fecha", this.getDetachedCriteria());
 		nota = new DoubleExpression("nota", this.getDetachedCriteria());
 		numero = new IntegerExpression("numero", this.getDetachedCriteria());
-		nota_convocatoria = new CollectionExpression("ORM_Nota_convocatoria", this.getDetachedCriteria());
 	}
 	
 	public ConvocatoriaDetachedCriteria(DetachedCriteria aDetachedCriteria) {
@@ -52,7 +50,6 @@ public class ConvocatoriaDetachedCriteria extends AbstractORMDetachedCriteria {
 		fecha = new DateExpression("fecha", this.getDetachedCriteria());
 		nota = new DoubleExpression("nota", this.getDetachedCriteria());
 		numero = new IntegerExpression("numero", this.getDetachedCriteria());
-		nota_convocatoria = new CollectionExpression("ORM_Nota_convocatoria", this.getDetachedCriteria());
 	}
 	
 	public EstudianteDetachedCriteria createId_estudianteCriteria() {
@@ -61,10 +58,6 @@ public class ConvocatoriaDetachedCriteria extends AbstractORMDetachedCriteria {
 	
 	public AsignaturaDetachedCriteria createId_asignaturaCriteria() {
 		return new AsignaturaDetachedCriteria(createCriteria("id_asignatura"));
-	}
-	
-	public Nota_convocatoriaDetachedCriteria createNota_convocatoriaCriteria() {
-		return new Nota_convocatoriaDetachedCriteria(createCriteria("ORM_Nota_convocatoria"));
 	}
 	
 	public Convocatoria uniqueConvocatoria(PersistentSession session) {

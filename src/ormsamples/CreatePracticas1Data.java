@@ -19,7 +19,7 @@ public class CreatePracticas1Data {
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : asignatura, carrera, id_facultad
 			lentidadesCarrera.save();
 			entidades.Convocatoria lentidadesConvocatoria = entidades.Convocatoria.createConvocatoria();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : nota_convocatoria, numero, nota, fecha, id_asignatura, id_estudiante
+			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : numero, nota, fecha, id_asignatura, id_estudiante
 			lentidadesConvocatoria.save();
 			entidades.Estudiante lentidadesEstudiante = entidades.Estudiante.createEstudiante();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : convocatoria, asiganutra_estudiante, grupo, apellidos, nombre
@@ -27,9 +27,6 @@ public class CreatePracticas1Data {
 			entidades.Facultad lentidadesFacultad = entidades.Facultad.createFacultad();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : carrera, facultad
 			lentidadesFacultad.save();
-			entidades.Nota_convocatoria lentidadesNota_convocatoria = entidades.Nota_convocatoria.createNota_convocatoria();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : nota_final, id_convocatoria
-			lentidadesNota_convocatoria.save();
 			entidades.Profesor lentidadesProfesor = entidades.Profesor.createProfesor();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : asignatura, apellidos, nombre
 			lentidadesProfesor.save();
