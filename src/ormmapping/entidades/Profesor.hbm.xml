@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: 
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="entidades.Profesor" table="profesor" schema="public" lazy="false">
+		<id name="id" column="id" type="integer" unsaved-value="0">
+			<generator class="sequence">
+				<param name="sequence">profesor_id_seq</param>
+			</generator>
+		</id>
+		<property name="nombre" column="nombre" type="string" length="50" not-null="true" lazy="false"/>
+		<property name="apellidos" column="apellidos" type="string" length="50" not-null="true" lazy="false"/>
+		<set name="ORM_Asignatura" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="id_profesor" not-null="true"/>
+			<one-to-many class="entidades.Asignatura"/>
+		</set>
+	</class>
+</hibernate-mapping>

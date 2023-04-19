@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: 
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="entidades.Asiganutra_estudiante" table="asiganutra_estudiante" schema="public" lazy="false">
+		<id name="id" column="id" type="integer" unsaved-value="0">
+			<generator class="sequence">
+				<param name="sequence">asiganutra_estudiante_id_seq</param>
+			</generator>
+		</id>
+		<many-to-one name="id_asignatura" cascade="lock" column="id_asignatura" class="entidades.Asignatura" not-null="true" lazy="proxy" access="field">
+		</many-to-one>
+		<many-to-one name="id_estudiante" cascade="lock" column="id_estudiante" class="entidades.Estudiante" not-null="true" lazy="proxy" access="field">
+		</many-to-one>
+	</class>
+</hibernate-mapping>

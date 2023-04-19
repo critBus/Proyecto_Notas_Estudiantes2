@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: 
+License Type: Purchased
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="entidades.Asignatura" table="asignatura" schema="public" lazy="false">
+		<id name="id" column="id" type="integer" unsaved-value="0">
+			<generator class="sequence">
+				<param name="sequence">asignatura_id_seq</param>
+			</generator>
+		</id>
+		<property name="asignatura" column="asignatura" type="string" length="50" not-null="true" lazy="false"/>
+		<property name="modalidad" column="modalidad" type="string" length="50" not-null="true" lazy="false"/>
+		<property name="semestre" column="semestre" type="string" length="50" not-null="true" lazy="false"/>
+		<many-to-one name="id_carrera" cascade="lock" column="id_carrera" class="entidades.Carrera" not-null="true" lazy="proxy" access="field">
+		</many-to-one>
+		<many-to-one name="id_profesor" cascade="lock" column="id_profesor" class="entidades.Profesor" not-null="true" lazy="proxy" access="field">
+		</many-to-one>
+		<set name="ORM_Asiganutra_estudiante" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="id_asignatura" not-null="true"/>
+			<one-to-many class="entidades.Asiganutra_estudiante"/>
+		</set>
+		<set name="ORM_Convocatoria" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="id_asignatura" not-null="true"/>
+			<one-to-many class="entidades.Convocatoria"/>
+		</set>
+	</class>
+</hibernate-mapping>
