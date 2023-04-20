@@ -744,14 +744,29 @@ public class Ventana_Principal extends javax.swing.JFrame {
 
         jMenu1.setText("Usuario");
 
-        MI_Administrar_Usuario.setText("Administrar Usuario");
+        MI_Administrar_Usuario.setText("Administrar Usuarios");
+        MI_Administrar_Usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MI_Administrar_UsuarioActionPerformed(evt);
+            }
+        });
         jMenu1.add(MI_Administrar_Usuario);
 
         MI_Cambiar_Contrasenna.setText("Cambiar Contraseña");
+        MI_Cambiar_Contrasenna.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MI_Cambiar_ContrasennaActionPerformed(evt);
+            }
+        });
         jMenu1.add(MI_Cambiar_Contrasenna);
         jMenu1.add(jSeparator1);
 
         MI_Cerrar_Sesion.setText("Cerrar Sesión");
+        MI_Cerrar_Sesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MI_Cerrar_SesionActionPerformed(evt);
+            }
+        });
         jMenu1.add(MI_Cerrar_Sesion);
 
         jMenuBar1.add(jMenu1);
@@ -1291,6 +1306,32 @@ public class Ventana_Principal extends javax.swing.JFrame {
     private void MI_ChB_Filtrar_Estudiantes_Por_GrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_ChB_Filtrar_Estudiantes_Por_GrupoActionPerformed
        aplicarFiltro_Estudiantes();
     }//GEN-LAST:event_MI_ChB_Filtrar_Estudiantes_Por_GrupoActionPerformed
+
+    private void MI_Administrar_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_Administrar_UsuarioActionPerformed
+         try {
+            EnMemoria.ventana_Administrar_Usuarios.actualizar(usuarioActual);
+            EnMemoria.ventana_Administrar_Usuarios.setVisible(true);
+            setVisible(false);
+        } catch (Exception ex) {
+            DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
+        }
+    }//GEN-LAST:event_MI_Administrar_UsuarioActionPerformed
+
+    private void MI_Cambiar_ContrasennaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_Cambiar_ContrasennaActionPerformed
+        try {
+            EnMemoria.dialogo_Cambiar_Contrasenna.setLocationRelativeTo(this);
+            EnMemoria.dialogo_Cambiar_Contrasenna.resetear(usuarioActual);
+            EnMemoria.dialogo_Cambiar_Contrasenna.setVisible(true);
+        } catch (Exception ex) {
+            DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
+        }
+    }//GEN-LAST:event_MI_Cambiar_ContrasennaActionPerformed
+
+    private void MI_Cerrar_SesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MI_Cerrar_SesionActionPerformed
+       EnMemoria.ventana_Loguin.resetear();
+        setVisible(false);
+        EnMemoria.ventana_Loguin.setVisible(true);
+    }//GEN-LAST:event_MI_Cerrar_SesionActionPerformed
 
     private void intentarEliminarConvocatoria() {
         try {

@@ -23,4 +23,8 @@ public  class EnMemoria {
     public static Dialogo_Modificar_Estudiante dialogo_Modificar_Estudiante=new Dialogo_Modificar_Estudiante(ventana_Principal, true);
     public static Dialogo_Agregar_Examen dialogo_Agregar_Examen=new Dialogo_Agregar_Examen(ventana_Principal, true);
     public static Dialogo_Modificar_Examen dialogo_Modificar_Examen=new Dialogo_Modificar_Examen(ventana_Principal, true);
+    public static Ventana_Administrar_Usuarios ventana_Administrar_Usuarios=new Ventana_Administrar_Usuarios();
+    public static Dialogo_Agregar_Usuario dialogo_Agregar_Usuario=new Dialogo_Agregar_Usuario(ventana_Administrar_Usuarios, true);
+    public static Dialogo_Editar_Usuario dialogo_Editar_Usuario=new Dialogo_Editar_Usuario(ventana_Administrar_Usuarios, true);
+    public static Dialogo_Cambiar_Contrasenna dialogo_Cambiar_Contrasenna=new Dialogo_Cambiar_Contrasenna(ventana_Administrar_Usuarios, true);
 }

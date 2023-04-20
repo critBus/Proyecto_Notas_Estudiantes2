@@ -374,4 +374,13 @@ public class ComunicacionBD {
         }
         return false;
     }
+    
+    public Usuario modificarUsuario(Usuario u) throws Exception {
+        u.save();
+        
+        return u;
+    }
+    public void eliminarUsuario(Usuario u) throws Exception{
+      u.delete();
+    } 
 }

@@ -11,13 +11,19 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="MI_Administrar_Usuario">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Administrar Usuario"/>
+                <Property name="text" type="java.lang.String" value="Administrar Usuarios"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MI_Administrar_UsuarioActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MI_Cambiar_Contrasenna">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cambiar Contrase&#xf1;a"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MI_Cambiar_ContrasennaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
             </MenuItem>
@@ -25,6 +31,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cerrar Sesi&#xf3;n"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MI_Cerrar_SesionActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
