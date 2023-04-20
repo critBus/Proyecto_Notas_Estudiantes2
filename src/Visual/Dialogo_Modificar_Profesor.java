@@ -15,23 +15,25 @@ import entidades.*;
  *
  * @author Rene2
  */
-public class Dialogo_Agregar_Profesor extends javax.swing.JDialog {
-public Asignatura entidadActual;
+public class Dialogo_Modificar_Profesor extends javax.swing.JDialog {
+public Profesor entidadActual;
+public Asignatura entidadSecundaria;
     /**
      * Creates new form Dialogo_Agregar_Profesor
      */
-    public Dialogo_Agregar_Profesor(java.awt.Frame parent, boolean modal) {
+    public Dialogo_Modificar_Profesor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         UtilidadesParaVentana.ponerIconoDeVentana_Principal(this);
     }
-    public void resetear(Asignatura l){
-        this.entidadActual=l;
+    public void resetear(Profesor a,Asignatura b){
+        this.entidadActual=a;
+        this.entidadSecundaria=b;
        
-        T_Apellidos.setText("");
+        T_Apellidos.setText(a.getApellidos());
         
-        T_Nombre.setText("");
+        T_Nombre.setText(a.getNombre());
         
     }
     /**
@@ -112,11 +114,16 @@ public Asignatura entidadActual;
             String nombre=T_Nombre.getText();
             String apellidos=T_Apellidos.getText();
             
-            if(MetodosValidacion.validar_es_nuevo_Profesor_correcto(this, entidadActual, nombre, apellidos)){
-                Profesor nuevo=EnMemoria.BD.sustituirProfesor(entidadActual, nombre, apellidos);
-                EnMemoria.ventana_Principal.actualizar_Profesor(nuevo);
+            if(MetodosValidacion.validar_es_modificar_Profesor_correcto(this, entidadSecundaria,entidadActual, nombre, apellidos)){
+                this.entidadActual.setApellidos(apellidos);
+                this.entidadActual.setNombre(nombre);
+                
+                
+                
+                Profesor modificado=EnMemoria.BD.modificarProfesor(entidadActual);
+                EnMemoria.ventana_Principal.actualizar_Profesor(modificado);
                 setVisible(false);
-                DLG_Respuesta.mostrarDlgExito(this, "Profesor agregado con éxito  ");
+                DLG_Respuesta.mostrarDlgExito(this, "Profesor modificado con éxito  ");
             }
         } catch (Exception ex) {
             DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
@@ -140,20 +147,21 @@ public Asignatura entidadActual;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Dialogo_Agregar_Profesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dialogo_Modificar_Profesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Dialogo_Agregar_Profesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dialogo_Modificar_Profesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Dialogo_Agregar_Profesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dialogo_Modificar_Profesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dialogo_Agregar_Profesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dialogo_Modificar_Profesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Dialogo_Agregar_Profesor dialog = new Dialogo_Agregar_Profesor(new javax.swing.JFrame(), true);
+                Dialogo_Modificar_Profesor dialog = new Dialogo_Modificar_Profesor(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

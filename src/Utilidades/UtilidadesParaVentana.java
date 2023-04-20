@@ -11,10 +11,14 @@ import java.awt.Window;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 
 /**
  *
@@ -69,4 +73,28 @@ public abstract class UtilidadesParaVentana {
             }
         }
     }
+    
+    
+    
+    public static void ponerFechaActual(JFormattedTextField fechaTextField) {
+        ponerFecha(new Date(),fechaTextField);
+    }
+    public static String obtenerFechaConFormato(Date d){
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+
+        String fechaActualTexto = formatoFecha.format(d);
+        return fechaActualTexto;
+    }
+    public static void ponerFecha(Date d, JFormattedTextField fechaTextField) {
+        
+        fechaTextField.setText(obtenerFechaConFormato(d));
+    }
+
+    public static Date obtenerFecha(String fechaStr) throws ParseException{
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+        formatoFecha.setLenient(false);
+        Date fechaParseada = formatoFecha.parse(fechaStr);
+        return fechaParseada;
+    }
+    
 }

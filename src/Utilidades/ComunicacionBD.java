@@ -7,6 +7,7 @@ package Utilidades;
 
 import entidades.*;
 import java.util.ArrayList;
+import java.util.Date;
 import org.orm.PersistentException;
 
 /**
@@ -64,6 +65,10 @@ public class ComunicacionBD {
         c.deleteAndDissociate();
     }
     public Facultad modificarFacultad(Facultad l) throws Exception {
+        l.save();
+        return l;
+    }
+    public Estudiante modificarEstudiante(Estudiante l) throws Exception {
         l.save();
         return l;
     }
@@ -208,11 +213,18 @@ public class ComunicacionBD {
         l.save();
         return l;
     }
+    public Convocatoria modificarConvocatoria(Convocatoria l) throws Exception {
+        l.save();
+        return l;
+    }
     public Asignatura modificarAsignatura(Asignatura l) throws Exception {
         l.save();
         return l;
     }
-    
+    public Profesor modificarProfesor(Profesor l) throws Exception {
+        l.save();
+        return l;
+    }
     public boolean existeAsignatura(Carrera c,String nombre) throws Exception {
         Asignatura [] A=obtenerTodos_Asignatura(c);
         for (Asignatura l : A) {
@@ -224,18 +236,55 @@ public class ComunicacionBD {
     }
     public boolean existeProfesor(Asignatura c,String nombre,String apellidos) throws Exception {
         Profesor p=obtenerProfesor(c);
-        return p!=null?p.getNombre().equals(nombre)&&p.getApellidos().equals(apellidos):true;
+        
+        
+        return p!=null?p.getNombre().equals(nombre)&&p.getApellidos().equals(apellidos):false;
     }
     public Profesor agregarProfesor(Asignatura a,String nombre,String apellidos) throws Exception {
         Profesor p=new Profesor();
-        p.setApellidos(nombre);
-        p.setNombre(apellidos);
+        p.setApellidos(apellidos);
+        p.setNombre(nombre);
         p.save();
         a.setId_profesor(p);
         a.save();
         p.save();
         return p;
 
+    }
+    public Estudiante agregarEstudiante(Asignatura a,String nombre,String apellidos,String grupo) throws Exception {
+        Estudiante p=new Estudiante();
+        p.setApellidos(apellidos);
+        p.setNombre(nombre);
+        p.setGrupo(grupo);
+        p.save();
+        
+        agregarAsignaturaEstudiante(a,p);
+        
+        return p;
+
+    }
+    public Asignatura_estudiante agregarAsignaturaEstudiante(Asignatura a,Estudiante e)throws Exception {
+        Asignatura_estudiante ae=new Asignatura_estudiante();
+        ae.setId_asignatura(a);
+        ae.setId_estudiante(e);
+        ae.save();
+        a.save();
+        e.save();
+        return ae;
+    }
+    public void quitarProfesorDeAsignaturaYEliminarlo(Asignatura a,Profesor c) throws Exception{
+        if(a!=null&&c!=null){
+            Profesor anterior=a.getId_profesor();
+            if(anterior!=null&&c.getId()==anterior.getId()){
+                a.setId_profesor(null);
+                a.save();
+                anterior.save();
+                eliminarProfesor(anterior);
+            }else{
+                eliminarProfesor(c);
+            }
+        }
+        
     }
     public Profesor sustituirProfesor(Asignatura a,String nombre,String apellidos) throws Exception {
         Profesor anterior=a.getId_profesor();
@@ -247,8 +296,8 @@ public class ComunicacionBD {
         }
         
         Profesor p=new Profesor();
-        p.setApellidos(nombre);
-        p.setNombre(apellidos);
+        p.setApellidos(apellidos);
+        p.setNombre(nombre);
         p.save();
         a.setId_profesor(p);
         a.save();
@@ -265,5 +314,64 @@ public class ComunicacionBD {
         a.save();
         return a;
 
+    }
+    public boolean estaFechaDeExamenEnTemporaridadCorrecta(Asignatura a,Estudiante e
+            ,int numero
+            ,Date fecha)throws Exception{
+        return estaFechaDeExamenEnTemporaridadCorrecta(a, e, numero, fecha,-1);
+    }
+    public boolean estaFechaDeExamenEnTemporaridadCorrecta(Asignatura a,Estudiante e
+            ,int numero
+            ,Date fecha,int idAIgnorar)throws Exception{
+        Convocatoria C[]=obtenerTodos_Convocatoria(a, e);
+        for (Convocatoria convocatoria : C) {
+            if(idAIgnorar!=-1&&convocatoria.getId()==idAIgnorar){
+                continue;
+            }
+            if(convocatoria.getNumero()<numero
+                    &&convocatoria.getFecha().compareTo(fecha)>=0){
+                
+                return false;
+            }
+            if(convocatoria.getNumero()>numero
+                    &&convocatoria.getFecha().compareTo(fecha)<=0){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public boolean existeConvocatoria(Asignatura a,Estudiante e,int numero)throws Exception{
+        Convocatoria C[]=obtenerTodos_Convocatoria(a, e);
+        for (Convocatoria convocatoria : C) {
+            if(convocatoria.getNumero()==numero){
+                return true;
+            }
+        }
+        return false;
+    }
+    public Convocatoria agregarConvocatoria(Asignatura a,Estudiante e, String nota,String numero,Date fecha) throws Exception {
+        Convocatoria c=new Convocatoria();
+        c.setFecha(fecha);
+        c.setId_asignatura(a);
+        c.setId_estudiante(e);
+        c.setNota(Double.parseDouble(nota));
+        c.setNumero(Integer.parseInt(numero));
+        c.save();
+        a.save();
+        e.save();
+        return c;
+
+    }
+    
+    public boolean existeEstudiante(Asignatura c,String nombre,String apellidos) throws Exception {
+        Estudiante [] A=obtenerTodos_Estudiante(c);
+        for (Estudiante l : A) {
+            if (l.getNombre().equals(nombre)
+                    &&l.getApellidos().equals(apellidos)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

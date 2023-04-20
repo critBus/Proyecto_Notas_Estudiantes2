@@ -7,12 +7,17 @@ package Utilidades;
 
 import entidades.Asignatura;
 import entidades.Carrera;
+import entidades.Convocatoria;
+import entidades.Estudiante;
 import entidades.Facultad;
 import entidades.Profesor;
 import entidades.Usuario;
 import java.awt.Component;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 /**
  *
@@ -33,15 +38,18 @@ public class MetodosValidacion {
     private final static String MSG_CANTIDAD_MINIMA_DE_CARACTERES = "No supera la cantidad mínima de caracteres ";
     private final static String MSG_CANTIDAD_CARACTERES_TELEFONO = "Un teléfono debe de contener 8 caracteres ";
     private final static String MSG_TODOS_DEBEN_DE_SER_NUMEROS = "Todos los caracteres deben de ser números ";
-    
-    
+
     private final static String MSG_DEBEN_TENER_NUMEROS = "Debe de contener números";
     private final static String MSG_YA_EXISTE_USUARIO = "Ya existe este usuario ";
     private final static String MSG_COINCIDIR_CONTRASENNAS = "Tienen que coincidir las contraseñas ";
-    private final static String MSG_MODALIDADES_INCORRECTAS="La modalidad tiene que ser un valor de entre ";
-    private final static String MSG_SEMESTRE_INCORRECTO="El semestre tiene que ser un valor de entre [ 1 , 2 ]";
+    private final static String MSG_MODALIDADES_INCORRECTAS = "La modalidad tiene que ser un valor de entre ";
+    private final static String MSG_SEMESTRE_INCORRECTO = "El semestre tiene que ser un valor de entre [ 1 , 2 ]";
     private final static String MSG_YA_EXISTE_ASIGNATURA_EN_CARRERA = "Ya existe esta Asignatura en la carrera ";
     private final static String MSG_YA_EXISTE_PROFESOR_EN_ASIGNATURA = "Ya existe este Profesor en la Asignatura ";
+    private final static String MSG_YA_EXISTE_ESTUDIANTE_EN_ASIGNATURA = "Ya existe este Estudiante en la Asignatura ";
+    private final static String MSG_FECHA_INVALIDA = "La fecha es inválida.";
+    private final static String MSG_YA_EXISTE_CONVOCATORIA_EN_ESTUDIANTE_ASIGNATURA = "Ya existe este Examen del Estudiante en la Asignatura ";
+    private final static String MSG_FECHA_CONVOCATORIA_TEMPORALIDAD_ERRONEA = "La fecha de la convocatoria es erronea";
 
     public static String obtener_validacion_seguridad_cantrasenna(String s, String confirmar) {
         s = s.trim();
@@ -128,7 +136,7 @@ public class MetodosValidacion {
 //            }
             if (Character.isLetter(c)) {
                 contieneLetras = true;
-                elAnteriorFueEspacio = false;
+
                 if (i == 0 || elAnteriorFueEspacio) {
                     if (!Character.isUpperCase(c)) {
                         return MSG_NOMBRES_CON_MAYUSCULA;
@@ -138,6 +146,7 @@ public class MetodosValidacion {
                         return MSG_NOMBRES_SOLO_PRIMERA_LETRA_MAYUSCULA;
                     }
                 }
+                elAnteriorFueEspacio = false;
                 continue;
             }
             if (Character.isWhitespace(c)) {
@@ -151,6 +160,17 @@ public class MetodosValidacion {
             return MSG_DEBE_CONTENER_LETRAS;
         }
         return null;
+    }
+
+    public static String obtener_validacion_Fecha(String fecha) {
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+        formatoFecha.setLenient(false);
+        try {
+            Date fechaParseada = formatoFecha.parse(fecha);
+            return null;
+        } catch (ParseException ex) {
+            return MSG_FECHA_INVALIDA;
+        }
     }
 
     public static String obtener_validacion_string_normal(String s, int cantidad_maxima_caracteres) {
@@ -176,34 +196,36 @@ public class MetodosValidacion {
         }
         return null;
     }
-    private static String getModalidadStr(TipoDeModalidad m){
-        return m.toString().toLowerCase().replace("_"," ");
+
+    private static String getModalidadStr(TipoDeModalidad m) {
+        return m.toString().toLowerCase().replace("_", " ");
     }
+
     public static String obtener_validacion_modalidad(String s) {
         s = s.trim();
         if (s.isEmpty()) {
             return MSG_NO_PUEDE_ESTAR_VACIO;
         }
-        for(TipoDeModalidad m: TipoDeModalidad.values()){
-            if(getModalidadStr(m).equals(s.toLowerCase())){
+        for (TipoDeModalidad m : TipoDeModalidad.values()) {
+            if (getModalidadStr(m).equals(s.toLowerCase())) {
                 return null;
             }
         }
-        ArrayList<String> listaNombreModalidades=new ArrayList<>();
-        for(TipoDeModalidad m: TipoDeModalidad.values()){
+        ArrayList<String> listaNombreModalidades = new ArrayList<>();
+        for (TipoDeModalidad m : TipoDeModalidad.values()) {
             listaNombreModalidades.add(getModalidadStr(m));
         }
-        
+
         return MSG_MODALIDADES_INCORRECTAS
-                +Arrays.toString(listaNombreModalidades.toArray())
-                ;
+                + Arrays.toString(listaNombreModalidades.toArray());
     }
+
     public static String obtener_validacion_semestre(int semestre) {
-        return semestre==1||semestre==2?null:MSG_SEMESTRE_INCORRECTO;
+        return semestre == 1 || semestre == 2 ? null : MSG_SEMESTRE_INCORRECTO;
     }
-    
-    private static boolean validar_es_modalidad_correcta(Component parentComponent, String s
-            , String principioDeMensaje) {
+
+    private static boolean validar_es_modalidad_correcta(Component parentComponent, String s,
+            String principioDeMensaje) {
         String respuesta = obtener_validacion_modalidad(s);
         if (respuesta != null) {
             if (principioDeMensaje != null) {
@@ -213,8 +235,9 @@ public class MetodosValidacion {
         }
         return respuesta == null;
     }
-    private static boolean validar_es_semestre_correcto(Component parentComponent, int s
-            , String principioDeMensaje) {
+
+    private static boolean validar_es_semestre_correcto(Component parentComponent, int s,
+            String principioDeMensaje) {
         String respuesta = obtener_validacion_semestre(s);
         if (respuesta != null) {
             if (principioDeMensaje != null) {
@@ -224,7 +247,7 @@ public class MetodosValidacion {
         }
         return respuesta == null;
     }
-    
+
     private static boolean validar_es_string_normal(Component parentComponent, String s, int cantidad_maxima_caracteres) {
         return validar_es_string_normal(parentComponent, s, cantidad_maxima_caracteres, null);
     }
@@ -250,10 +273,22 @@ public class MetodosValidacion {
         }
         return respuesta == null;
     }
+
+    public static boolean validar_es_fecha(Component parentComponent, String s, String principioDeMensaje) {
+        String respuesta = obtener_validacion_Fecha(s);
+        if (respuesta != null) {
+            if (principioDeMensaje != null) {
+                respuesta = principioDeMensaje + respuesta;
+            }
+            DLG_Respuesta.mostrarDlgInvalido(parentComponent, respuesta);
+        }
+        return respuesta == null;
+    }
+
     private static boolean validar_es_con_letras(
-            Component parentComponent, String s
-            , int cantidad_minima_caracteres
-            , int cantidad_maxima_caracteres) {
+            Component parentComponent, String s,
+            int cantidad_minima_caracteres,
+            int cantidad_maxima_caracteres) {
         return validar_es_con_letras(parentComponent, s, cantidad_minima_caracteres, cantidad_maxima_caracteres, "");
     }
 
@@ -299,7 +334,7 @@ public class MetodosValidacion {
         }
         return validar_es_con_letras(parentComponent, username, 4, 50, "El username:");
     }
-    
+
     public static boolean validar_es_nuevo_Facultad_correcto(Component parentComponent, String nombre) throws Exception {
         if (EnMemoria.BD.existeFacultad(nombre)) {
             DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_YA_EXISTE_FACULTAD);
@@ -307,6 +342,7 @@ public class MetodosValidacion {
         }
         return validar_es_string_normal(parentComponent, nombre, 50);
     }
+
     public static boolean validar_es_modificar_Facultad_correcto(Component parentComponent, Facultad l, String nombre) throws Exception {
         if ((!l.getFacultad().equals(nombre)) && EnMemoria.BD.existeFacultad(nombre)) {
             DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_YA_EXISTE_FACULTAD);
@@ -314,101 +350,198 @@ public class MetodosValidacion {
         }
         return validar_es_string_normal(parentComponent, nombre, 50);
     }
-    
+
     public static boolean validar_es_nuevo_Carrera_correcto(Component parentComponent, String nombre) throws Exception {
         if (EnMemoria.BD.existeCarrera(nombre)) {
             DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_YA_EXISTE_CARRERA);
             return false;
         }
-        return validar_es_con_letras(parentComponent, nombre,4, 50);
+        return validar_es_con_letras(parentComponent, nombre, 4, 50);
     }
+
     public static boolean validar_es_modificar_Carrera_correcto(Component parentComponent, Carrera l, String nombre) throws Exception {
         if ((!l.getCarrera().equals(nombre)) && EnMemoria.BD.existeCarrera(nombre)) {
             DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_YA_EXISTE_CARRERA);
             return false;
         }
-        return validar_es_con_letras(parentComponent, nombre, 4,50);
+        return validar_es_con_letras(parentComponent, nombre, 4, 50);
     }
-     
 
-    public static boolean validar_datos_asignatura_correctos(Component parentComponent
-            ,String nombre
-            , String modalidad
-            , int semestre) {
+    public static boolean validar_datos_asignatura_correctos(Component parentComponent,
+            String nombre,
+            String modalidad,
+            int semestre) {
         return validar_es_con_letras(parentComponent, nombre, 4, 50, "En el Nombre: ")
                 && validar_es_modalidad_correcta(parentComponent, modalidad, "En la Modalidad: ")
-                && validar_es_semestre_correcto(parentComponent, semestre,  "En el Semestre: ")
-                ;
+                && validar_es_semestre_correcto(parentComponent, semestre, "En el Semestre: ");
     }
-    public static boolean validar_datos_profesor_correctos(Component parentComponent
-            ,String nombre
-            , String apellidos
-            ) {
+
+    public static boolean validar_datos_profesor_correctos(Component parentComponent,
+            String nombre,
+            String apellidos
+    ) {
+        return validar_es_nombre(parentComponent, nombre, 4, 50, "En el Nombre: ")
+                && validar_es_nombre(parentComponent, apellidos, 4, 50, "En los Apellidos: ");
+    }
+
+    public static boolean validar_datos_estudiante_correctos(Component parentComponent,
+            String nombre,
+            String apellidos,
+            String grupo
+    ) {
         return validar_es_nombre(parentComponent, nombre, 4, 50, "En el Nombre: ")
                 && validar_es_nombre(parentComponent, apellidos, 4, 50, "En los Apellidos: ")
-                ;
+                && validar_es_con_letras(parentComponent, grupo, 4, 50, "En el Grupo: ");
     }
-    
+
     public static boolean validar_es_nueva_Asignatura_correcta(Component parentComponent,
-            Carrera c
-             ,String nombre
-            , String modalidad
-            , int semestre
+            Carrera c,
+            String nombre,
+            String modalidad,
+            int semestre
     ) throws Exception {
         if (EnMemoria.BD.existeAsignatura(c, nombre)) {
             DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_YA_EXISTE_ASIGNATURA_EN_CARRERA);
             return false;
         }
-        
-        return validar_datos_asignatura_correctos(parentComponent,nombre, modalidad,semestre);
+
+        return validar_datos_asignatura_correctos(parentComponent, nombre, modalidad, semestre);
 
     }
-    
+
     public static boolean validar_es_modificar_Asignatura_correcto(Component parentComponent,
-            Asignatura e
-             ,String nombre
-            , String modalidad
-            , int semestre
+            Asignatura e,
+            String nombre,
+            String modalidad,
+            int semestre
     ) throws Exception {
         if ((!e.getAsignatura().equals(nombre))
-                 && EnMemoria.BD.existeAsignatura(e.getId_carrera(), nombre)) {
+                && EnMemoria.BD.existeAsignatura(e.getId_carrera(), nombre)) {
             DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_YA_EXISTE_ASIGNATURA_EN_CARRERA);
             return false;
         }
 
-       return validar_datos_asignatura_correctos(parentComponent,nombre, modalidad,semestre);
+        return validar_datos_asignatura_correctos(parentComponent, nombre, modalidad, semestre);
     }
-    
+
     public static boolean validar_es_nuevo_Profesor_correcto(Component parentComponent,
-            Asignatura c
-             ,String nombre
-            , String apellidos
-            
+            Asignatura c,
+            String nombre,
+            String apellidos
     ) throws Exception {
-        if (EnMemoria.BD.existeProfesor(c, nombre,apellidos)) {
+        if (EnMemoria.BD.existeProfesor(c, nombre, apellidos)) {
             DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_YA_EXISTE_PROFESOR_EN_ASIGNATURA);
             return false;
         }
-        
-        return validar_datos_profesor_correctos(parentComponent,nombre, apellidos);
+
+        return validar_datos_profesor_correctos(parentComponent, nombre, apellidos);
 
     }
+
     public static boolean validar_es_modificar_Profesor_correcto(Component parentComponent,
-            Asignatura c
-            ,Profesor p
-             ,String nombre
-            , String apellidos
-           
+            Asignatura c,
+            Profesor p,
+            String nombre,
+            String apellidos
     ) throws Exception {
-        if ((!(p.getApellidos().equals(nombre)&&p.getNombre().equals(apellidos)))
-                &&(EnMemoria.BD.existeProfesor(c, nombre,apellidos))) {
+        if ((!(p.getApellidos().equals(nombre) && p.getNombre().equals(apellidos)))
+                && (EnMemoria.BD.existeProfesor(c, nombre, apellidos))) {
             DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_YA_EXISTE_PROFESOR_EN_ASIGNATURA);
             return false;
         }
-        
-        return validar_datos_profesor_correctos(parentComponent,nombre, apellidos);
+
+        return validar_datos_profesor_correctos(parentComponent, nombre, apellidos);
 
     }
+
+    public static boolean validar_es_nuevo_Estudiante_correcto(Component parentComponent,
+            Asignatura c,
+            String nombre,
+            String apellidos,
+            String grupo
+    ) throws Exception {
+        if (EnMemoria.BD.existeEstudiante(c, nombre, apellidos)) {
+            DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_YA_EXISTE_ESTUDIANTE_EN_ASIGNATURA);
+            return false;
+        }
+
+        return validar_datos_estudiante_correctos(parentComponent, nombre, apellidos, grupo);
+
+    }
+
+    public static boolean validar_es_modificar_Estudiante_correcto(Component parentComponent,
+            Asignatura c,
+            Estudiante e,
+            String nombre,
+            String apellidos,
+            String grupo
+    ) throws Exception {
+        if ((!(e.getNombre().equals(nombre) && e.getApellidos().equals(apellidos)))
+                && EnMemoria.BD.existeEstudiante(c, nombre, apellidos)) {
+            DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_YA_EXISTE_ESTUDIANTE_EN_ASIGNATURA);
+            return false;
+        }
+
+        return validar_datos_estudiante_correctos(parentComponent, nombre, apellidos, grupo);
+
+    }
+
+    private static boolean es_Fecha_valida_para_examen(
+            Component parentComponent,
+            Asignatura c,
+            Estudiante e,
+            int numero, String fecha,Convocatoria aModificar) throws Exception {
+        if (MetodosValidacion.validar_es_fecha(parentComponent, fecha, "En la fecha:")) {
+            if (EnMemoria.BD.estaFechaDeExamenEnTemporaridadCorrecta(
+                    c, e, numero, UtilidadesParaVentana.obtenerFecha(fecha)
+                    ,aModificar!=null?aModificar.getId():-1
+            )) {
+                return true;
+            } else {
+                DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_FECHA_CONVOCATORIA_TEMPORALIDAD_ERRONEA);
+            }
+
+        }
+        return false;
+    }
+
+    public static boolean validar_es_nueva_Convocatoria_correcta(Component parentComponent,
+            Asignatura c,
+            Estudiante e,
+            String numero, String fecha) throws Exception {
+
+        if (EnMemoria.BD.existeConvocatoria(c, e, Integer.parseInt(numero))) {
+            DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_YA_EXISTE_CONVOCATORIA_EN_ESTUDIANTE_ASIGNATURA);
+            return false;
+        }
+        if (es_Fecha_valida_para_examen(parentComponent, c, e, Integer.parseInt(numero), fecha,null)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static boolean validar_es_modificar_Convocatoria_correcta(Component parentComponent,
+            Asignatura c,
+            Estudiante e,
+            Convocatoria co,
+            String numero, String fecha) throws Exception {
+
+        int numeroInt = Integer.parseInt(numero);
+        if (co.getNumero() != numeroInt) {
+            if (EnMemoria.BD.existeConvocatoria(c, e, Integer.parseInt(numero))) {
+                DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_YA_EXISTE_CONVOCATORIA_EN_ESTUDIANTE_ASIGNATURA);
+                return false;
+            }
+        }
+
+        if (es_Fecha_valida_para_examen(parentComponent, c, e, Integer.parseInt(numero), fecha,co)) {
+            return true;
+        }
+
+        return false;
+    }
+
 //    public static boolean va(Component parentComponent){
 //        return false;
 //    }

@@ -15,23 +15,27 @@ import entidades.*;
  *
  * @author Rene2
  */
-public class Dialogo_Agregar_Profesor extends javax.swing.JDialog {
-public Asignatura entidadActual;
+public class Dialogo_Modificar_Estudiante extends javax.swing.JDialog {
+public Estudiante entidadActual;
+public Asignatura entidadSecundaria;
+
     /**
      * Creates new form Dialogo_Agregar_Profesor
      */
-    public Dialogo_Agregar_Profesor(java.awt.Frame parent, boolean modal) {
+    public Dialogo_Modificar_Estudiante(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         UtilidadesParaVentana.ponerIconoDeVentana_Principal(this);
     }
-    public void resetear(Asignatura l){
-        this.entidadActual=l;
+    public void resetear(Estudiante a,Asignatura b){
+        this.entidadActual=a;
+        this.entidadSecundaria=b;
        
-        T_Apellidos.setText("");
+       T_Apellidos.setText(a.getApellidos());
         
-        T_Nombre.setText("");
+        T_Nombre.setText(a.getNombre());
+        T_Grupo.setText(a.getGrupo());
         
     }
     /**
@@ -50,6 +54,8 @@ public Asignatura entidadActual;
         jLabel3 = new javax.swing.JLabel();
         B_Cancelar = new javax.swing.JButton();
         B_Aceptar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        T_Grupo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agregar Profesor");
@@ -74,7 +80,7 @@ public Asignatura entidadActual;
                 B_CancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 180, -1));
+        jPanel1.add(B_Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 180, -1));
 
         B_Aceptar.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 24)); // NOI18N
         B_Aceptar.setText("Aceptar");
@@ -83,7 +89,12 @@ public Asignatura entidadActual;
                 B_AceptarActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 180, -1));
+        jPanel1.add(B_Aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 180, -1));
+
+        jLabel4.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 24)); // NOI18N
+        jLabel4.setText("Grupo:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
+        jPanel1.add(T_Grupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 250, 35));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,7 +107,7 @@ public Asignatura entidadActual;
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -111,12 +122,16 @@ public Asignatura entidadActual;
         try {
             String nombre=T_Nombre.getText();
             String apellidos=T_Apellidos.getText();
+            String grupo=T_Grupo.getText();
             
-            if(MetodosValidacion.validar_es_nuevo_Profesor_correcto(this, entidadActual, nombre, apellidos)){
-                Profesor nuevo=EnMemoria.BD.sustituirProfesor(entidadActual, nombre, apellidos);
-                EnMemoria.ventana_Principal.actualizar_Profesor(nuevo);
+            if(MetodosValidacion.validar_es_modificar_Estudiante_correcto(this,entidadSecundaria, entidadActual, nombre, apellidos,grupo)){
+                this.entidadActual.setApellidos(apellidos);
+                this.entidadActual.setNombre(nombre);
+                this.entidadActual.setGrupo(grupo);
+                Estudiante modificado=EnMemoria.BD.modificarEstudiante(entidadActual);
+                EnMemoria.ventana_Principal.actualizar_Estudiante(modificado);
                 setVisible(false);
-                DLG_Respuesta.mostrarDlgExito(this, "Profesor agregado con éxito  ");
+                DLG_Respuesta.mostrarDlgExito(this, "Estudiante modificado con éxito  ");
             }
         } catch (Exception ex) {
             DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
@@ -140,20 +155,23 @@ public Asignatura entidadActual;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Dialogo_Agregar_Profesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dialogo_Modificar_Estudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Dialogo_Agregar_Profesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dialogo_Modificar_Estudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Dialogo_Agregar_Profesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dialogo_Modificar_Estudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dialogo_Agregar_Profesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dialogo_Modificar_Estudiante.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Dialogo_Agregar_Profesor dialog = new Dialogo_Agregar_Profesor(new javax.swing.JFrame(), true);
+                Dialogo_Modificar_Estudiante dialog = new Dialogo_Modificar_Estudiante(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -169,9 +187,11 @@ public Asignatura entidadActual;
     private javax.swing.JButton B_Aceptar;
     private javax.swing.JButton B_Cancelar;
     private javax.swing.JTextField T_Apellidos;
+    private javax.swing.JTextField T_Grupo;
     private javax.swing.JTextField T_Nombre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
