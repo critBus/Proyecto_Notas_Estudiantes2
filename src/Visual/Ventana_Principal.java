@@ -350,6 +350,8 @@ public class Ventana_Principal extends javax.swing.JFrame {
         TI_Filtro_Carreras = new javax.swing.JTextField();
         B_Filtrar_Carreras = new javax.swing.JButton();
         B_Invertir_Orden_Carreras = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        L_Promedio = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         MI_Administrar_Usuario = new javax.swing.JMenuItem();
@@ -397,10 +399,12 @@ public class Ventana_Principal extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        L_Facultades.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 24)); // NOI18N
+        L_Facultades.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         L_Facultades.setText("Facultades");
-        jPanel1.add(L_Facultades, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 220, -1));
+        jPanel1.add(L_Facultades, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 340, 26));
 
-        B_Agregar_Facultades.setText("+");
+        B_Agregar_Facultades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/agregar copia.png"))); // NOI18N
         B_Agregar_Facultades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Agregar_FacultadesActionPerformed(evt);
@@ -408,7 +412,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
         });
         jPanel1.add(B_Agregar_Facultades, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 45, 40));
 
-        B_Editar_Facultades.setText("d");
+        B_Editar_Facultades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/editar copia.png"))); // NOI18N
         B_Editar_Facultades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Editar_FacultadesActionPerformed(evt);
@@ -416,7 +420,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
         });
         jPanel1.add(B_Editar_Facultades, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 45, 40));
 
-        B_Eliminar_Facultades.setText("-");
+        B_Eliminar_Facultades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/papelera copia.png"))); // NOI18N
         B_Eliminar_Facultades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Eliminar_FacultadesActionPerformed(evt);
@@ -424,6 +428,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
         });
         jPanel1.add(B_Eliminar_Facultades, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 45, 40));
 
+        T_Facultades.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         T_Facultades.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Informatica"},
@@ -437,8 +442,9 @@ public class Ventana_Principal extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(T_Facultades);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 270, 150));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 292, 150));
 
+        T_Carrera.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         T_Carrera.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Ingenieria Informatica"},
@@ -452,35 +458,38 @@ public class Ventana_Principal extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(T_Carrera);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 220, 150));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 292, 150));
 
-        B_Agregar_Carrera.setText("+");
+        B_Agregar_Carrera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/agregar copia.png"))); // NOI18N
         B_Agregar_Carrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Agregar_CarreraActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Agregar_Carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 45, 40));
+        jPanel1.add(B_Agregar_Carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 45, 40));
 
-        B_Editar_Carrera.setText("d");
+        B_Editar_Carrera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/editar copia.png"))); // NOI18N
         B_Editar_Carrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Editar_CarreraActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Editar_Carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 45, 40));
+        jPanel1.add(B_Editar_Carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 45, 40));
 
-        B_Eliminar_Carrera.setText("-");
+        B_Eliminar_Carrera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/papelera copia.png"))); // NOI18N
         B_Eliminar_Carrera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Eliminar_CarreraActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Eliminar_Carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 480, 45, 40));
+        jPanel1.add(B_Eliminar_Carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 45, 40));
 
+        L_Carrera.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 24)); // NOI18N
+        L_Carrera.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         L_Carrera.setText("Carreras");
-        jPanel1.add(L_Carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 220, -1));
+        jPanel1.add(L_Carrera, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 340, -1));
 
+        T_Estudiantes.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         T_Estudiantes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Juan Jasinto", "Guanlberto Gomes", "1"},
@@ -494,86 +503,91 @@ public class Ventana_Principal extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(T_Estudiantes);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 120, 380, 150));
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(877, 100, 415, 150));
 
-        B_Eliminar_Asignaturas.setText("-");
+        B_Eliminar_Asignaturas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/papelera copia.png"))); // NOI18N
         B_Eliminar_Asignaturas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Eliminar_AsignaturasActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Eliminar_Asignaturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, 45, 40));
+        jPanel1.add(B_Eliminar_Asignaturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 45, 40));
 
-        B_Editar_Asignaturas.setText("d");
+        B_Editar_Asignaturas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/editar copia.png"))); // NOI18N
         B_Editar_Asignaturas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Editar_AsignaturasActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Editar_Asignaturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, 45, 40));
+        jPanel1.add(B_Editar_Asignaturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, 45, 40));
 
-        B_Agregar_Asignaturas.setText("+");
+        B_Agregar_Asignaturas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/agregar copia.png"))); // NOI18N
         B_Agregar_Asignaturas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Agregar_AsignaturasActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Agregar_Asignaturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 45, 40));
+        jPanel1.add(B_Agregar_Asignaturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 45, 40));
 
+        L_Asignaturas.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 24)); // NOI18N
+        L_Asignaturas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         L_Asignaturas.setText("Asignaturas");
-        jPanel1.add(L_Asignaturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, 220, -1));
+        jPanel1.add(L_Asignaturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 10, 340, 26));
 
+        L_Profesor.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 24)); // NOI18N
+        L_Profesor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         L_Profesor.setText("Profesor");
-        jPanel1.add(L_Profesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 340, 220, -1));
+        jPanel1.add(L_Profesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, 370, -1));
 
-        B_Agregar_Profesor.setText("+");
+        B_Agregar_Profesor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/agregar copia.png"))); // NOI18N
         B_Agregar_Profesor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Agregar_ProfesorActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Agregar_Profesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 360, 45, 40));
+        jPanel1.add(B_Agregar_Profesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 310, 45, 40));
 
-        B_Editar_Profesor.setText("d");
+        B_Editar_Profesor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/editar copia.png"))); // NOI18N
         B_Editar_Profesor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Editar_ProfesorActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Editar_Profesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 400, 45, 40));
+        jPanel1.add(B_Editar_Profesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 45, 40));
 
-        B_Eliminar_Profesor.setText("-");
+        B_Eliminar_Profesor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/papelera copia.png"))); // NOI18N
         B_Eliminar_Profesor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Eliminar_ProfesorActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Eliminar_Profesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, 45, 40));
+        jPanel1.add(B_Eliminar_Profesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 390, 45, 40));
 
-        B_Agregar_Estudiantes.setText("+");
+        B_Agregar_Estudiantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/agregar copia.png"))); // NOI18N
         B_Agregar_Estudiantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Agregar_EstudiantesActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Agregar_Estudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 110, 45, 40));
+        jPanel1.add(B_Agregar_Estudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(825, 100, 45, 40));
 
-        B_Editar_Estudiantes.setText("d");
+        B_Editar_Estudiantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/editar copia.png"))); // NOI18N
         B_Editar_Estudiantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Editar_EstudiantesActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Editar_Estudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 150, 45, 40));
+        jPanel1.add(B_Editar_Estudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(825, 140, 45, 40));
 
-        B_Eliminar_Estudiantes.setText("-");
+        B_Eliminar_Estudiantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/papelera copia.png"))); // NOI18N
         B_Eliminar_Estudiantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Eliminar_EstudiantesActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Eliminar_Estudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 190, 45, 40));
+        jPanel1.add(B_Eliminar_Estudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(825, 180, 45, 40));
 
+        T_Asignaturas.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         T_Asignaturas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Matamica", "Presencial", "Primer"},
@@ -587,20 +601,26 @@ public class Ventana_Principal extends javax.swing.JFrame {
         ));
         jScrollPane5.setViewportView(T_Asignaturas);
 
-        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 290, 150));
+        jPanel1.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 323, 150));
 
+        L_Estudiantes.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 24)); // NOI18N
+        L_Estudiantes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         L_Estudiantes.setText("Estudiantes");
-        jPanel1.add(L_Estudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 20, 220, -1));
+        jPanel1.add(L_Estudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 10, 430, 26));
 
+        jLabel6.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 18)); // NOI18N
         jLabel6.setText("Nombre:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 370, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 320, -1, -1));
 
+        L_Profesor_Nombre.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 18)); // NOI18N
         L_Profesor_Nombre.setText("nombre...");
-        jPanel1.add(L_Profesor_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 370, -1, -1));
+        jPanel1.add(L_Profesor_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 320, -1, -1));
 
+        jLabel8.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 18)); // NOI18N
         jLabel8.setText("Apellidos: ");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 410, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 360, -1, -1));
 
+        T_Examenes.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         T_Examenes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"5", "1", "01-02-23"},
@@ -614,45 +634,49 @@ public class Ventana_Principal extends javax.swing.JFrame {
         ));
         jScrollPane6.setViewportView(T_Examenes);
 
-        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 320, 390, 150));
+        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(877, 313, 415, 160));
 
-        B_Eliminar_Examenes.setText("-");
+        B_Eliminar_Examenes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/papelera copia.png"))); // NOI18N
         B_Eliminar_Examenes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Eliminar_ExamenesActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Eliminar_Examenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 390, 45, 40));
+        jPanel1.add(B_Eliminar_Examenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(825, 390, 45, 40));
 
-        B_Editar_Examenes.setText("d");
+        B_Editar_Examenes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/editar copia.png"))); // NOI18N
         B_Editar_Examenes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Editar_ExamenesActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Editar_Examenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 350, 45, 40));
+        jPanel1.add(B_Editar_Examenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(825, 350, 45, 40));
 
-        B_Agregar_Examenes.setText("+");
+        B_Agregar_Examenes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/agregar copia.png"))); // NOI18N
         B_Agregar_Examenes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Agregar_ExamenesActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Agregar_Examenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 310, 45, 40));
+        jPanel1.add(B_Agregar_Examenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(825, 310, 45, 40));
 
+        L_Examenes.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 24)); // NOI18N
+        L_Examenes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         L_Examenes.setText("Exámenes");
-        jPanel1.add(L_Examenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 290, 220, -1));
+        jPanel1.add(L_Examenes, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 260, 460, -1));
 
+        L_Profesor_Apellidos.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 18)); // NOI18N
         L_Profesor_Apellidos.setText("apellidos...");
-        jPanel1.add(L_Profesor_Apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 410, -1, -1));
+        jPanel1.add(L_Profesor_Apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 360, -1, -1));
 
         TI_Filtro_Facultades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TI_Filtro_FacultadesActionPerformed(evt);
             }
         });
-        jPanel1.add(TI_Filtro_Facultades, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 240, 35));
+        jPanel1.add(TI_Filtro_Facultades, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 240, 38));
 
+        B_Filtrar_Facultades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/buscar copia reducido.png"))); // NOI18N
         B_Filtrar_Facultades.setToolTipText("Buscar según la entrada ");
         B_Filtrar_Facultades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -677,37 +701,39 @@ public class Ventana_Principal extends javax.swing.JFrame {
                 B_Invertir_Orden_AsiganturasActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Invertir_Orden_Asiganturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 60, 45, 40));
+        jPanel1.add(B_Invertir_Orden_Asiganturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 50, 45, 40));
 
+        B_Filtrar_Asiganturas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/buscar copia reducido.png"))); // NOI18N
         B_Filtrar_Asiganturas.setToolTipText("Buscar según la entrada ");
         B_Filtrar_Asiganturas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Filtrar_AsiganturasActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Filtrar_Asiganturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 60, 45, 40));
+        jPanel1.add(B_Filtrar_Asiganturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, 45, 40));
 
         TI_Filtro_Asiganturas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TI_Filtro_AsiganturasActionPerformed(evt);
             }
         });
-        jPanel1.add(TI_Filtro_Asiganturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 60, 240, 35));
+        jPanel1.add(TI_Filtro_Asiganturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 270, 38));
 
         TI_Filtro_Estudiantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TI_Filtro_EstudiantesActionPerformed(evt);
             }
         });
-        jPanel1.add(TI_Filtro_Estudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 60, 330, 35));
+        jPanel1.add(TI_Filtro_Estudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 50, 370, 38));
 
+        B_Filtrar_Estudiantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/buscar copia reducido.png"))); // NOI18N
         B_Filtrar_Estudiantes.setToolTipText("Buscar según la entrada ");
         B_Filtrar_Estudiantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Filtrar_EstudiantesActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Filtrar_Estudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 60, 45, 40));
+        jPanel1.add(B_Filtrar_Estudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 50, 45, 40));
 
         B_Invertir_Orden_Estudiantes.setToolTipText("Cambiar dirección del orden de los datos mostrados en la tabla ");
         B_Invertir_Orden_Estudiantes.setMargin(new java.awt.Insets(2, 2, 2, 2));
@@ -716,22 +742,23 @@ public class Ventana_Principal extends javax.swing.JFrame {
                 B_Invertir_Orden_EstudiantesActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Invertir_Orden_Estudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 60, 45, 40));
+        jPanel1.add(B_Invertir_Orden_Estudiantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 50, 45, 40));
 
         TI_Filtro_Carreras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TI_Filtro_CarrerasActionPerformed(evt);
             }
         });
-        jPanel1.add(TI_Filtro_Carreras, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 240, 35));
+        jPanel1.add(TI_Filtro_Carreras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 240, 38));
 
+        B_Filtrar_Carreras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/buscar copia reducido.png"))); // NOI18N
         B_Filtrar_Carreras.setToolTipText("Buscar según la entrada ");
         B_Filtrar_Carreras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Filtrar_CarrerasActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Filtrar_Carreras, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, 45, 40));
+        jPanel1.add(B_Filtrar_Carreras, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 300, 45, 40));
 
         B_Invertir_Orden_Carreras.setToolTipText("Cambiar dirección del orden de los datos mostrados en la tabla ");
         B_Invertir_Orden_Carreras.setMargin(new java.awt.Insets(2, 2, 2, 2));
@@ -740,7 +767,15 @@ public class Ventana_Principal extends javax.swing.JFrame {
                 B_Invertir_Orden_CarrerasActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Invertir_Orden_Carreras, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 340, 45, 40));
+        jPanel1.add(B_Invertir_Orden_Carreras, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, 45, 40));
+
+        jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 24)); // NOI18N
+        jLabel1.setText("Promedio");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 480, -1, -1));
+
+        L_Promedio.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 24)); // NOI18N
+        L_Promedio.setText("5.95");
+        jPanel1.add(L_Promedio, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 480, -1, -1));
 
         jMenu1.setText("Usuario");
 
@@ -897,7 +932,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
         jMenu6.add(MI_ChB_Filtrar_Asignatura_Por_Nombre);
 
         MI_ChB_Filtrar_Asignatura_Por_Modalidad.setSelected(true);
-        MI_ChB_Filtrar_Asignatura_Por_Modalidad.setText("Modlaidad");
+        MI_ChB_Filtrar_Asignatura_Por_Modalidad.setText("Modalidad");
         MI_ChB_Filtrar_Asignatura_Por_Modalidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MI_ChB_Filtrar_Asignatura_Por_ModalidadActionPerformed(evt);
@@ -1006,9 +1041,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -2078,18 +2111,24 @@ public class Ventana_Principal extends javax.swing.JFrame {
         int cantidad = L.size();
         String Tiulos[] = {"Nota", "Numero", "Fecha"};
         Object O[][] = new Object[cantidad][Tiulos.length];
+        
+        double sumaNotas=0;
+        
         for (int i = 0; i < cantidad; i++) {
             Convocatoria a = L.get(i);
             O[i][0] = ((int) a.getNota()) + "";
             O[i][1] = a.getNumero();
             O[i][2] = UtilidadesParaVentana.obtenerFechaConFormato(a.getFecha());
-
+            
+            sumaNotas+=a.getNota();
         }
         T_Examenes.setModel(new DefaultTableModel(O, Tiulos) {
             public boolean isCellEditable(int row, int column) {
                 return false;//This causes all cells to be not editable
             }
         });
+        
+        L_Promedio.setText(cantidad>0?String.format("%02.2f", sumaNotas/(double)cantidad):"--.--" );
 
     }
 
@@ -2260,6 +2299,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
     private javax.swing.JLabel L_Profesor;
     private javax.swing.JLabel L_Profesor_Apellidos;
     private javax.swing.JLabel L_Profesor_Nombre;
+    private javax.swing.JLabel L_Promedio;
     private javax.swing.JMenuItem MI_Administrar_Usuario;
     private javax.swing.JMenuItem MI_Agregar_Asignatura;
     private javax.swing.JMenuItem MI_Agregar_Carrera;
@@ -2296,6 +2336,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
     private javax.swing.JTable T_Estudiantes;
     private javax.swing.JTable T_Examenes;
     private javax.swing.JTable T_Facultades;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
