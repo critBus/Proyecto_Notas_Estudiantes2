@@ -10,5 +10,6 @@ package Utilidades;
  * @author Rene2
  */
 public enum TipoDeModalidad {
-    DIURNO,POR_ENCUENTRO
+    PRESENCIAL,
+ONLINE
 }

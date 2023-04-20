@@ -10,25 +10,25 @@ import Utilidades.*;
  *
  * @author Rene2
  */
-public class Dialogo_Agregar_Asignatura extends javax.swing.JDialog {
-    public Carrera entidadActual;
+public class Dialogo_Modificar_Asignatura extends javax.swing.JDialog {
+    public Asignatura entidadActual;
    
     /**
      * Creates new form Dialogo_Agregar_Asignatura
      */
-    public Dialogo_Agregar_Asignatura(java.awt.Frame parent, boolean modal) {
+    public Dialogo_Modificar_Asignatura(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         UtilidadesParaVentana.ponerIconoDeVentana_Principal(this);
     }
-    public void resetear(Carrera l){
+    public void resetear(Asignatura l){
         this.entidadActual=l;
        
-        CB_Modalidad.setSelectedIndex(0);
+        CB_Modalidad.setSelectedItem(l.getModalidad());
         
-        T_Nombre.setText("");
-        CB_Semestre.setSelectedIndex(0);
+        T_Nombre.setText(l.getAsignatura());
+        CB_Semestre.setSelectedItem(l.getSemestre());
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,7 +50,7 @@ public class Dialogo_Agregar_Asignatura extends javax.swing.JDialog {
         CB_Modalidad = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Agregar Asignatura");
+        setTitle("Modificar Asignatura");
         setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -121,11 +121,16 @@ public class Dialogo_Agregar_Asignatura extends javax.swing.JDialog {
             int semestre=CB_Semestre.getSelectedItem().toString().equals("1")?1:2;
            
             
-            if(MetodosValidacion.validar_es_nueva_Asignatura_correcta(this, entidadActual, nombre, modalidad, semestre)){
-                Asignatura nuevo=EnMemoria.BD.agregarAsignatura(entidadActual,  nombre, modalidad, semestre);
-                EnMemoria.ventana_Principal.actualizar_Asignatura(nuevo);
+            
+            if(MetodosValidacion.validar_es_modificar_Asignatura_correcto(this, entidadActual, nombre, modalidad, semestre)){
+                this.entidadActual.setAsignatura(nombre);
+                this.entidadActual.setModalidad(modalidad);
+                this.entidadActual.setSemestre(semestre+"");
+                
+                Asignatura modificado=EnMemoria.BD.modificarAsignatura(entidadActual);
+                EnMemoria.ventana_Principal.actualizar_Asignatura(modificado);
                 setVisible(false);
-                DLG_Respuesta.mostrarDlgExito(this, "Asignatura agregada con éxito  ");
+                DLG_Respuesta.mostrarDlgExito(this, "Asignatura modificada con éxito  ");
             }
         } catch (Exception ex) {
             DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
@@ -150,20 +155,21 @@ public class Dialogo_Agregar_Asignatura extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Dialogo_Agregar_Asignatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dialogo_Modificar_Asignatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Dialogo_Agregar_Asignatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dialogo_Modificar_Asignatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Dialogo_Agregar_Asignatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dialogo_Modificar_Asignatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dialogo_Agregar_Asignatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Dialogo_Modificar_Asignatura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Dialogo_Agregar_Asignatura dialog = new Dialogo_Agregar_Asignatura(new javax.swing.JFrame(), true);
+                Dialogo_Modificar_Asignatura dialog = new Dialogo_Modificar_Asignatura(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

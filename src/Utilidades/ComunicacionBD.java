@@ -208,6 +208,10 @@ public class ComunicacionBD {
         l.save();
         return l;
     }
+    public Asignatura modificarAsignatura(Asignatura l) throws Exception {
+        l.save();
+        return l;
+    }
     
     public boolean existeAsignatura(Carrera c,String nombre) throws Exception {
         Asignatura [] A=obtenerTodos_Asignatura(c);
@@ -218,7 +222,40 @@ public class ComunicacionBD {
         }
         return false;
     }
-    
+    public boolean existeProfesor(Asignatura c,String nombre,String apellidos) throws Exception {
+        Profesor p=obtenerProfesor(c);
+        return p!=null?p.getNombre().equals(nombre)&&p.getApellidos().equals(apellidos):true;
+    }
+    public Profesor agregarProfesor(Asignatura a,String nombre,String apellidos) throws Exception {
+        Profesor p=new Profesor();
+        p.setApellidos(nombre);
+        p.setNombre(apellidos);
+        p.save();
+        a.setId_profesor(p);
+        a.save();
+        p.save();
+        return p;
+
+    }
+    public Profesor sustituirProfesor(Asignatura a,String nombre,String apellidos) throws Exception {
+        Profesor anterior=a.getId_profesor();
+        if(anterior!=null){
+            a.setId_profesor(null);
+            a.save();
+            anterior.save();
+            eliminarProfesor(anterior);
+        }
+        
+        Profesor p=new Profesor();
+        p.setApellidos(nombre);
+        p.setNombre(apellidos);
+        p.save();
+        a.setId_profesor(p);
+        a.save();
+        p.save();
+        return p;
+
+    }
     public Asignatura agregarAsignatura(Carrera c, String nombre,String modalidad,int semestre) throws Exception {
         Asignatura a=new Asignatura();
         a.setAsignatura(nombre);

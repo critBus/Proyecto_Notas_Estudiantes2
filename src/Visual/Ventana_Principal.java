@@ -392,6 +392,8 @@ public class Ventana_Principal extends javax.swing.JFrame {
         MI_ChB_Filtrar_Estudiantes_Por_Grupo = new javax.swing.JCheckBoxMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Administración");
+        setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -495,12 +497,27 @@ public class Ventana_Principal extends javax.swing.JFrame {
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 120, 380, 150));
 
         B_Eliminar_Asignaturas.setText("-");
+        B_Eliminar_Asignaturas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_Eliminar_AsignaturasActionPerformed(evt);
+            }
+        });
         jPanel1.add(B_Eliminar_Asignaturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, 45, 40));
 
         B_Editar_Asignaturas.setText("d");
+        B_Editar_Asignaturas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_Editar_AsignaturasActionPerformed(evt);
+            }
+        });
         jPanel1.add(B_Editar_Asignaturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 140, 45, 40));
 
         B_Agregar_Asignaturas.setText("+");
+        B_Agregar_Asignaturas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_Agregar_AsignaturasActionPerformed(evt);
+            }
+        });
         jPanel1.add(B_Agregar_Asignaturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, 45, 40));
 
         L_Asignaturas.setText("Asignaturas");
@@ -962,15 +979,107 @@ try {
     private void B_Editar_CarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Editar_CarreraActionPerformed
        intentarModificarCarrera();
     }//GEN-LAST:event_B_Editar_CarreraActionPerformed
+
+    private void B_Agregar_AsignaturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Agregar_AsignaturasActionPerformed
+       intentarAgregarAsignatura();
+    }//GEN-LAST:event_B_Agregar_AsignaturasActionPerformed
+
+    private void B_Editar_AsignaturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Editar_AsignaturasActionPerformed
+       intentarModificarAsignatura();
+    }//GEN-LAST:event_B_Editar_AsignaturasActionPerformed
+
+    private void B_Eliminar_AsignaturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Eliminar_AsignaturasActionPerformed
+        intentarEliminarEncargado();
+    }//GEN-LAST:event_B_Eliminar_AsignaturasActionPerformed
+    private void intentarEliminarEncargado() {
+        try {
+            if (T_Carrera.getSelectedRow() != -1) {
+                Carrera l = carreras_en_tabla.get(T_Carrera.getSelectedRow());
+
+                if (T_Asignaturas.getSelectedRow() != -1) {
+
+                    if (JOptionPane.showConfirmDialog(this, "Desea eliminar la Asignatura seleccionada?", "Advertencia", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+                        Asignatura e = this.asignaturas_en_tabla.get(T_Asignaturas.getSelectedRow());
+
+                        EnMemoria.BD.eliminarAsignatura(e);
+                        TI_Filtro_Asiganturas.setText("");
+                        TI_Filtro_Estudiantes.setText("");
+
+                        this.asignaturas_existentes_de_carrera.remove(e);
+
+                        actualizarTabla_Asignatura(this.asignaturas_existentes_de_carrera);
+
+                        DLG_Respuesta.mostrarDlgExito(this, "ASignatura eliminada con éxito  ");
+                    }
+
+                } else {
+                    DLG_Respuesta.mostrarDlgInvalido(this, "Tiene que seleccionar una asignatura en la tabla ");
+                }
+
+            } else {
+                DLG_Respuesta.mostrarDlgInvalido(this, "Tiene que seleccionar una carrera en la tabla ");
+            }
+
+        } catch (Exception ex) {
+            DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
+        }
+    }
+     private void intentarModificarAsignatura() {
+        try {
+            if (T_Carrera.getSelectedRow() != -1) {
+                Carrera l = carreras_en_tabla.get(T_Carrera.getSelectedRow());
+
+                if (T_Asignaturas.getSelectedRow() != -1) {
+                    Asignatura e = this.asignaturas_en_tabla.get(T_Asignaturas.getSelectedRow());
+
+                    EnMemoria.dialogo_Modificar_Asignatura.resetear(e);
+                    EnMemoria.dialogo_Modificar_Asignatura.setVisible(true);
+
+                } else {
+                    DLG_Respuesta.mostrarDlgInvalido(this, "Tiene que seleccionar una asignatura en la tabla ");
+                }
+
+            } else {
+                DLG_Respuesta.mostrarDlgInvalido(this, "Tiene que seleccionar una carrera en la tabla ");
+            }
+
+        } catch (Exception ex) {
+            DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
+        }
+    }
+    private void intentarAgregarAsignatura() {
+        try {
+            if (T_Carrera.getSelectedRow() != -1) {
+                Carrera l = carreras_en_tabla.get(T_Carrera.getSelectedRow());
+                
+                    EnMemoria.dialogo_Agregar_Asignatura.resetear(l);
+                    EnMemoria.dialogo_Agregar_Asignatura.setVisible(true);
+                    
+                    
+
+            } else {
+                DLG_Respuesta.mostrarDlgInvalido(this, "Tiene que seleccionar una carrera en la tabla ");
+            }
+
+        } catch (Exception ex) {
+            DLG_Respuesta.mostrarDlg_ErrorEnLaBD(this, ex);
+        }
+    }
+
     
     public void actualizar_Asignatura(Asignatura e) throws Exception {
         TI_Filtro_Asiganturas.setText("");
-        TI_Filtro_Carreras.setText("");
         TI_Filtro_Estudiantes.setText("");
 
         this.asignaturas_existentes_de_carrera.remove(e);
         this.asignaturas_existentes_de_carrera.add(e);
         actualizarTabla_Asignatura(this.asignaturas_existentes_de_carrera);
+    }
+    public void actualizar_Profesor(Profesor e) throws Exception {
+        
+
+        actualizarDatosProfesor(e);
+        
     }
     private void intentarModificarCarrera() {
         try {
