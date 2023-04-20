@@ -962,7 +962,16 @@ try {
     private void B_Editar_CarreraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Editar_CarreraActionPerformed
        intentarModificarCarrera();
     }//GEN-LAST:event_B_Editar_CarreraActionPerformed
+    
+    public void actualizar_Asignatura(Asignatura e) throws Exception {
+        TI_Filtro_Asiganturas.setText("");
+        TI_Filtro_Carreras.setText("");
+        TI_Filtro_Estudiantes.setText("");
 
+        this.asignaturas_existentes_de_carrera.remove(e);
+        this.asignaturas_existentes_de_carrera.add(e);
+        actualizarTabla_Asignatura(this.asignaturas_existentes_de_carrera);
+    }
     private void intentarModificarCarrera() {
         try {
             if (T_Facultades.getSelectedRow() != -1) {

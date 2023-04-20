@@ -14,7 +14,7 @@ License Type: Purchased
 		<property name="nombre" column="nombre" type="string" length="50" not-null="true" lazy="false"/>
 		<property name="apellidos" column="apellidos" type="string" length="50" not-null="true" lazy="false"/>
 		<set name="ORM_Asignatura" lazy="true" cascade="save-update,lock" inverse="true">
-			<key column="id_profesor" not-null="true"/>
+			<key column="id_profesor" not-null="false"/>
 			<one-to-many class="entidades.Asignatura"/>
 		</set>
 	</class>

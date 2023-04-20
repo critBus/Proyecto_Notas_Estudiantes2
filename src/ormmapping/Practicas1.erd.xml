@@ -67,7 +67,7 @@
       <ReferencedColumn>profesor.id</ReferencedColumn>
       <Type>9</Type>
       <Length>10</Length>
-      <Nullable>false</Nullable>
+      <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -411,6 +411,18 @@
       <Column>id</Column>
     </RefColumns>
   </ForeignKey>
+  <ForeignKey name="fkasignatura882012">
+    <ReferenceTable>asignatura_estudiante</ReferenceTable>
+    <ReferenceSchema>public</ReferenceSchema>
+    <ReferencedTable>estudiante</ReferencedTable>
+    <ReferencedSchema>public</ReferencedSchema>
+    <Columns>
+      <Column>id_estudiante</Column>
+    </Columns>
+    <RefColumns>
+      <Column>id</Column>
+    </RefColumns>
+  </ForeignKey>
   <ForeignKey name="fkcarrera781550">
     <ReferenceTable>carrera</ReferenceTable>
     <ReferenceSchema>public</ReferenceSchema>
@@ -442,18 +454,6 @@
     <ReferencedSchema>public</ReferencedSchema>
     <Columns>
       <Column>id_asignatura</Column>
-    </Columns>
-    <RefColumns>
-      <Column>id</Column>
-    </RefColumns>
-  </ForeignKey>
-  <ForeignKey name="fkasignatura882012">
-    <ReferenceTable>asignatura_estudiante</ReferenceTable>
-    <ReferenceSchema>public</ReferenceSchema>
-    <ReferencedTable>estudiante</ReferencedTable>
-    <ReferencedSchema>public</ReferencedSchema>
-    <Columns>
-      <Column>id_estudiante</Column>
     </Columns>
     <RefColumns>
       <Column>id</Column>

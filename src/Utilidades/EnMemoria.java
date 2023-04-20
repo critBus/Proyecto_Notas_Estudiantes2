@@ -15,4 +15,5 @@ public  class EnMemoria {
     public static ComunicacionBD BD=new ComunicacionBD();
     public static Ventana_Principal ventana_Principal=new Ventana_Principal();
     public static Ventana_Loguin ventana_Loguin=new Ventana_Loguin();
+    public static Dialogo_Agregar_Asignatura dialogo_Agregar_Asignatura=new Dialogo_Agregar_Asignatura(ventana_Principal, true);
 }

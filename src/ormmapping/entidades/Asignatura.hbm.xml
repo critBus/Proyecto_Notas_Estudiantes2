@@ -16,7 +16,7 @@ License Type: Purchased
 		<property name="semestre" column="semestre" type="string" length="50" not-null="true" lazy="false"/>
 		<many-to-one name="id_carrera" cascade="lock" column="id_carrera" class="entidades.Carrera" not-null="true" lazy="proxy" access="field">
 		</many-to-one>
-		<many-to-one name="id_profesor" cascade="lock" column="id_profesor" class="entidades.Profesor" not-null="true" lazy="proxy" access="field">
+		<many-to-one name="id_profesor" cascade="lock" column="id_profesor" class="entidades.Profesor" not-null="false" lazy="proxy" access="field">
 		</many-to-one>
 		<set name="ORM_Asignatura_estudiante" lazy="true" cascade="save-update,lock" inverse="true">
 			<key column="id_asignatura" not-null="true"/>

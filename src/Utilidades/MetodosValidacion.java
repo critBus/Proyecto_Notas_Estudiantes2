@@ -9,6 +9,8 @@ import entidades.Carrera;
 import entidades.Facultad;
 import entidades.Usuario;
 import java.awt.Component;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -29,11 +31,14 @@ public class MetodosValidacion {
     private final static String MSG_CANTIDAD_MINIMA_DE_CARACTERES = "No supera la cantidad mínima de caracteres ";
     private final static String MSG_CANTIDAD_CARACTERES_TELEFONO = "Un teléfono debe de contener 8 caracteres ";
     private final static String MSG_TODOS_DEBEN_DE_SER_NUMEROS = "Todos los caracteres deben de ser números ";
-    private final static String MSG_YA_EXISTE_ENCARGADO_EN_LOCAL = "Ya existe un encargado en este local con este nombre ";
-    private final static String MSG_CANTIDAD_MAXIMA_DE_ENCARGADOS_EN_EL_LOCAL = "Ya se alcanzó la cantidad máxima de encargados en este local ";
+    
+    
     private final static String MSG_DEBEN_TENER_NUMEROS = "Debe de contener números";
     private final static String MSG_YA_EXISTE_USUARIO = "Ya existe este usuario ";
     private final static String MSG_COINCIDIR_CONTRASENNAS = "Tienen que coincidir las contraseñas ";
+    private final static String MSG_MODALIDADES_INCORRECTAS="La modalidad tiene que ser un valor de entre ";
+    private final static String MSG_SEMESTRE_INCORRECTO="El semestre tiene que ser un valor de entre [ 1 , 2 ]";
+    private final static String MSG_YA_EXISTE_ASIGNATURA_EN_CARRERA = "Ya existe esta Asignatura en la carrera ";
 
     public static String obtener_validacion_seguridad_cantrasenna(String s, String confirmar) {
         s = s.trim();
@@ -168,7 +173,55 @@ public class MetodosValidacion {
         }
         return null;
     }
-
+    private static String getModalidadStr(TipoDeModalidad m){
+        return m.toString().toLowerCase().replace("_"," ");
+    }
+    public static String obtener_validacion_modalidad(String s) {
+        s = s.trim();
+        if (s.isEmpty()) {
+            return MSG_NO_PUEDE_ESTAR_VACIO;
+        }
+        for(TipoDeModalidad m: TipoDeModalidad.values()){
+            if(getModalidadStr(m).equals(s.toLowerCase())){
+                return null;
+            }
+        }
+        ArrayList<String> listaNombreModalidades=new ArrayList<>();
+        for(TipoDeModalidad m: TipoDeModalidad.values()){
+            listaNombreModalidades.add(getModalidadStr(m));
+        }
+        
+        return MSG_MODALIDADES_INCORRECTAS
+                +Arrays.toString(listaNombreModalidades.toArray())
+                ;
+    }
+    public static String obtener_validacion_semestre(int semestre) {
+        return semestre==1||semestre==2?null:MSG_SEMESTRE_INCORRECTO;
+    }
+    
+    private static boolean validar_es_modalidad_correcta(Component parentComponent, String s
+            , String principioDeMensaje) {
+        String respuesta = obtener_validacion_modalidad(s);
+        if (respuesta != null) {
+            if (principioDeMensaje != null) {
+                respuesta = principioDeMensaje + respuesta;
+            }
+            DLG_Respuesta.mostrarDlgInvalido(parentComponent, respuesta);
+        }
+        return respuesta == null;
+    }
+    private static boolean validar_es_semestre_correcto(Component parentComponent, int s
+            , String principioDeMensaje) {
+        String respuesta = obtener_validacion_semestre(s);
+        if (respuesta != null) {
+            if (principioDeMensaje != null) {
+                respuesta = principioDeMensaje + respuesta;
+            }
+            DLG_Respuesta.mostrarDlgInvalido(parentComponent, respuesta);
+        }
+        return respuesta == null;
+    }
+    
     private static boolean validar_es_string_normal(Component parentComponent, String s, int cantidad_maxima_caracteres) {
         return validar_es_string_normal(parentComponent, s, cantidad_maxima_caracteres, null);
     }
@@ -193,6 +246,12 @@ public class MetodosValidacion {
             DLG_Respuesta.mostrarDlgInvalido(parentComponent, respuesta);
         }
         return respuesta == null;
+    }
+    private static boolean validar_es_con_letras(
+            Component parentComponent, String s
+            , int cantidad_minima_caracteres
+            , int cantidad_maxima_caracteres) {
+        return validar_es_con_letras(parentComponent, s, cantidad_minima_caracteres, cantidad_maxima_caracteres, "");
     }
 
     private static boolean validar_es_nombre(Component parentComponent, String s, int cantidad_minima_caracteres, int cantidad_maxima_caracteres, String principioDeMensaje) {
@@ -258,13 +317,41 @@ public class MetodosValidacion {
             DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_YA_EXISTE_CARRERA);
             return false;
         }
-        return validar_es_string_normal(parentComponent, nombre, 50);
+        return validar_es_con_letras(parentComponent, nombre,4, 50);
     }
     public static boolean validar_es_modificar_Carrera_correcto(Component parentComponent, Carrera l, String nombre) throws Exception {
         if ((!l.getCarrera().equals(nombre)) && EnMemoria.BD.existeCarrera(nombre)) {
             DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_YA_EXISTE_CARRERA);
             return false;
         }
-        return validar_es_string_normal(parentComponent, nombre, 50);
+        return validar_es_con_letras(parentComponent, nombre, 4,50);
     }
+     
+
+    public static boolean validar_datos_asignatura_correctos(Component parentComponent
+            ,String nombre
+            , String modalidad
+            , int semestre) {
+        return validar_es_con_letras(parentComponent, nombre, 4, 50, "En el Nombre: ")
+                && validar_es_modalidad_correcta(parentComponent, modalidad, "En la Modalidad: ")
+                && validar_es_semestre_correcto(parentComponent, semestre,  "En el Semestre: ")
+                ;
+    }
+    
+    
+    public static boolean validar_es_nueva_Asignatura_correcta(Component parentComponent,
+            Carrera c
+             ,String nombre
+            , String modalidad
+            , int semestre
+    ) throws Exception {
+        if (EnMemoria.BD.existeAsignatura(c, nombre)) {
+            DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_YA_EXISTE_ASIGNATURA_EN_CARRERA);
+            return false;
+        }
+        
+        return validar_datos_asignatura_correctos(parentComponent,nombre, modalidad,semestre);
+
+    }
+
 }

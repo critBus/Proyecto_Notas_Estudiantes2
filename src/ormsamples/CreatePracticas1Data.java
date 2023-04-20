@@ -10,7 +10,7 @@ public class CreatePracticas1Data {
 		PersistentTransaction t = entidades.Practicas1PersistentManager.instance().getSession().beginTransaction();
 		try {
 			entidades.Asignatura lentidadesAsignatura = entidades.Asignatura.createAsignatura();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : convocatoria, asignatura_estudiante, id_profesor, id_carrera, semestre, modalidad, asignatura
+			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : convocatoria, asignatura_estudiante, id_carrera, semestre, modalidad, asignatura
 			lentidadesAsignatura.save();
 			entidades.Asignatura_estudiante lentidadesAsignatura_estudiante = entidades.Asignatura_estudiante.createAsignatura_estudiante();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : id_estudiante, id_asignatura
@@ -28,7 +28,7 @@ public class CreatePracticas1Data {
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : carrera, facultad
 			lentidadesFacultad.save();
 			entidades.Profesor lentidadesProfesor = entidades.Profesor.createProfesor();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : asignatura, apellidos, nombre
+			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : apellidos, nombre
 			lentidadesProfesor.save();
 			entidades.Usuario lentidadesUsuario = entidades.Usuario.createUsuario();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : password, username

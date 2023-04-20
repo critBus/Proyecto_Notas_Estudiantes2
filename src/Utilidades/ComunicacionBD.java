@@ -208,4 +208,25 @@ public class ComunicacionBD {
         l.save();
         return l;
     }
+    
+    public boolean existeAsignatura(Carrera c,String nombre) throws Exception {
+        Asignatura [] A=obtenerTodos_Asignatura(c);
+        for (Asignatura l : A) {
+            if (l.getAsignatura().equals(nombre)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public Asignatura agregarAsignatura(Carrera c, String nombre,String modalidad,int semestre) throws Exception {
+        Asignatura a=new Asignatura();
+        a.setAsignatura(nombre);
+        a.setModalidad(modalidad);
+        a.setSemestre(semestre+"");
+        a.setId_carrera(c);
+        a.save();
+        return a;
+
+    }
 }
