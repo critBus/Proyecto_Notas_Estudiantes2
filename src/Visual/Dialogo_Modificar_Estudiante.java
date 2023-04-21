@@ -13,7 +13,7 @@ import entidades.*;
 
 /**
  *
- * @author Rene2
+ * @author PC
  */
 public class Dialogo_Modificar_Estudiante extends javax.swing.JDialog {
 public Estudiante entidadActual;
@@ -58,7 +58,7 @@ public Asignatura entidadSecundaria;
         T_Grupo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Agregar Profesor");
+        setTitle("Agregar Estudiante");
         setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -67,11 +67,11 @@ public Asignatura entidadSecundaria;
         jLabel1.setText("Nombre:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
         jPanel1.add(T_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 250, 35));
-        jPanel1.add(T_Apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 250, 35));
+        jPanel1.add(T_Apellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 250, 35));
 
         jLabel3.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 24)); // NOI18N
         jLabel3.setText("Apellidos:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         B_Cancelar.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 24)); // NOI18N
         B_Cancelar.setText("Cancelar");
@@ -80,7 +80,7 @@ public Asignatura entidadSecundaria;
                 B_CancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 180, -1));
+        jPanel1.add(B_Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 180, -1));
 
         B_Aceptar.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 24)); // NOI18N
         B_Aceptar.setText("Aceptar");
@@ -89,12 +89,12 @@ public Asignatura entidadSecundaria;
                 B_AceptarActionPerformed(evt);
             }
         });
-        jPanel1.add(B_Aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 180, -1));
+        jPanel1.add(B_Aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 180, -1));
 
         jLabel4.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 24)); // NOI18N
         jLabel4.setText("Grupo:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
-        jPanel1.add(T_Grupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 250, 35));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+        jPanel1.add(T_Grupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 250, 35));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,9 +106,7 @@ public Asignatura entidadSecundaria;
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

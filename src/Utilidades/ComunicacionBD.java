@@ -12,7 +12,7 @@ import org.orm.PersistentException;
 
 /**
  *
- * @author Rene2
+ * @author PC
  */
 public class ComunicacionBD {
     public void eliminarFacultad(Facultad c) throws Exception{

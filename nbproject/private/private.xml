@@ -3,10 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/_Cosas/pincha/Socio_de_Lalo/Proyecto_Notas_Estudiantes2/src/Visual/Ventana_Principal.java</file>
-            <file>file:/D:/_Cosas/pincha/Socio_de_Lalo/Proyecto_Notas_Estudiantes2/src/Utilidades/EnMemoria.java</file>
-            <file>file:/D:/_Cosas/pincha/Socio_de_Lalo/Proyecto_Notas_Estudiantes2/src/Utilidades/ComunicacionBD.java</file>
-            <file>file:/D:/_Cosas/pincha/Socio_de_Lalo/Proyecto_Notas_Estudiantes2/src/Utilidades/MetodosValidacion.java</file>
+            <file>file:/D:/_Cosas/pincha/Socio_de_Lalo/Proyecto_Notas_Estudiantes2/src/Visual/Dialogo_Agregar_Examen.java</file>
+            <file>file:/D:/_Cosas/pincha/Socio_de_Lalo/Proyecto_Notas_Estudiantes2/src/Visual/Dialogo_Modificar_Estudiante.java</file>
+            <file>file:/D:/_Cosas/pincha/Socio_de_Lalo/Proyecto_Notas_Estudiantes2/src/Visual/Dialogo_Modificar_Asignatura.java</file>
+            <file>file:/D:/_Cosas/pincha/Socio_de_Lalo/Proyecto_Notas_Estudiantes2/src/Visual/Dialogo_Editar_Usuario.java</file>
+            <file>file:/D:/_Cosas/pincha/Socio_de_Lalo/Proyecto_Notas_Estudiantes2/src/Visual/Ventana_Administrar_Usuarios.java</file>
+            <file>file:/D:/_Cosas/pincha/Socio_de_Lalo/Proyecto_Notas_Estudiantes2/src/Visual/Dialogo_Modificar_Profesor.java</file>
+            <file>file:/D:/_Cosas/pincha/Socio_de_Lalo/Proyecto_Notas_Estudiantes2/src/Visual/Dialogo_Modificar_Examen.java</file>
+            <file>file:/D:/_Cosas/pincha/Socio_de_Lalo/Proyecto_Notas_Estudiantes2/src/Visual/Dialogo_Agregar_Estudiante.java</file>
+            <file>file:/D:/_Cosas/pincha/Socio_de_Lalo/Proyecto_Notas_Estudiantes2/src/Visual/Dialogo_Agregar_Usuario.java</file>
+            <file>file:/D:/_Cosas/pincha/Socio_de_Lalo/Proyecto_Notas_Estudiantes2/src/ormmapping/Practicas1.cfg.xml</file>
+            <file>file:/D:/_Cosas/pincha/Socio_de_Lalo/Proyecto_Notas_Estudiantes2/src/Visual/Dialogo_Agregar_Profesor.java</file>
         </group>
     </open-files>
 </project-private>

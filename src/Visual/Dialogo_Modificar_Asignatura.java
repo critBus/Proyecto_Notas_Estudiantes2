@@ -8,7 +8,7 @@ import entidades.*;
 import Utilidades.*;
 /**
  *
- * @author Rene2
+ * @author PC
  */
 public class Dialogo_Modificar_Asignatura extends javax.swing.JDialog {
     public Asignatura entidadActual;

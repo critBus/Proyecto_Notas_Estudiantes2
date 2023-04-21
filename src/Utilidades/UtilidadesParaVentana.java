@@ -22,7 +22,7 @@ import javax.swing.JFormattedTextField;
 
 /**
  *
- * @author Rene2
+ * @author PC
  */
 public abstract class UtilidadesParaVentana {
     public static void cambiarIconoDeDireccion(JButton boton, boolean arriba) {

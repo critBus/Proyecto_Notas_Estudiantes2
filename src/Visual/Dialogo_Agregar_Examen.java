@@ -15,7 +15,7 @@ import javax.swing.text.MaskFormatter;
 
 /**
  *
- * @author Rene2
+ * @author PC
  */
 public class Dialogo_Agregar_Examen extends javax.swing.JDialog {
 
@@ -70,7 +70,7 @@ public class Dialogo_Agregar_Examen extends javax.swing.JDialog {
         FF_Fecha = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Agregar Asignatura");
+        setTitle("Agregar Examen");
         setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -113,8 +113,10 @@ public class Dialogo_Agregar_Examen extends javax.swing.JDialog {
         CB_Nota.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5" }));
         jPanel1.add(CB_Nota, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 250, 35));
 
+        FF_Fecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         FF_Fecha.setText("jFormattedTextField1");
-        jPanel1.add(FF_Fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
+        FF_Fecha.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 18)); // NOI18N
+        jPanel1.add(FF_Fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 250, 35));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Rene2
+ * @author PC
  */
 public class Ventana_Administrar_Usuarios extends javax.swing.JFrame {
 
@@ -296,7 +296,7 @@ public class Ventana_Administrar_Usuarios extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Usuarios de la Empresa ");
+        jLabel1.setText("Usuarios del Sistema ");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 465, -1));
 
         B_Filtrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/buscar copia reducido.png"))); // NOI18N

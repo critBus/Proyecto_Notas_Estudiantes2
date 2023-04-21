@@ -7,7 +7,7 @@ package Utilidades;
 
 /**
  *
- * @author Rene2
+ * @author PC
  */
 public enum TipoDeModalidad {
     PRESENCIAL,

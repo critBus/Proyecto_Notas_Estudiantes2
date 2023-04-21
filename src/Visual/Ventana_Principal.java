@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Rene2
+ * @author PC
  */
 public class Ventana_Principal extends javax.swing.JFrame {
 

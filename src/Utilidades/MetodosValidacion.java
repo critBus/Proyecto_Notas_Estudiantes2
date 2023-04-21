@@ -21,7 +21,7 @@ import java.util.Date;
 
 /**
  *
- * @author Rene2
+ * @author PC
  */
 public class MetodosValidacion {
 

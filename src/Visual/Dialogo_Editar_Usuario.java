@@ -11,7 +11,7 @@ import entidades.*;
 
 /**
  *
- * @author Rene2
+ * @author PC
  */
 public class Dialogo_Editar_Usuario extends javax.swing.JDialog {
     public Usuario usuarioActual;

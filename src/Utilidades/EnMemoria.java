@@ -9,7 +9,7 @@ import Visual.*;
 
 /**
  *
- * @author Rene2
+ * @author PC
  */
 public  class EnMemoria {
     public static ComunicacionBD BD=new ComunicacionBD();

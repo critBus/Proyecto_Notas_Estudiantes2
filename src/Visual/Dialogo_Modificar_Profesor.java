@@ -13,7 +13,7 @@ import entidades.*;
 
 /**
  *
- * @author Rene2
+ * @author PC
  */
 public class Dialogo_Modificar_Profesor extends javax.swing.JDialog {
 public Profesor entidadActual;

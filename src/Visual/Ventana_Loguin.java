@@ -15,7 +15,7 @@ import Utilidades.EnMemoria;
 import Utilidades.UtilidadesParaVentana;
 /**
  *
- * @author Nadia
+ * @author PC
  */
 public class Ventana_Loguin extends javax.swing.JFrame {
     

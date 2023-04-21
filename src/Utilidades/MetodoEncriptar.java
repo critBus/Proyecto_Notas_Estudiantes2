@@ -11,7 +11,7 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 /**
  *
- * @author Rene2
+ * @author PC
  */
 public class MetodoEncriptar {
     public static String encriptar(String strClearText)throws Exception{

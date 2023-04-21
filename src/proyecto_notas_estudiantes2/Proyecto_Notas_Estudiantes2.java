@@ -9,7 +9,7 @@ import Utilidades.*;
 import org.orm.PersistentException;
 /**
  *
- * @author Rene2
+ * @author PC
  */
 public class Proyecto_Notas_Estudiantes2 {
 

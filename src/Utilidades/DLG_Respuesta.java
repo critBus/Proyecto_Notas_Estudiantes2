@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Rene2
+ * @author PC
  */
 public abstract class DLG_Respuesta {
     public static void mostrarDlgInvalido(Component parentComponent,String mensaje){

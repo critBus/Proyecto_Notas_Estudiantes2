@@ -10,7 +10,7 @@ import entidades.*;
 
 /**
  *
- * @author Rene2
+ * @author PC
  */
 public class Dialogo_Agregar_Usuario extends javax.swing.JDialog {
 
@@ -50,9 +50,9 @@ public class Dialogo_Agregar_Usuario extends javax.swing.JDialog {
         TB_Confirmar = new javax.swing.JPasswordField();
 
         setTitle("Agregar Usuario");
-        setMaximumSize(new java.awt.Dimension(420, 300));
-        setMinimumSize(new java.awt.Dimension(420, 300));
-        setPreferredSize(new java.awt.Dimension(420, 300));
+        setMaximumSize(new java.awt.Dimension(420, 250));
+        setMinimumSize(new java.awt.Dimension(420, 250));
+        setPreferredSize(new java.awt.Dimension(420, 200));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

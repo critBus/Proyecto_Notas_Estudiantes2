@@ -11,7 +11,7 @@ import Utilidades.*;
 
 /**
  *
- * @author Rene2
+ * @author PC
  */
 public class Dialogo_Cambiar_Contrasenna extends javax.swing.JDialog {
     public Usuario usuarioActual;
