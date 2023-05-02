@@ -114,6 +114,8 @@ public Asignatura entidadActual;
             
             if(MetodosValidacion.validar_es_nuevo_Profesor_correcto(this, entidadActual, nombre, apellidos)){
                 Profesor nuevo=EnMemoria.BD.sustituirProfesor(entidadActual, nombre, apellidos);
+                entidadActual=EnMemoria.BD.obtenerPorID_Asignatura(entidadActual);
+                
                 EnMemoria.ventana_Principal.actualizar_Profesor(nuevo);
                 setVisible(false);
                 DLG_Respuesta.mostrarDlgExito(this, "Profesor agregado con éxito  ");

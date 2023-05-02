@@ -128,6 +128,8 @@ public class Dialogo_Modificar_Asignatura extends javax.swing.JDialog {
                 this.entidadActual.setSemestre(semestre+"");
                 
                 Asignatura modificado=EnMemoria.BD.modificarAsignatura(entidadActual);
+                entidadActual=EnMemoria.BD.obtenerPorID_Asignatura(entidadActual);
+                
                 EnMemoria.ventana_Principal.actualizar_Asignatura(modificado);
                 setVisible(false);
                 DLG_Respuesta.mostrarDlgExito(this, "Asignatura modificada con éxito  ");

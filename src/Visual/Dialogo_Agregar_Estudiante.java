@@ -122,6 +122,7 @@ public Asignatura entidadActual;
             
             if(MetodosValidacion.validar_es_nuevo_Estudiante_correcto(this, entidadActual, nombre, apellidos,grupo)){
                 Estudiante nuevo=EnMemoria.BD.agregarEstudiante(entidadActual, nombre, apellidos,grupo);
+                entidadActual=EnMemoria.BD.obtenerPorID_Asignatura(entidadActual);
                 EnMemoria.ventana_Principal.actualizar_Estudiante(nuevo);
                 setVisible(false);
                 DLG_Respuesta.mostrarDlgExito(this, "Estudiante agregado con éxito  ");

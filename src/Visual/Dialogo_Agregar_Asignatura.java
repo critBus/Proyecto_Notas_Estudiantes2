@@ -123,6 +123,7 @@ public class Dialogo_Agregar_Asignatura extends javax.swing.JDialog {
             
             if(MetodosValidacion.validar_es_nueva_Asignatura_correcta(this, entidadActual, nombre, modalidad, semestre)){
                 Asignatura nuevo=EnMemoria.BD.agregarAsignatura(entidadActual,  nombre, modalidad, semestre);
+                entidadActual=EnMemoria.BD.obtenerPorID_Carrera(entidadActual);
                 EnMemoria.ventana_Principal.actualizar_Asignatura(nuevo);
                 setVisible(false);
                 DLG_Respuesta.mostrarDlgExito(this, "Asignatura agregada con éxito  ");

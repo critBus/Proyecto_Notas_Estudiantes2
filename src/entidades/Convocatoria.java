@@ -1,520 +1,143 @@
-/**
- * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * 
- * This is an automatic generated file. It will be regenerated every time 
- * you generate persistence class.
- * 
- * Modifying its content may cause the program not work, or your work may lost.
- */
-
-/**
- * Licensee: 
- * License Type: Purchased
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package entidades;
 
-import org.orm.*;
-import org.hibernate.Query;
-import org.hibernate.LockMode;
-import java.util.List;
-
 import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+
+/**
+ *
+ * @author Rene2
+ */
+@Entity
+@Table(name = "Convocatoria")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Convocatoria.findAll", query = "SELECT c FROM Convocatoria c")
+    , @NamedQuery(name = "Convocatoria.findById", query = "SELECT c FROM Convocatoria c WHERE c.id = :id")
+    , @NamedQuery(name = "Convocatoria.findByFecha", query = "SELECT c FROM Convocatoria c WHERE c.fecha = :fecha")
+    , @NamedQuery(name = "Convocatoria.findByNota", query = "SELECT c FROM Convocatoria c WHERE c.nota = :nota")
+    , @NamedQuery(name = "Convocatoria.findByNumero", query = "SELECT c FROM Convocatoria c WHERE c.numero = :numero")})
 public class Convocatoria implements Serializable {
-	public Convocatoria() {
-	}
-	
-	public static Convocatoria loadConvocatoriaByORMID(int id) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return loadConvocatoriaByORMID(session, id);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Convocatoria getConvocatoriaByORMID(int id) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return getConvocatoriaByORMID(session, id);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Convocatoria loadConvocatoriaByORMID(int id, org.hibernate.LockMode lockMode) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return loadConvocatoriaByORMID(session, id, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Convocatoria getConvocatoriaByORMID(int id, org.hibernate.LockMode lockMode) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return getConvocatoriaByORMID(session, id, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Convocatoria loadConvocatoriaByORMID(PersistentSession session, int id) throws PersistentException {
-		try {
-			return (Convocatoria) session.load(entidades.Convocatoria.class, new Integer(id));
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Convocatoria getConvocatoriaByORMID(PersistentSession session, int id) throws PersistentException {
-		try {
-			return (Convocatoria) session.get(entidades.Convocatoria.class, new Integer(id));
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Convocatoria loadConvocatoriaByORMID(PersistentSession session, int id, org.hibernate.LockMode lockMode) throws PersistentException {
-		try {
-			return (Convocatoria) session.load(entidades.Convocatoria.class, new Integer(id), lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Convocatoria getConvocatoriaByORMID(PersistentSession session, int id, org.hibernate.LockMode lockMode) throws PersistentException {
-		try {
-			return (Convocatoria) session.get(entidades.Convocatoria.class, new Integer(id), lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static List queryConvocatoria(String condition, String orderBy) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return queryConvocatoria(session, condition, orderBy);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static List queryConvocatoria(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return queryConvocatoria(session, condition, orderBy, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Convocatoria[] listConvocatoriaByQuery(String condition, String orderBy) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return listConvocatoriaByQuery(session, condition, orderBy);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Convocatoria[] listConvocatoriaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return listConvocatoriaByQuery(session, condition, orderBy, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static List queryConvocatoria(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From entidades.Convocatoria as Convocatoria");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
-		try {
-			Query query = session.createQuery(sb.toString());
-			return query.list();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static List queryConvocatoria(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From entidades.Convocatoria as Convocatoria");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
-		try {
-			Query query = session.createQuery(sb.toString());
-			query.setLockMode("Convocatoria", lockMode);
-			return query.list();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Convocatoria[] listConvocatoriaByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		try {
-			List list = queryConvocatoria(session, condition, orderBy);
-			return (Convocatoria[]) list.toArray(new Convocatoria[list.size()]);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Convocatoria[] listConvocatoriaByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		try {
-			List list = queryConvocatoria(session, condition, orderBy, lockMode);
-			return (Convocatoria[]) list.toArray(new Convocatoria[list.size()]);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Convocatoria loadConvocatoriaByQuery(String condition, String orderBy) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return loadConvocatoriaByQuery(session, condition, orderBy);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Convocatoria loadConvocatoriaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return loadConvocatoriaByQuery(session, condition, orderBy, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Convocatoria loadConvocatoriaByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		Convocatoria[] convocatorias = listConvocatoriaByQuery(session, condition, orderBy);
-		if (convocatorias != null && convocatorias.length > 0)
-			return convocatorias[0];
-		else
-			return null;
-	}
-	
-	public static Convocatoria loadConvocatoriaByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		Convocatoria[] convocatorias = listConvocatoriaByQuery(session, condition, orderBy, lockMode);
-		if (convocatorias != null && convocatorias.length > 0)
-			return convocatorias[0];
-		else
-			return null;
-	}
-	
-	public static java.util.Iterator iterateConvocatoriaByQuery(String condition, String orderBy) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return iterateConvocatoriaByQuery(session, condition, orderBy);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static java.util.Iterator iterateConvocatoriaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return iterateConvocatoriaByQuery(session, condition, orderBy, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static java.util.Iterator iterateConvocatoriaByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From entidades.Convocatoria as Convocatoria");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
-		try {
-			Query query = session.createQuery(sb.toString());
-			return query.iterate();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static java.util.Iterator iterateConvocatoriaByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From entidades.Convocatoria as Convocatoria");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
-		try {
-			Query query = session.createQuery(sb.toString());
-			query.setLockMode("Convocatoria", lockMode);
-			return query.iterate();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Convocatoria loadConvocatoriaByCriteria(ConvocatoriaCriteria convocatoriaCriteria) {
-		Convocatoria[] convocatorias = listConvocatoriaByCriteria(convocatoriaCriteria);
-		if(convocatorias == null || convocatorias.length == 0) {
-			return null;
-		}
-		return convocatorias[0];
-	}
-	
-	public static Convocatoria[] listConvocatoriaByCriteria(ConvocatoriaCriteria convocatoriaCriteria) {
-		return convocatoriaCriteria.listConvocatoria();
-	}
-	
-	public static Convocatoria createConvocatoria() {
-		return new entidades.Convocatoria();
-	}
-	
-	public boolean save() throws PersistentException {
-		try {
-			Practicas1PersistentManager.instance().saveObject(this);
-			return true;
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public boolean delete() throws PersistentException {
-		try {
-			Practicas1PersistentManager.instance().deleteObject(this);
-			return true;
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public boolean refresh() throws PersistentException {
-		try {
-			Practicas1PersistentManager.instance().getSession().refresh(this);
-			return true;
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public boolean evict() throws PersistentException {
-		try {
-			Practicas1PersistentManager.instance().getSession().evict(this);
-			return true;
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public boolean deleteAndDissociate()throws PersistentException {
-		try {
-			if(getId_estudiante() != null) {
-				getId_estudiante().convocatoria.remove(this);
-			}
-			
-			if(getId_asignatura() != null) {
-				getId_asignatura().convocatoria.remove(this);
-			}
-			
-			return delete();
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public boolean deleteAndDissociate(org.orm.PersistentSession session)throws PersistentException {
-		try {
-			if(getId_estudiante() != null) {
-				getId_estudiante().convocatoria.remove(this);
-			}
-			
-			if(getId_asignatura() != null) {
-				getId_asignatura().convocatoria.remove(this);
-			}
-			
-			try {
-				session.delete(this);
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	private void this_setOwner(Object owner, int key) {
-		if (key == ORMConstants.KEY_CONVOCATORIA_ID_ESTUDIANTE) {
-			this.id_estudiante = (entidades.Estudiante) owner;
-		}
-		
-		else if (key == ORMConstants.KEY_CONVOCATORIA_ID_ASIGNATURA) {
-			this.id_asignatura = (entidades.Asignatura) owner;
-		}
-	}
-	
-	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
-		public void setOwner(Object owner, int key) {
-			this_setOwner(owner, key);
-		}
-		
-	};
-	
-	private int id;
-	
-	private entidades.Estudiante id_estudiante;
-	
-	private entidades.Asignatura id_asignatura;
-	
-	private java.util.Date fecha;
-	
-	private double nota;
-	
-	private int numero;
-	
-	private void setId(int value) {
-		this.id = value;
-	}
-	
-	public int getId() {
-		return id;
-	}
-	
-	public int getORMID() {
-		return getId();
-	}
-	
-	public void setFecha(java.util.Date value) {
-		this.fecha = value;
-	}
-	
-	public java.util.Date getFecha() {
-		return fecha;
-	}
-	
-	public void setNota(double value) {
-		this.nota = value;
-	}
-	
-	public double getNota() {
-		return nota;
-	}
-	
-	public void setNumero(int value) {
-		this.numero = value;
-	}
-	
-	public int getNumero() {
-		return numero;
-	}
-	
-	public void setId_estudiante(entidades.Estudiante value) {
-		if (id_estudiante != null) {
-			id_estudiante.convocatoria.remove(this);
-		}
-		if (value != null) {
-			value.convocatoria.add(this);
-		}
-	}
-	
-	public entidades.Estudiante getId_estudiante() {
-		return id_estudiante;
-	}
-	
-	/**
-	 * This method is for internal use only.
-	 */
-	private void setORM_Id_estudiante(entidades.Estudiante value) {
-		this.id_estudiante = value;
-	}
-	
-	private entidades.Estudiante getORM_Id_estudiante() {
-		return id_estudiante;
-	}
-	
-	public void setId_asignatura(entidades.Asignatura value) {
-		if (id_asignatura != null) {
-			id_asignatura.convocatoria.remove(this);
-		}
-		if (value != null) {
-			value.convocatoria.add(this);
-		}
-	}
-	
-	public entidades.Asignatura getId_asignatura() {
-		return id_asignatura;
-	}
-	
-	/**
-	 * This method is for internal use only.
-	 */
-	private void setORM_Id_asignatura(entidades.Asignatura value) {
-		this.id_asignatura = value;
-	}
-	
-	private entidades.Asignatura getORM_Id_asignatura() {
-		return id_asignatura;
-	}
-	
-	public String toString() {
-		return String.valueOf(getId());
-	}
-	
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
+    @Basic(optional = false)
+    @Column(name = "fecha")
+    private String fecha;
+    @Basic(optional = false)
+    @Column(name = "nota")
+    private String nota;
+    @Basic(optional = false)
+    @Column(name = "numero")
+    private String numero;
+    @JoinColumn(name = "id_asignatura", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Asignatura idAsignatura;
+    @JoinColumn(name = "id_estudiante", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Estudiante idEstudiante;
+
+    public Convocatoria() {
+    }
+
+    public Convocatoria(Integer id) {
+        this.id = id;
+    }
+
+    public Convocatoria(Integer id, String fecha, String nota, String numero) {
+        this.id = id;
+        this.fecha = fecha;
+        this.nota = nota;
+        this.numero = numero;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getNota() {
+        return nota;
+    }
+
+    public void setNota(String nota) {
+        this.nota = nota;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public Asignatura getIdAsignatura() {
+        return idAsignatura;
+    }
+
+    public void setIdAsignatura(Asignatura idAsignatura) {
+        this.idAsignatura = idAsignatura;
+    }
+
+    public Estudiante getIdEstudiante() {
+        return idEstudiante;
+    }
+
+    public void setIdEstudiante(Estudiante idEstudiante) {
+        this.idEstudiante = idEstudiante;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Convocatoria)) {
+            return false;
+        }
+        Convocatoria other = (Convocatoria) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "entidades.Convocatoria[ id=" + id + " ]";
+    }
+    
 }

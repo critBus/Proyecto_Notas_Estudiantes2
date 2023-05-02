@@ -58,7 +58,7 @@ public Asignatura entidadSecundaria;
         T_Grupo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Agregar Estudiante");
+        setTitle("Modificar Estudiante");
         setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -127,6 +127,8 @@ public Asignatura entidadSecundaria;
                 this.entidadActual.setNombre(nombre);
                 this.entidadActual.setGrupo(grupo);
                 Estudiante modificado=EnMemoria.BD.modificarEstudiante(entidadActual);
+                entidadActual=EnMemoria.BD.obtenerPorID_Estudiante(entidadActual);
+                entidadSecundaria=EnMemoria.BD.obtenerPorID_Asignatura(entidadSecundaria);
                 EnMemoria.ventana_Principal.actualizar_Estudiante(modificado);
                 setVisible(false);
                 DLG_Respuesta.mostrarDlgExito(this, "Estudiante modificado con éxito  ");

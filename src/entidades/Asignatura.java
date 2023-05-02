@@ -1,575 +1,169 @@
-/**
- * "Visual Paradigm: DO NOT MODIFY THIS FILE!"
- * 
- * This is an automatic generated file. It will be regenerated every time 
- * you generate persistence class.
- * 
- * Modifying its content may cause the program not work, or your work may lost.
- */
-
-/**
- * Licensee: 
- * License Type: Purchased
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package entidades;
 
-import org.orm.*;
-import org.hibernate.Query;
-import org.hibernate.LockMode;
-import java.util.List;
-
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+/**
+ *
+ * @author Rene2
+ */
+@Entity
+@Table(name = "Asignatura")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Asignatura.findAll", query = "SELECT a FROM Asignatura a")
+    , @NamedQuery(name = "Asignatura.findById", query = "SELECT a FROM Asignatura a WHERE a.id = :id")
+    , @NamedQuery(name = "Asignatura.findByAsignatura", query = "SELECT a FROM Asignatura a WHERE a.asignatura = :asignatura")
+    , @NamedQuery(name = "Asignatura.findByModalidad", query = "SELECT a FROM Asignatura a WHERE a.modalidad = :modalidad")
+    , @NamedQuery(name = "Asignatura.findBySemestre", query = "SELECT a FROM Asignatura a WHERE a.semestre = :semestre")})
 public class Asignatura implements Serializable {
-	public Asignatura() {
-	}
-	
-	public static Asignatura loadAsignaturaByORMID(int id) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return loadAsignaturaByORMID(session, id);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Asignatura getAsignaturaByORMID(int id) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return getAsignaturaByORMID(session, id);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Asignatura loadAsignaturaByORMID(int id, org.hibernate.LockMode lockMode) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return loadAsignaturaByORMID(session, id, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Asignatura getAsignaturaByORMID(int id, org.hibernate.LockMode lockMode) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return getAsignaturaByORMID(session, id, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Asignatura loadAsignaturaByORMID(PersistentSession session, int id) throws PersistentException {
-		try {
-			return (Asignatura) session.load(entidades.Asignatura.class, new Integer(id));
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Asignatura getAsignaturaByORMID(PersistentSession session, int id) throws PersistentException {
-		try {
-			return (Asignatura) session.get(entidades.Asignatura.class, new Integer(id));
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Asignatura loadAsignaturaByORMID(PersistentSession session, int id, org.hibernate.LockMode lockMode) throws PersistentException {
-		try {
-			return (Asignatura) session.load(entidades.Asignatura.class, new Integer(id), lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Asignatura getAsignaturaByORMID(PersistentSession session, int id, org.hibernate.LockMode lockMode) throws PersistentException {
-		try {
-			return (Asignatura) session.get(entidades.Asignatura.class, new Integer(id), lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static List queryAsignatura(String condition, String orderBy) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return queryAsignatura(session, condition, orderBy);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static List queryAsignatura(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return queryAsignatura(session, condition, orderBy, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Asignatura[] listAsignaturaByQuery(String condition, String orderBy) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return listAsignaturaByQuery(session, condition, orderBy);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Asignatura[] listAsignaturaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return listAsignaturaByQuery(session, condition, orderBy, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static List queryAsignatura(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From entidades.Asignatura as Asignatura");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
-		try {
-			Query query = session.createQuery(sb.toString());
-			return query.list();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static List queryAsignatura(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From entidades.Asignatura as Asignatura");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
-		try {
-			Query query = session.createQuery(sb.toString());
-			query.setLockMode("Asignatura", lockMode);
-			return query.list();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Asignatura[] listAsignaturaByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		try {
-			List list = queryAsignatura(session, condition, orderBy);
-			return (Asignatura[]) list.toArray(new Asignatura[list.size()]);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Asignatura[] listAsignaturaByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		try {
-			List list = queryAsignatura(session, condition, orderBy, lockMode);
-			return (Asignatura[]) list.toArray(new Asignatura[list.size()]);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Asignatura loadAsignaturaByQuery(String condition, String orderBy) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return loadAsignaturaByQuery(session, condition, orderBy);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Asignatura loadAsignaturaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return loadAsignaturaByQuery(session, condition, orderBy, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Asignatura loadAsignaturaByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		Asignatura[] asignaturas = listAsignaturaByQuery(session, condition, orderBy);
-		if (asignaturas != null && asignaturas.length > 0)
-			return asignaturas[0];
-		else
-			return null;
-	}
-	
-	public static Asignatura loadAsignaturaByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		Asignatura[] asignaturas = listAsignaturaByQuery(session, condition, orderBy, lockMode);
-		if (asignaturas != null && asignaturas.length > 0)
-			return asignaturas[0];
-		else
-			return null;
-	}
-	
-	public static java.util.Iterator iterateAsignaturaByQuery(String condition, String orderBy) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return iterateAsignaturaByQuery(session, condition, orderBy);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static java.util.Iterator iterateAsignaturaByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		try {
-			PersistentSession session = Practicas1PersistentManager.instance().getSession();
-			return iterateAsignaturaByQuery(session, condition, orderBy, lockMode);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static java.util.Iterator iterateAsignaturaByQuery(PersistentSession session, String condition, String orderBy) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From entidades.Asignatura as Asignatura");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
-		try {
-			Query query = session.createQuery(sb.toString());
-			return query.iterate();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static java.util.Iterator iterateAsignaturaByQuery(PersistentSession session, String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
-		StringBuffer sb = new StringBuffer("From entidades.Asignatura as Asignatura");
-		if (condition != null)
-			sb.append(" Where ").append(condition);
-		if (orderBy != null)
-			sb.append(" Order By ").append(orderBy);
-		try {
-			Query query = session.createQuery(sb.toString());
-			query.setLockMode("Asignatura", lockMode);
-			return query.iterate();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public static Asignatura loadAsignaturaByCriteria(AsignaturaCriteria asignaturaCriteria) {
-		Asignatura[] asignaturas = listAsignaturaByCriteria(asignaturaCriteria);
-		if(asignaturas == null || asignaturas.length == 0) {
-			return null;
-		}
-		return asignaturas[0];
-	}
-	
-	public static Asignatura[] listAsignaturaByCriteria(AsignaturaCriteria asignaturaCriteria) {
-		return asignaturaCriteria.listAsignatura();
-	}
-	
-	public static Asignatura createAsignatura() {
-		return new entidades.Asignatura();
-	}
-	
-	public boolean save() throws PersistentException {
-		try {
-			Practicas1PersistentManager.instance().saveObject(this);
-			return true;
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public boolean delete() throws PersistentException {
-		try {
-			Practicas1PersistentManager.instance().deleteObject(this);
-			return true;
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public boolean refresh() throws PersistentException {
-		try {
-			Practicas1PersistentManager.instance().getSession().refresh(this);
-			return true;
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public boolean evict() throws PersistentException {
-		try {
-			Practicas1PersistentManager.instance().getSession().evict(this);
-			return true;
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public boolean deleteAndDissociate()throws PersistentException {
-		try {
-			if(getId_carrera() != null) {
-				getId_carrera().asignatura.remove(this);
-			}
-			
-			if(getId_profesor() != null) {
-				getId_profesor().asignatura.remove(this);
-			}
-			
-			entidades.Asignatura_estudiante[] lAsignatura_estudiantes = asignatura_estudiante.toArray();
-			for(int i = 0; i < lAsignatura_estudiantes.length; i++) {
-				lAsignatura_estudiantes[i].setId_asignatura(null);
-			}
-			entidades.Convocatoria[] lConvocatorias = convocatoria.toArray();
-			for(int i = 0; i < lConvocatorias.length; i++) {
-				lConvocatorias[i].setId_asignatura(null);
-			}
-			return delete();
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	public boolean deleteAndDissociate(org.orm.PersistentSession session)throws PersistentException {
-		try {
-			if(getId_carrera() != null) {
-				getId_carrera().asignatura.remove(this);
-			}
-			
-			if(getId_profesor() != null) {
-				getId_profesor().asignatura.remove(this);
-			}
-			
-			entidades.Asignatura_estudiante[] lAsignatura_estudiantes = asignatura_estudiante.toArray();
-			for(int i = 0; i < lAsignatura_estudiantes.length; i++) {
-				lAsignatura_estudiantes[i].setId_asignatura(null);
-			}
-			entidades.Convocatoria[] lConvocatorias = convocatoria.toArray();
-			for(int i = 0; i < lConvocatorias.length; i++) {
-				lConvocatorias[i].setId_asignatura(null);
-			}
-			try {
-				session.delete(this);
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			throw new PersistentException(e);
-		}
-	}
-	
-	private java.util.Set this_getSet (int key) {
-		if (key == ORMConstants.KEY_ASIGNATURA_ASIGNATURA_ESTUDIANTE) {
-			return ORM_asignatura_estudiante;
-		}
-		else if (key == ORMConstants.KEY_ASIGNATURA_CONVOCATORIA) {
-			return ORM_convocatoria;
-		}
-		
-		return null;
-	}
-	
-	private void this_setOwner(Object owner, int key) {
-		if (key == ORMConstants.KEY_ASIGNATURA_ID_CARRERA) {
-			this.id_carrera = (entidades.Carrera) owner;
-		}
-		
-		else if (key == ORMConstants.KEY_ASIGNATURA_ID_PROFESOR) {
-			this.id_profesor = (entidades.Profesor) owner;
-		}
-	}
-	
-	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
-		public java.util.Set getSet(int key) {
-			return this_getSet(key);
-		}
-		
-		public void setOwner(Object owner, int key) {
-			this_setOwner(owner, key);
-		}
-		
-	};
-	
-	private int id;
-	
-	private String asignatura;
-	
-	private String modalidad;
-	
-	private String semestre;
-	
-	private entidades.Carrera id_carrera;
-	
-	private entidades.Profesor id_profesor;
-	
-	private java.util.Set ORM_asignatura_estudiante = new java.util.HashSet();
-	
-	private java.util.Set ORM_convocatoria = new java.util.HashSet();
-	
-	private void setId(int value) {
-		this.id = value;
-	}
-	
-	public int getId() {
-		return id;
-	}
-	
-	public int getORMID() {
-		return getId();
-	}
-	
-	public void setAsignatura(String value) {
-		this.asignatura = value;
-	}
-	
-	public String getAsignatura() {
-		return asignatura;
-	}
-	
-	public void setModalidad(String value) {
-		this.modalidad = value;
-	}
-	
-	public String getModalidad() {
-		return modalidad;
-	}
-	
-	public void setSemestre(String value) {
-		this.semestre = value;
-	}
-	
-	public String getSemestre() {
-		return semestre;
-	}
-	
-	public void setId_carrera(entidades.Carrera value) {
-		if (id_carrera != null) {
-			id_carrera.asignatura.remove(this);
-		}
-		if (value != null) {
-			value.asignatura.add(this);
-		}
-	}
-	
-	public entidades.Carrera getId_carrera() {
-		return id_carrera;
-	}
-	
-	/**
-	 * This method is for internal use only.
-	 */
-	private void setORM_Id_carrera(entidades.Carrera value) {
-		this.id_carrera = value;
-	}
-	
-	private entidades.Carrera getORM_Id_carrera() {
-		return id_carrera;
-	}
-	
-	public void setId_profesor(entidades.Profesor value) {
-		if (id_profesor != null) {
-			id_profesor.asignatura.remove(this);
-		}
-		if (value != null) {
-			value.asignatura.add(this);
-		}
-	}
-	
-	public entidades.Profesor getId_profesor() {
-		return id_profesor;
-	}
-	
-	/**
-	 * This method is for internal use only.
-	 */
-	private void setORM_Id_profesor(entidades.Profesor value) {
-		this.id_profesor = value;
-	}
-	
-	private entidades.Profesor getORM_Id_profesor() {
-		return id_profesor;
-	}
-	
-	private void setORM_Asignatura_estudiante(java.util.Set value) {
-		this.ORM_asignatura_estudiante = value;
-	}
-	
-	private java.util.Set getORM_Asignatura_estudiante() {
-		return ORM_asignatura_estudiante;
-	}
-	
-	public final entidades.Asignatura_estudianteSetCollection asignatura_estudiante = new entidades.Asignatura_estudianteSetCollection(this, _ormAdapter, ORMConstants.KEY_ASIGNATURA_ASIGNATURA_ESTUDIANTE, ORMConstants.KEY_ASIGNATURA_ESTUDIANTE_ID_ASIGNATURA, ORMConstants.KEY_MUL_ONE_TO_MANY);
-	
-	private void setORM_Convocatoria(java.util.Set value) {
-		this.ORM_convocatoria = value;
-	}
-	
-	private java.util.Set getORM_Convocatoria() {
-		return ORM_convocatoria;
-	}
-	
-	public final entidades.ConvocatoriaSetCollection convocatoria = new entidades.ConvocatoriaSetCollection(this, _ormAdapter, ORMConstants.KEY_ASIGNATURA_CONVOCATORIA, ORMConstants.KEY_CONVOCATORIA_ID_ASIGNATURA, ORMConstants.KEY_MUL_ONE_TO_MANY);
-	
-	public String toString() {
-		return String.valueOf(getId());
-	}
-	
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
+    @Basic(optional = false)
+    @Column(name = "asignatura")
+    private String asignatura;
+    @Basic(optional = false)
+    @Column(name = "modalidad")
+    private String modalidad;
+    @Basic(optional = false)
+    @Column(name = "semestre")
+    private String semestre;
+    @JoinColumn(name = "id_profesor", referencedColumnName = "id")
+    @ManyToOne
+    private Profesor idProfesor;
+    @JoinColumn(name = "id_carrera", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Carrera idCarrera;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAsignatura")
+    private List<AsignaturaEstudiante> asignaturaEstudianteList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAsignatura")
+    private List<Convocatoria> convocatoriaList;
+
+    public Asignatura() {
+    }
+
+    public Asignatura(Integer id) {
+        this.id = id;
+    }
+
+    public Asignatura(Integer id, String asignatura, String modalidad, String semestre) {
+        this.id = id;
+        this.asignatura = asignatura;
+        this.modalidad = modalidad;
+        this.semestre = semestre;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getAsignatura() {
+        return asignatura;
+    }
+
+    public void setAsignatura(String asignatura) {
+        this.asignatura = asignatura;
+    }
+
+    public String getModalidad() {
+        return modalidad;
+    }
+
+    public void setModalidad(String modalidad) {
+        this.modalidad = modalidad;
+    }
+
+    public String getSemestre() {
+        return semestre;
+    }
+
+    public void setSemestre(String semestre) {
+        this.semestre = semestre;
+    }
+
+    public Profesor getIdProfesor() {
+        return idProfesor;
+    }
+
+    public void setIdProfesor(Profesor idProfesor) {
+        this.idProfesor = idProfesor;
+    }
+
+    public Carrera getIdCarrera() {
+        return idCarrera;
+    }
+
+    public void setIdCarrera(Carrera idCarrera) {
+        this.idCarrera = idCarrera;
+    }
+
+    @XmlTransient
+    public List<AsignaturaEstudiante> getAsignaturaEstudianteList() {
+        return asignaturaEstudianteList;
+    }
+
+    public void setAsignaturaEstudianteList(List<AsignaturaEstudiante> asignaturaEstudianteList) {
+        this.asignaturaEstudianteList = asignaturaEstudianteList;
+    }
+
+    @XmlTransient
+    public List<Convocatoria> getConvocatoriaList() {
+        return convocatoriaList;
+    }
+
+    public void setConvocatoriaList(List<Convocatoria> convocatoriaList) {
+        this.convocatoriaList = convocatoriaList;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Asignatura)) {
+            return false;
+        }
+        Asignatura other = (Asignatura) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "entidades.Asignatura[ id=" + id + " ]";
+    }
+    
 }

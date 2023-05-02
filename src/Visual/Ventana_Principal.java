@@ -105,6 +105,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
                 if (T_Facultades.getSelectedRow() != -1) {
                     try {
                         Facultad l = estaVentana.facultades_en_tabla.get(T_Facultades.getSelectedRow());
+                        l=EnMemoria.BD.obtenerPorID_Facultad(l);
                         actualizar_T_A_PartirDe(l);
                     } catch (Exception ex) {
                         DLG_Respuesta.mostrarDlg_ErrorEnLaBD(estaVentana, ex);
@@ -149,6 +150,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
                 if (T_Carrera.getSelectedRow() != -1) {
                     try {
                         Carrera l = estaVentana.carreras_en_tabla.get(T_Carrera.getSelectedRow());
+                        l=EnMemoria.BD.obtenerPorID_Carrera(l);
                         actualizar_T_A_PartirDe(l);
                     } catch (Exception ex) {
                         DLG_Respuesta.mostrarDlg_ErrorEnLaBD(estaVentana, ex);
@@ -193,6 +195,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
                 if (T_Asignaturas.getSelectedRow() != -1) {
                     try {
                         Asignatura l = estaVentana.asignaturas_en_tabla.get(T_Asignaturas.getSelectedRow());
+                        l=EnMemoria.BD.obtenerPorID_Asignatura(l);
                         actualizar_T_A_PartirDe(l);
                     } catch (Exception ex) {
                         DLG_Respuesta.mostrarDlg_ErrorEnLaBD(estaVentana, ex);
@@ -237,6 +240,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
                 if (T_Estudiantes.getSelectedRow() != -1) {
                     try {
                         Estudiante l = estaVentana.estudiantes_en_tabla.get(T_Estudiantes.getSelectedRow());
+                        l=EnMemoria.BD.obtenerPorID_Estudiante(l);
                         actualizar_T_A_PartirDe(l);
                     } catch (Exception ex) {
                         DLG_Respuesta.mostrarDlg_ErrorEnLaBD(estaVentana, ex);
@@ -1968,7 +1972,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
         if (cantidad > 0) {
             T_Facultades.addRowSelectionInterval(0, 0);
             l = L.get(0);
-
+            l=EnMemoria.BD.obtenerPorID_Facultad(l);
         }
 
         actualizar_T_A_PartirDe(l);
@@ -2005,14 +2009,15 @@ public class Ventana_Principal extends javax.swing.JFrame {
         if (cantidad > 0) {
             T_Carrera.addRowSelectionInterval(0, 0);
             l = L.get(0);
-
+            l=EnMemoria.BD.obtenerPorID_Carrera(l);
         }
         actualizar_T_A_PartirDe(l);
     }
 
     private void actualizar_T_A_PartirDe(Carrera l) throws Exception {
         if (l != null) {
-            this.asignaturas_existentes_de_carrera = new ArrayList<>(Arrays.asList(EnMemoria.BD.obtenerTodos_Asignatura(l)));
+            Asignatura []A=EnMemoria.BD.obtenerTodos_Asignatura(l);
+            this.asignaturas_existentes_de_carrera = new ArrayList<>(Arrays.asList(A));
 
         } else {
             this.asignaturas_existentes_de_carrera = new ArrayList<>();
@@ -2042,6 +2047,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
         if (cantidad > 0) {
             T_Asignaturas.addRowSelectionInterval(0, 0);
             l = L.get(0);
+            l=EnMemoria.BD.obtenerPorID_Asignatura(l);
 
         }
         actualizar_T_A_PartirDe(l);
@@ -2082,7 +2088,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
         if (cantidad > 0) {
             T_Estudiantes.addRowSelectionInterval(0, 0);
             l = L.get(0);
-
+            l=EnMemoria.BD.obtenerPorID_Estudiante(l);
         }
         actualizar_T_A_PartirDe(l);
 
@@ -2116,11 +2122,11 @@ public class Ventana_Principal extends javax.swing.JFrame {
         
         for (int i = 0; i < cantidad; i++) {
             Convocatoria a = L.get(i);
-            O[i][0] = ((int) a.getNota()) + "";
+            O[i][0] =  a.getNota();
             O[i][1] = a.getNumero();
-            O[i][2] = UtilidadesParaVentana.obtenerFechaConFormato(a.getFecha());
+            O[i][2] = a.getFecha();//UtilidadesParaVentana.obtenerFechaConFormato(a.getFecha());
             
-            sumaNotas+=a.getNota();
+            sumaNotas+=Double.parseDouble(a.getNota()) ;
         }
         T_Examenes.setModel(new DefaultTableModel(O, Tiulos) {
             public boolean isCellEditable(int row, int column) {
@@ -2137,7 +2143,7 @@ public class Ventana_Principal extends javax.swing.JFrame {
             @Override
             public int compare(Convocatoria o1, Convocatoria o2) {
 
-                return new Integer(o1.getNumero()).compareTo(o2.getNumero());
+                return new Integer(o1.getNumero()).compareTo(new Integer(o2.getNumero()) );
             }
         });
         if (!ordenar_de_forma_asendente_Convocatoria) {

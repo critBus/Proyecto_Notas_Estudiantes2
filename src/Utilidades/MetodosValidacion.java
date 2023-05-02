@@ -416,7 +416,7 @@ public class MetodosValidacion {
             int semestre
     ) throws Exception {
         if ((!e.getAsignatura().equals(nombre))
-                && EnMemoria.BD.existeAsignatura(e.getId_carrera(), nombre)) {
+                && EnMemoria.BD.existeAsignatura(e.getIdCarrera(), nombre)) {
             DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_YA_EXISTE_ASIGNATURA_EN_CARRERA);
             return false;
         }
@@ -528,7 +528,8 @@ public class MetodosValidacion {
             String numero, String fecha) throws Exception {
 
         int numeroInt = Integer.parseInt(numero);
-        if (co.getNumero() != numeroInt) {
+        int numeroConvocatoria=Integer.parseInt(co.getNumero());
+        if (numeroConvocatoria != numeroInt) {
             if (EnMemoria.BD.existeConvocatoria(c, e, Integer.parseInt(numero))) {
                 DLG_Respuesta.mostrarDlgInvalido(parentComponent, MSG_YA_EXISTE_CONVOCATORIA_EN_ESTUDIANTE_ASIGNATURA);
                 return false;

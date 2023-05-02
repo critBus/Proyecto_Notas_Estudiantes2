@@ -147,6 +147,8 @@ public class Dialogo_Agregar_Examen extends javax.swing.JDialog {
             if (MetodosValidacion.validar_es_nueva_Convocatoria_correcta(this,entidadSecundaria,entidadActual,numero, fechaStr)) {
                 Date fecha=UtilidadesParaVentana.obtenerFecha(fechaStr); 
                 Convocatoria nuevo = EnMemoria.BD.agregarConvocatoria(entidadSecundaria,entidadActual, nota, numero, fecha);
+                entidadActual=EnMemoria.BD.obtenerPorID_Estudiante(entidadActual);
+                entidadSecundaria=EnMemoria.BD.obtenerPorID_Asignatura(entidadSecundaria);
                 EnMemoria.ventana_Principal.actualizar_Convocatoria(nuevo);
                 setVisible(false);
                 DLG_Respuesta.mostrarDlgExito(this, "Examen agregado con éxito  ");

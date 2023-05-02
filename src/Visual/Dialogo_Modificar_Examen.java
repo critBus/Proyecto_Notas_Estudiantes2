@@ -7,6 +7,7 @@ package Visual;
 
 import entidades.*;
 import Utilidades.*;
+import static Utilidades.UtilidadesParaVentana.obtenerFechaConFormato;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -47,9 +48,10 @@ public class Dialogo_Modificar_Examen extends javax.swing.JDialog {
         this.entidad=c;
         //System.out.println("int)c.getNota()="+(int)c.getNota());
         //System.out.println("c.getNumero()="+c.getNumero());
-        CB_Nota.setSelectedItem((int)c.getNota()+"");
+        CB_Nota.setSelectedItem((int)Double.parseDouble(c.getNota())+"");
 
-        UtilidadesParaVentana.ponerFecha(c.getFecha(),FF_Fecha);
+        //UtilidadesParaVentana.ponerFecha(c.getFecha(),FF_Fecha);
+        FF_Fecha.setText(c.getFecha());
         CB_Numero.setSelectedItem(c.getNumero()+"");
     }
 
@@ -73,7 +75,7 @@ public class Dialogo_Modificar_Examen extends javax.swing.JDialog {
         FF_Fecha = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Agregar Examen");
+        setTitle("Modificar Examen");
         setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -148,12 +150,14 @@ public class Dialogo_Modificar_Examen extends javax.swing.JDialog {
             String numero = CB_Numero.getSelectedItem().toString();
 
             if (MetodosValidacion.validar_es_modificar_Convocatoria_correcta(this,entidadSecundaria,entidadActual,entidad,numero, fechaStr)) {
-                Date fecha=UtilidadesParaVentana.obtenerFecha(fechaStr); 
-                this.entidad.setFecha(fecha);
-                this.entidad.setNota(Double.parseDouble(nota));
-                this.entidad.setNumero(Integer.parseInt(numero));
+                //Date fecha=UtilidadesParaVentana.obtenerFecha(fechaStr); 
+                this.entidad.setFecha(fechaStr);
+                this.entidad.setNota(nota);
+                this.entidad.setNumero(numero);
                 
                 Convocatoria modificado = EnMemoria.BD.modificarConvocatoria(entidad);
+                entidadActual=EnMemoria.BD.obtenerPorID_Estudiante(entidadActual);
+                entidadSecundaria=EnMemoria.BD.obtenerPorID_Asignatura(entidadSecundaria);
                 EnMemoria.ventana_Principal.actualizar_Convocatoria(modificado);
                 setVisible(false);
                 DLG_Respuesta.mostrarDlgExito(this, "Examen modificado con éxito  ");

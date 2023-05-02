@@ -121,6 +121,8 @@ public Asignatura entidadSecundaria;
                 
                 
                 Profesor modificado=EnMemoria.BD.modificarProfesor(entidadActual);
+                entidadActual=EnMemoria.BD.obtenerPorID_Profesor(entidadActual);
+                entidadSecundaria=EnMemoria.BD.obtenerPorID_Asignatura(entidadSecundaria);
                 EnMemoria.ventana_Principal.actualizar_Profesor(modificado);
                 setVisible(false);
                 DLG_Respuesta.mostrarDlgExito(this, "Profesor modificado con éxito  ");
